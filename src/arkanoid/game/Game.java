@@ -18,7 +18,6 @@ import java.awt.Color;
  * @since 4/4/2016
  */
 
-//test
 public class Game {
     private SpriteCollection sprites;
     private GameEnvironment environment;
