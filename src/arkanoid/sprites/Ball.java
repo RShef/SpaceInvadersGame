@@ -190,7 +190,6 @@ public class Ball implements Sprite {
     /**
      * Adds the ball both as Collidable and as Sprite.
      * <p>
-     *
      * @param g the game environment.
      */
     public void addToGame(Game g) {

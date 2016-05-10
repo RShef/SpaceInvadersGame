@@ -5,6 +5,7 @@ import arkanoid.Counter;
 import arkanoid.listeners.HitListener;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
+import arkanoid.listeners.ScoreTrackingListener;
 import arkanoid.sprites.*;
 import biuoop.GUI;
 import biuoop.Sleeper;
@@ -23,6 +24,7 @@ public class Game {
     private GameEnvironment environment;
     private GUI gui;
     private Counter blocks;
+    private Counter score;
 
     /**
      * Instantiates a new game object.
@@ -32,6 +34,7 @@ public class Game {
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
         this.blocks = new Counter();
+        this.score = new Counter();
     }
 
     /**
@@ -75,10 +78,14 @@ public class Game {
      * <p>
      */
     public void makeBorders() {
-        new Block(new Point(0, 0), 400, 10, 0, Color.gray).addToGame(this);
-        new Block(new Point(0, 390), 400, 10, 0, Color.gray).addToGame(this);
-        new Block(new Point(0, 0), 10, 400, 0, Color.gray).addToGame(this);
-        new Block(new Point(390, 0), 10, 400, 0, Color.gray).addToGame(this);
+        // upper border
+        new Block(new Point(0, 20), 800, 10, 0, Color.gray).addToGame(this);
+        // bottom border
+        new Block(new Point(0, 590), 800, 10, 0, Color.gray).addToGame(this);
+        // left border
+        new Block(new Point(0, 20), 10, 600, 0, Color.gray).addToGame(this);
+        // right border
+        new Block(new Point(790, 20), 10, 600, 0, Color.gray).addToGame(this);
     }
 
     /**
@@ -90,11 +97,13 @@ public class Game {
      * @param hitPoints hit Points for blocks.
      * @param color block's color.
      */
-    public void makeBlocks(double x, double y, int numBlocks, int hitPoints, Color color, HitListener hl) {
+    public void makeBlocks(double x, double y, int numBlocks, int hitPoints, Color color, HitListener hl,
+                           ScoreTrackingListener stl) {
         for (int i = 0; i < numBlocks; i++) {
             Block b = new Block(new Point(x - (i * 50), y), 50, 20, hitPoints, color);
             b.addToGame(this);
             b.addHitListener(hl);
+            b.addHitListener(stl);
             this.blocks.increase(1);
         }
     }
@@ -121,9 +130,19 @@ public class Game {
      */
     public void makePaddle() {
         biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        Paddle p = new Paddle(new Rectangle(new Point(170, 370), 50, 20), Color.RED, key, 10, 400, 5);
+        Paddle p = new Paddle(new Rectangle(new Point(170, 570), 50, 20), Color.RED, key, 10, 800, 5);
         p.addToGame(this);
 
+    }
+
+    /**
+     * Makes the information bar at the top of the screen.
+     * <p>
+     * Displays lives, score and level name.
+     */
+    public void makeInfoBar() {
+        ScoreIndicator si = new ScoreIndicator(this.score);
+        si.addToGame(this);
     }
 
     /**
@@ -133,16 +152,20 @@ public class Game {
     public void initialize() {
         Color[] colors = {Color.gray, Color.red, Color.yellow, Color.blue, Color.pink, Color.green};
         this.environment = new GameEnvironment();
-        this.gui = new GUI("Game", 400, 400);
-        BlockRemover hl = new BlockRemover(this, this.blocks);
+        this.gui = new GUI("Game", 800, 600);
+        BlockRemover br = new BlockRemover(this, this.blocks);
         makeBall(180, 350, 5, Color.BLACK, environment);
         makeBall(200, 350, 5, Color.BLACK, environment);
+        new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
+        ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
         makeBorders();
-        makeBlocks(340, 50, 7, 2, colors[0], hl);
+        makeInfoBar();
+        makeBlocks(340, 50, 7, 2, colors[0], br, stl);
         for (int i = 1; i < 6; i++) {
-            makeBlocks(340, 50 + (i * 20), 7 - i, 1, colors[i], hl);
+            makeBlocks(340, 50 + (i * 20), 7 - i, 1, colors[i], br, stl);
         }
         makePaddle();
+
 
     }
 
@@ -168,6 +191,7 @@ public class Game {
             }
             if (this.blocks.getValue() == 0) {
                 this.gui.close();
+                this.score.increase(100);
                 return;
             }
         }
