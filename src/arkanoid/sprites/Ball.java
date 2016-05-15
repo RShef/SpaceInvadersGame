@@ -196,4 +196,11 @@ public class Ball implements Sprite {
         g.addSprite(this);
     }
 
+    /**
+     * Removes the ball from the game.
+     * @param g - the game environment.
+     */
+    public void removeFromGame(Game g) {
+        g.removeSprite(this);
+    }
 }

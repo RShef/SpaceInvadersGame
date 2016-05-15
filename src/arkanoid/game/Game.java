@@ -1,5 +1,6 @@
 package arkanoid.game;
 
+import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
 import arkanoid.Counter;
 import arkanoid.listeners.HitListener;
@@ -25,6 +26,8 @@ public class Game {
     private GUI gui;
     private Counter blocks;
     private Counter score;
+    private Counter balls;
+
 
     /**
      * Instantiates a new game object.
@@ -35,6 +38,7 @@ public class Game {
         this.environment = new GameEnvironment();
         this.blocks = new Counter();
         this.score = new Counter();
+        this.balls = new Counter();
     }
 
     /**
@@ -77,11 +81,14 @@ public class Game {
      * Makes to Borders of the game.
      * <p>
      */
-    public void makeBorders() {
+    public void makeBorders(HitListener hl) {
         // upper border
         new Block(new Point(0, 20), 800, 10, 0, Color.gray).addToGame(this);
         // bottom border
-        new Block(new Point(0, 590), 800, 10, 0, Color.gray).addToGame(this);
+        Block b = new Block(new Point(0, 590), 800, 10, 0, Color.gray);
+        // adding BallRemover to be a listener of the bottom block.
+        b.addToGame(this);
+        b.addHitListener(hl);
         // left border
         new Block(new Point(0, 20), 10, 600, 0, Color.gray).addToGame(this);
         // right border
@@ -120,6 +127,7 @@ public class Game {
     public void makeBall(int x, int y, int size, Color color, GameEnvironment environment1) {
         Ball ball = new Ball(x, y, size, color);
         ball.addToGame(this);
+        this.balls.increase(1);
         ball.setEnvironment(environment1);
         ball.setVelocity(-4, -4);
     }
@@ -154,11 +162,12 @@ public class Game {
         this.environment = new GameEnvironment();
         this.gui = new GUI("Game", 800, 600);
         BlockRemover br = new BlockRemover(this, this.blocks);
+        BallRemover bar = new BallRemover(this, this.balls);
         makeBall(180, 350, 5, Color.BLACK, environment);
         makeBall(200, 350, 5, Color.BLACK, environment);
         new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
-        makeBorders();
+        makeBorders(bar);
         makeInfoBar();
         makeBlocks(340, 50, 7, 2, colors[0], br, stl);
         for (int i = 1; i < 6; i++) {
@@ -189,7 +198,7 @@ public class Game {
             if (milliSecondLeftToSleep > 0) {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
-            if (this.blocks.getValue() == 0) {
+            if (this.blocks.getValue() == 0 || this.balls.getValue() == 0) {
                 this.gui.close();
                 this.score.increase(100);
                 return;
