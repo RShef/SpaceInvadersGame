@@ -1,0 +1,51 @@
+package arkanoid.game;
+
+import arkanoid.Counter;
+
+import arkanoid.sprites.*;
+import biuoop.Sleeper;
+import biuoop.DrawSurface;
+
+import java.awt.Color;
+
+/**
+ * @author Roey Shefi & Oded Thaller
+ * @version 1.0
+ * @since 15/5/2016
+ */
+public class CountdownAnimation implements Animation {
+    double numOfSeconds;
+    Counter countFrom;
+    SpriteCollection gameScreen;
+    double nu;
+    public CountdownAnimation(double numOfSeconds,
+                              int countFrom,
+                              SpriteCollection gameScreen) {
+        this.numOfSeconds = numOfSeconds;
+        this.countFrom = new Counter();
+        this.countFrom.increase(countFrom);
+        this.gameScreen = gameScreen;
+        this.nu = countFrom;
+    }
+
+    /**
+     * Displays a num from to countdown.
+     * @param d is the draw surface.
+     */
+    public void doOneFrame(DrawSurface d) {
+        this.gameScreen.drawAllOn(d);
+        //this.gameScreen.notifyAllTimePassed();
+        d.setColor(Color.black);
+        d.drawText(400, 300, String.valueOf(this.countFrom.getValue()) , 100);
+        this.countFrom.decrease(1);
+        Sleeper sl = new Sleeper();
+        sl.sleepFor((long)numOfSeconds/(long)this.nu);
+
+    }
+
+    /**
+     *  When to stop.
+     * @return if it reached zero.
+     */
+    public boolean shouldStop() { return this.countFrom.getValue() == -1; }
+}

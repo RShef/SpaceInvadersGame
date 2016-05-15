@@ -40,6 +40,7 @@ public class Paddle implements Sprite, Collidable {
         this.border = border;
         this.color = color;
     }
+    public Paddle (){};
 
     /**
      * Moving the paddle right.
@@ -169,6 +170,15 @@ public class Paddle implements Sprite, Collidable {
     public void addToGame(Game g) {
         g.addSprite(this);
         g.addCollidable(this);
+    }
+
+    /**
+     * Removes the padle from the game.
+     * @param g - the game env.
+     */
+    public void removeFromGame (Game g) {
+        g.removeCollidable(this);
+        g.removeSprite(this);
     }
 
 }

@@ -3,11 +3,7 @@ package arkanoid.listeners;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
 
-/**
- * @author Roey Shefi & Oded Thaller
- * @version 1.0
- * @since 09/05/2016
- */
+
 
 public interface HitListener {
 
