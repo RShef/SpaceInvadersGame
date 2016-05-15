@@ -171,6 +171,15 @@ public class Paddle implements Sprite, Collidable {
         g.addCollidable(this);
     }
 
+    /**
+     * Removes the padle from the game.
+     * @param g - the game env.
+     */
+    public void removeFromGame (Game g) {
+        g.removeCollidable(this);
+        g.removeSprite(this);
+    }
+
 }
 
 

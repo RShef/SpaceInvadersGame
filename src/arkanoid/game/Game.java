@@ -27,6 +27,7 @@ public class Game {
     private Counter blocks;
     private Counter score;
     private Counter balls;
+    private Counter lives;
 
 
     /**
@@ -39,6 +40,7 @@ public class Game {
         this.blocks = new Counter();
         this.score = new Counter();
         this.balls = new Counter();
+        this.lives = new Counter();
     }
 
     /**
@@ -136,10 +138,11 @@ public class Game {
      * Makes the paddle for the game.
      * <p>
      */
-    public void makePaddle() {
+    public Paddle makePaddle() {
         biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        Paddle p = new Paddle(new Rectangle(new Point(170, 570), 50, 20), Color.RED, key, 10, 800, 5);
+        Paddle p = new Paddle(new Rectangle(new Point(380, 570), 50, 20), Color.RED, key, 10, 800, 5);
         p.addToGame(this);
+        return p;
 
     }
 
@@ -149,8 +152,12 @@ public class Game {
      * Displays lives, score and level name.
      */
     public void makeInfoBar() {
+        // Add score to bar.
         ScoreIndicator si = new ScoreIndicator(this.score);
         si.addToGame(this);
+        // Add lives left to bar.
+        LivesIndicator li = new LivesIndicator(this.lives);
+        li.addToGame(this);
     }
 
     /**
@@ -161,10 +168,10 @@ public class Game {
         Color[] colors = {Color.gray, Color.red, Color.yellow, Color.blue, Color.pink, Color.green};
         this.environment = new GameEnvironment();
         this.gui = new GUI("Game", 800, 600);
+        // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);
         BallRemover bar = new BallRemover(this, this.balls);
-        makeBall(180, 350, 5, Color.BLACK, environment);
-        makeBall(200, 350, 5, Color.BLACK, environment);
+        // Creating the game field.
         new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
         makeBorders(bar);
@@ -173,22 +180,26 @@ public class Game {
         for (int i = 1; i < 6; i++) {
             makeBlocks(340, 50 + (i * 20), 7 - i, 1, colors[i], br, stl);
         }
-        makePaddle();
+        this.lives.increase(4);
 
 
     }
 
     /**
-     * Runs the animation loop.
+     * Runs one turn.
      * <p>
      */
-    public void run() {
+    public void playOneTurn() {
+        makeBall(180, 350, 5, Color.black, this.environment);
+        makeBall(200, 350, 5, Color.black, this.environment);
+        Paddle p = makePaddle();
         int framesPerSecond = 60;
         int millisecondsPerFrame = 1000 / framesPerSecond;
         Sleeper sleeper = new Sleeper();
         while (true) {
             long startTime = System.currentTimeMillis(); // timing
             DrawSurface d = this.gui.getDrawSurface();
+
             this.sprites.drawAllOn(d);
             this.gui.show(d);
             this.sprites.notifyAllTimePassed();
@@ -198,11 +209,26 @@ public class Game {
             if (milliSecondLeftToSleep > 0) {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
-            if (this.blocks.getValue() == 0 || this.balls.getValue() == 0) {
+            if (this.blocks.getValue() == 0) {
                 this.gui.close();
                 this.score.increase(100);
                 return;
             }
+            if (this.balls.getValue() == 0) {
+                p.removeFromGame(this);
+                return;
+            }
         }
+    }
+
+    /**
+     * Runs the loop.
+     */
+    public void run () {
+        while (this.lives.getValue() != -1) {
+            playOneTurn();
+            this.lives.decrease(1);
+        }
+
     }
 }
