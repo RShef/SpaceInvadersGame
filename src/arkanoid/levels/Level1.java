@@ -91,7 +91,7 @@ public class Level1 implements LevelInformation {
      */
     public List<Block> blocks() {
         List<Block> b = new ArrayList<>();
-        b.add(new Block(new Point(385,135),30,30,2,Color.red));
+        b.add(new Block(new Point(385,135),30,30,1,Color.red));
         return b;
     }
 
