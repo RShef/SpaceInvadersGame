@@ -18,7 +18,6 @@ public class Paddle implements Sprite, Collidable {
     private Rectangle rectangle;
     private KeyboardSensor keyboard;
     private int width;
-    private int border;
     private int paddleSpeed;
 
     /**
@@ -29,18 +28,17 @@ public class Paddle implements Sprite, Collidable {
      * @param color      - the color.
      * @param k          - the  keyboard.
      * @param width - the width of the border.
-     * @param border - the boarders size.
      * @param paddleSpeed - the paddles speed.
      */
-    public Paddle(Rectangle rec, Color color, KeyboardSensor k, int border, int width, int paddleSpeed) {
+    public Paddle(Rectangle rec, Color color, KeyboardSensor k, int width, int paddleSpeed) {
         this.rectangle = rec;
         this.keyboard = k;
         this.paddleSpeed = paddleSpeed;
         this.width = width;
-        this.border = border;
         this.color = color;
     }
-    public Paddle (){};
+
+    public Paddle (){}
 
     /**
      * Moving the paddle right.
@@ -50,9 +48,9 @@ public class Paddle implements Sprite, Collidable {
         // Get and Set the new rec based on the paddle speed.
         Rectangle rec = this.getCollisionRectangle();
         //Checking to see if the paddle had reached the border.
-        if (rec.getUpperLeft().getX() + this.paddleSpeed > this.width - this.border - rec.getWidth()) {
-            this.rectangle = new Rectangle(new Point(this.width - this.border - rec.getWidth(),
-                    rec.getUpperLeft().getY()), rec.getWidth(), rec.getHeight());
+        if (rec.getUpperLeft().getX() + this.paddleSpeed + rec.getWidth() > 780) {
+            this.rectangle = new Rectangle(new Point(780 - this.width, rec.getUpperLeft().getY()),
+                    rec.getWidth(), rec.getHeight());
         } else {
             // Set A new rectangle for the Paddle right from the previous paddle.
             this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() + this.paddleSpeed,
@@ -68,8 +66,8 @@ public class Paddle implements Sprite, Collidable {
         // Get and Set the new rec based on the paddle speed.
         Rectangle rec = this.getCollisionRectangle();
         //Checking to see if the paddle had reached the border.
-        if (rec.getUpperLeft().getX() - (this.paddleSpeed) < this.border) {
-            this.rectangle = new Rectangle(new Point(border, rec.getUpperLeft().getY()), rec.getWidth(),
+        if (rec.getUpperLeft().getX() - (this.paddleSpeed) < 20) {
+            this.rectangle = new Rectangle(new Point(20, rec.getUpperLeft().getY()), rec.getWidth(),
                     rec.getHeight());
         } else { // Set A new rectangle for the Paddle left from the previous paddle.
             this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() - (this.paddleSpeed),
