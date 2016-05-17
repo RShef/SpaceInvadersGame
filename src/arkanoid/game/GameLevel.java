@@ -97,7 +97,7 @@ public class GameLevel implements Animation {
         // upper border
         new Block(new Point(0, 20), 800, 20, 0, Color.gray).addToGame(this);
         // bottom border
-        Block b = new Block(new Point(0, 580), 800, 20, 0, Color.gray);
+        Block b = new Block(new Point(0, 600), 800, 20, 0, Color.white);
         // adding BallRemover to be a listener of the bottom block.
         b.addToGame(this);
         b.addHitListener(hl);
@@ -105,26 +105,6 @@ public class GameLevel implements Animation {
         new Block(new Point(0, 20), 20, 600, 0, Color.gray).addToGame(this);
         // right border
         new Block(new Point(780, 20), 20, 600, 0, Color.gray).addToGame(this);
-    }
-
-    /**
-     * Makes the blocks for the game.
-     * <p>
-     * @param x x value of the top left corner of the block.
-     * @param y y value of the top left corner of the block.
-     * @param numBlocks number of blocks per row.
-     * @param hitPoints hit Points for blocks.
-     * @param color block's color.
-     */
-    public void makeBlocks(double x, double y, int numBlocks, int hitPoints, Color color, HitListener hl,
-                           ScoreTrackingListener stl) {
-        for (int i = 0; i < numBlocks; i++) {
-            Block b = new Block(new Point(x - (i * 50), y), 50, 20, hitPoints, color);
-            b.addToGame(this);
-            b.addHitListener(hl);
-            b.addHitListener(stl);
-            this.blocks.increase(1);
-        }
     }
 
     /**
@@ -151,7 +131,7 @@ public class GameLevel implements Animation {
      */
     public void makePaddle(int w, int s) {
         biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        this.p = new Paddle(new Rectangle(new Point((760 - w)/2, 560), w, 15), Color.YELLOW, key,w,800, s);
+        this.p = new Paddle(new Rectangle(new Point((800 - w)/2, 560), w, 15), Color.YELLOW, key, w, s);
         p.addToGame(this);
 
     }
@@ -168,6 +148,9 @@ public class GameLevel implements Animation {
         // Add lives left to bar.
         LivesIndicator li = new LivesIndicator(this.lives);
         li.addToGame(this);
+        // Add level name to bar.
+        LevelNameIndicator ln = new LevelNameIndicator(this.l.levelName());
+        ln.addToGame(this);
     }
 
     /**
@@ -175,9 +158,8 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void initialize() {
-        //Color[] colors = {Color.gray, Color.red, Color.yellow, Color.blue, Color.pink, Color.green};
         this.environment = new GameEnvironment();
-        this.gui = new GUI(this.l.levelName(), 800, 600);
+        this.gui = new GUI("Arkanoid", 800, 600);
         this.runner = new AnimationRunner(60,this.gui);
 
         // Adding the listeners.
@@ -199,22 +181,13 @@ public class GameLevel implements Animation {
 
         }
 
-        /**
-        makeBlocks(340, 50, 7, 2, colors[0], br, stl);
-        for (int i = 1; i < 6; i++) {
-            makeBlocks(340, 50 + (i * 20), 7 - i, 1, colors[i], br, stl);
-        }
-         **/
-
         this.lives.increase(7);
-
-
     }
 
     /**
      * Creates the balls and the paddle.
      */
-    public  void createBallsAndPaddle () {
+    public void createBallsAndPaddle () {
         for (Velocity v : this.l.initialBallVelocities()) {
             makeBall(180, 350, 5, Color.black, this.environment,v);
         }
