@@ -2,7 +2,6 @@ package arkanoid.sprites;
 
 import arkanoid.Counter;
 import arkanoid.game.GameLevel;
-import arkanoid.game.GameLevel;
 import biuoop.DrawSurface;
 
 import java.awt.*;

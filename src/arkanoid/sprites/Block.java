@@ -97,15 +97,6 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * <p>
      * @param surface draw surface. */
     public void drawOn(DrawSurface surface) {
-        int hitsX = (int) this.b.getUpperLeft().getX() + (int) this.b.getWidth() / 2 - 4;
-        int hitsY = (int) this.b.getUpperLeft().getY() + (int) this.b.getHeight() / 2 + 4;
-        String hitPoints;
-        if (this.hits > 0) {
-                hitPoints = Integer.toString(this.hits);
-            } else {
-                hitPoints = "X";
-            }
-
         surface.setColor(this.color);
         surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
                 (int) this.b.getWidth(), (int) this.b.getHeight());
@@ -113,7 +104,6 @@ public class Block implements Collidable, Sprite, HitNotifier {
         surface.drawRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
                 (int) this.b.getWidth(), (int) this.b.getHeight());
         surface.setColor(Color.white);
-        surface.drawText(hitsX, hitsY, hitPoints, 15);
     }
 
     /**
