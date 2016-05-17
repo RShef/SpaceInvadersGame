@@ -1,6 +1,6 @@
 package arkanoid.sprites;
 
-import arkanoid.game.Game;
+import arkanoid.game.GameLevel;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
@@ -167,7 +167,7 @@ public class Paddle implements Sprite, Collidable {
      * <p>
      * @param g - the Game surface.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }
@@ -176,7 +176,7 @@ public class Paddle implements Sprite, Collidable {
      * Removes the padle from the game.
      * @param g - the game env.
      */
-    public void removeFromGame (Game g) {
+    public void removeFromGame (GameLevel g) {
         g.removeCollidable(this);
         g.removeSprite(this);
     }

@@ -1,4 +1,8 @@
 package arkanoid.geometry;
+import arkanoid.sprites.Sprite;
+import biuoop.DrawSurface;
+
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -7,10 +11,11 @@ import java.util.List;
  * @since 01.03.2016
  */
 
-public class Line {
+public class Line implements Sprite {
 
     private Point start;
     private Point end;
+    private Color c;
 
     // constructors
 
@@ -36,6 +41,20 @@ public class Line {
     public Line(double x1, double y1, double x2, double y2) {
         this.start = new Point(x1, y1);
         this.end = new Point(x2, y2);
+    }
+
+    /**
+     *
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param c
+     */
+    public Line (double x1, double y1, double x2, double y2, Color c) {
+        this.start = new Point(x1, y1);
+        this.end = new Point(x2, y2);
+        this.c = c;
     }
 
     // accessors
@@ -209,4 +228,14 @@ public class Line {
         return (this.end.getY() - this.start.getY()) / (this.end.getX() - this.start.getX());
     }
 
+    @Override
+    public void drawOn(DrawSurface d) {
+        d.setColor(this.c);
+        d.drawLine((int)this.start.getX(),(int)this.start.getY(),(int)this.end.getX(),(int)this.end.getY());
+    }
+
+    @Override
+    public void timePassed() {
+
+    }
 }

@@ -1,4 +1,6 @@
 package arkanoid.game;
+import arkanoid.levels.Level1;
+import arkanoid.levels.Level2;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -15,7 +17,8 @@ public class Ass3Game {
      * @param args arguments.
      */
     public static void main(String[] args) {
-        Game game = new Game();
+
+        GameLevel game = new GameLevel(new Level1());
         game.initialize();
         game.run();
     }

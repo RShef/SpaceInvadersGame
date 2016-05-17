@@ -1,6 +1,6 @@
 package arkanoid.listeners;
 import arkanoid.Counter;
-import arkanoid.game.Game;
+import arkanoid.game.GameLevel;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
 
@@ -11,10 +11,10 @@ import arkanoid.sprites.Block;
  */
 
 public class BallRemover implements HitListener {
-    private Game game;
+    private GameLevel game;
     private Counter removedBalls;
 
-    public BallRemover(Game game, Counter removedBalls) {
+    public BallRemover(GameLevel game, Counter removedBalls) {
         this.game = game;
         this.removedBalls = removedBalls;
     }

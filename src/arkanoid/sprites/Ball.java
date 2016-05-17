@@ -94,6 +94,8 @@ public class Ball implements Sprite {
         this.velocity = new Velocity(v.getDx(), v.getDy());
     }
 
+
+
    // Setters
 
     /**
@@ -192,7 +194,7 @@ public class Ball implements Sprite {
      * <p>
      * @param g the game environment.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 
@@ -200,7 +202,7 @@ public class Ball implements Sprite {
      * Removes the ball from the game.
      * @param g - the game environment.
      */
-    public void removeFromGame(Game g) {
+    public void removeFromGame(GameLevel g) {
         g.removeSprite(this);
     }
 }

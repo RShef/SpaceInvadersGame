@@ -1,8 +1,8 @@
 package arkanoid.sprites;
 
+import arkanoid.game.GameLevel;
 import arkanoid.listeners.HitListener;
 import arkanoid.listeners.HitNotifier;
-import arkanoid.game.Game;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
@@ -122,7 +122,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param g the game environment.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }
@@ -132,7 +132,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * <p>
      * @param g the game.
      */
-    public void removeFromGame(Game g) {
+    public void removeFromGame(GameLevel g) {
         g.removeCollidable(this);
         g.removeSprite(this);
     }

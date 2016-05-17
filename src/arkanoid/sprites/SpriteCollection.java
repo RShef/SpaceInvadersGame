@@ -3,6 +3,7 @@ package arkanoid.sprites;
 import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @since 3/31/2016
  */
 
-public class SpriteCollection {
+public class SpriteCollection{
 
     private ArrayList<Sprite> sprites;
 
@@ -50,14 +51,10 @@ public class SpriteCollection {
             this.sprites.get(i).timePassed();
         }
     }
-
-    /**
-     * Call drawOn on all the sprites in the collection.
-     * <p>
-     * @param d the draw surface.
-     */
-    public void drawAllOn(DrawSurface d) {
+    public void drawOn(DrawSurface d) {
         for (Sprite sprite : this.sprites) {
+            //d.setColor(this.Color);
+
             sprite.drawOn(d);
         }
     }

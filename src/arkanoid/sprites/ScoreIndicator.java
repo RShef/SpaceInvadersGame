@@ -1,7 +1,8 @@
 package arkanoid.sprites;
 
 import arkanoid.Counter;
-import arkanoid.game.Game;
+import arkanoid.game.GameLevel;
+import arkanoid.game.GameLevel;
 import biuoop.DrawSurface;
 
 import java.awt.*;
@@ -50,7 +51,7 @@ public class ScoreIndicator implements Sprite {
      * <p>
      * @param g the game.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 }

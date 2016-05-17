@@ -33,10 +33,10 @@ public class CountdownAnimation implements Animation {
      * @param d is the draw surface.
      */
     public void doOneFrame(DrawSurface d) {
-        this.gameScreen.drawAllOn(d);
+        this.gameScreen.drawOn(d);
         //this.gameScreen.notifyAllTimePassed();
-        d.setColor(Color.black);
-        d.drawText(400, 300, String.valueOf(this.countFrom.getValue()) , 100);
+        d.setColor(Color.YELLOW);
+        d.drawText(370, 300, String.valueOf(this.countFrom.getValue()) , 100);
         this.countFrom.decrease(1);
         Sleeper sl = new Sleeper();
         sl.sleepFor((long)numOfSeconds/(long)this.nu);
