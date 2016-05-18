@@ -132,6 +132,11 @@ public class Line implements Sprite {
         if (this.isVertical()) {
             return this.verticalIntersection(other);
         }
+
+        if (other.isVertical()) {
+            return other.verticalIntersection(this);
+        }
+
         m1 = this.slope();
         m2 = other.slope();
 
