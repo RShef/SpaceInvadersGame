@@ -1,6 +1,7 @@
 package arkanoid.sprites;
 
 import arkanoid.game.GameLevel;
+import arkanoid.geometry.Line;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
@@ -90,8 +91,8 @@ public class Paddle implements Sprite, Collidable {
         if (collisionPoint.onVerLine(this.rectangle)) {
             return (new Velocity(Math.round(x) * -1, Math.round(y)));
         } else if (collisionPoint.onHorLine(this.rectangle)) {
-            // Dividing the paddle in to five equal regions.
-            // this is to simplify code read ability.
+            /* Dividing the paddle in to five equal regions.
+            this is to simplify code readability.*/
             double regionSize = Math.round(this.getCollisionRectangle().getWidth()) / 5;
             double regionOne = Math.round(this.getCollisionRectangle().getUpperLeft().getX()) + regionSize;
             double regionTwo = regionOne + regionSize;
@@ -100,19 +101,22 @@ public class Paddle implements Sprite, Collidable {
 
             if (Math.round(collisionPoint.getX()) <= regionOne) {
                 Velocity v = Velocity.fromAngleAndSpeed(300, speed);
-                return new Velocity(Math.round(v.getDy()), Math.round(v.getDx()));
+                return new Velocity(Math.round(v.getDy()) * -1, Math.round(v.getDx()) * -1);
             } else if (Math.round(collisionPoint.getX()) <= regionTwo) {
-                return (Velocity.fromAngleAndSpeed(330, speed));
+                Velocity v = Velocity.fromAngleAndSpeed(330, speed);
+                return new Velocity(Math.round(v.getDy()) * -1, Math.round(v.getDx()) * -1);
                 // In the third region of the paddle, the ball will go up with no horz change.
             } else if (Math.round(collisionPoint.getX()) <= regionThree) {
                 // change the direction in 360 degrees
                 return new Velocity(Math.round(x), Math.round(y) * (-1));
             }
             if (Math.round(collisionPoint.getX()) <= regionFour) {
-                return (Velocity.fromAngleAndSpeed(30, speed));
+                Velocity v = Velocity.fromAngleAndSpeed(30, speed);
+                return new Velocity(Math.round(v.getDy()), Math.round(v.getDx()) * -1);
                 // the fifth region.
             } else {
-                return (Velocity.fromAngleAndSpeed(60, speed));
+                Velocity v = Velocity.fromAngleAndSpeed(60, speed);
+                return new Velocity(Math.round(v.getDy()), Math.round(v.getDx()) * -1);
             }
         } else {
             return (new Velocity(Math.round(x), Math.round(y)));
