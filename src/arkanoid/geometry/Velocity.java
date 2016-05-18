@@ -29,9 +29,10 @@ public class Velocity {
      * @param speed speed on y-axis.
      * @return Velocity. */
     public static Velocity fromAngleAndSpeed(double angle, double speed) {
-        double dx = Math.cos(angle) * speed;
-        double dy = Math.sin(angle) * speed;
+        double dx = Math.cos(Math.toRadians(angle)) * speed;
+        double dy = Math.sqrt(Math.pow(speed, 2) - Math.pow(dx, 2));
         return new Velocity(dx, dy);
+
     }
 
     // accessors
