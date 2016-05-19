@@ -3,8 +3,10 @@ package arkanoid.levels;
 
 import arkanoid.Counter;
 import arkanoid.game.*;
+import arkanoid.sprites.EndScreen;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
+import biuoop.Sleeper;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class GameFlow {
         this.gui = gui;
         this.score = s;
         this.lives = l;
-        l.increase(7);
+        l.increase(1);
     }
 
     /**
@@ -59,6 +61,8 @@ public class GameFlow {
             }
 
         }
+        new EndScreen().drawOn(this.gui.getDrawSurface());
+        new Sleeper().sleepFor(2000);
         this.gui.close();
 
     }
