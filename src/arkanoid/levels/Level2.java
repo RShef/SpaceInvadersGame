@@ -4,7 +4,6 @@ import arkanoid.game.LevelInformation;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
 import arkanoid.sprites.*;
-import arkanoid.geometry.Line;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class Level2 implements LevelInformation {
      * @return Paddle speed.
      */
     public int paddleSpeed() {
-        return 3;
+        return 6;
     }
 
     /**
@@ -59,7 +58,7 @@ public class Level2 implements LevelInformation {
      * @return Paddle width.
      */
     public int paddleWidth() {
-        return 400;
+        return 300;
     }
 
     /**
@@ -79,7 +78,10 @@ public class Level2 implements LevelInformation {
     public Sprite getBackground() {
         SpriteCollection s = new SpriteCollection();
         s.addSprite(new Block(new Point(0, 0), 800, 600, 0, Color.WHITE));
-        s.addSprite(new Circle(200,200,50,Color.YELLOW));
+        s.addSprite(new FullCircle(200,200,60,Color.ORANGE));
+        s.addSprite(new FullCircle(200,200,50,Color.YELLOW));
+
+
 
         return new Back(s);
     }

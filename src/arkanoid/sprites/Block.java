@@ -27,12 +27,12 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Instantiate block.
      * <p>
+     *
      * @param upperLeft - upper point.
      * @param width     of the rectangle.
      * @param height    of the rectangle.
-     * @param hits number of block's hit points.
-     * @param color block's color.
-     *
+     * @param hits      number of block's hit points.
+     * @param color     block's color.
      */
     public Block(Point upperLeft, double width, double height, int hits, Color color) {
         this.b = new Rectangle(upperLeft, width, height);
@@ -44,6 +44,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Return the rectangle.
      * <p>
+     *
      * @return - the rectangle.
      */
     public Rectangle getCollisionRectangle() {
@@ -53,6 +54,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Returns this object's current hit points.
      * <p>
+     *
      * @return hit points
      */
     public int getHitPoints() {
@@ -63,7 +65,8 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * Notifies the object it has been hit
      * <p>
      * reduces one hit and returns new velocity based on collision.
-     * @param collisionPoint the point of collision.
+     *
+     * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
      * @return new Velocity
      */
@@ -82,7 +85,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
                 || Math.round(collisionPoint.getY()) == Math.round(this.b.getLowRight().getY())) {
             this.notifyHit(hitter);
             return new Velocity(Math.round(currentVelocity.getDx()), Math.round(currentVelocity.getDy()) * -1);
-        // if ball hits vertical line, reverse horizontal direction
+            // if ball hits vertical line, reverse horizontal direction
         } else if (Math.round(collisionPoint.getX()) == Math.round(this.b.getUpperLeft().getX())
                 || Math.round(collisionPoint.getX()) == Math.round(this.b.getLowRight().getX())) {
             this.notifyHit(hitter);
@@ -95,7 +98,9 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Draw Block on GUI.
      * <p>
-     * @param surface draw surface. */
+     *
+     * @param surface draw surface.
+     */
     public void drawOn(DrawSurface surface) {
         surface.setColor(this.color);
         surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
@@ -120,6 +125,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Removes a block from the game.
      * <p>
+     *
      * @param g the game.
      */
     public void removeFromGame(GameLevel g) {
@@ -131,11 +137,13 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * Notifies block of time passed.
      * <p>
      */
-    public void timePassed() { }
+    public void timePassed() {
+    }
 
     /**
      * Add hl as a listener to hit events.
      * <p>
+     *
      * @param hl a hit listener
      */
     @Override
@@ -146,6 +154,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Remove hl from the list of listeners.
      * <p>
+     *
      * @param hl a hit listener
      */
     @Override
@@ -156,6 +165,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Notifies all listeners that the block has been hit.
      * <p>
+     *
      * @param hitter the hitting Ball.
      */
     private void notifyHit(Ball hitter) {

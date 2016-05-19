@@ -14,6 +14,7 @@ public interface Collidable {
     /**
      * returns the rectangle.
      * <p>
+     *
      * @return the rectangle.
      */
     Rectangle getCollisionRectangle();
@@ -22,7 +23,8 @@ public interface Collidable {
      * Notifies the object it has been hit
      * <p>
      * reduces one hit and returns new velocity based on collision.
-     * @param collisionPoint the point of collision.
+     *
+     * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
      * @return new Velocity
      */

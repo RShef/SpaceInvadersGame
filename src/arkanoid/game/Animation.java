@@ -1,10 +1,14 @@
 package arkanoid.game;
+
 import biuoop.DrawSurface;
 
 /**
- * Created by RoyShefi on 15/05/2016.
+ * @author Roey Shefi & Oded Thaller
+ * @version 1.0
+ * @since 17/05/2016
  */
 public interface Animation {
     void doOneFrame(DrawSurface d);
+
     boolean shouldStop();
 }

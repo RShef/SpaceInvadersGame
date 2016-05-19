@@ -13,6 +13,7 @@ public interface Sprite {
     /**
      * Draws the sprite on the screen.
      * <p>
+     *
      * @param d the draw surface.
      */
     void drawOn(DrawSurface d);

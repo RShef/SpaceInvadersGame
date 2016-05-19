@@ -6,7 +6,9 @@ import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
 import biuoop.DrawSurface;
+
 import java.awt.Color;
+
 import biuoop.KeyboardSensor;
 
 /**
@@ -25,10 +27,11 @@ public class Paddle implements Sprite, Collidable {
      * The constructor.
      * <p>
      * All param are given by the Game class.
-     * @param rec        - the rectangle.
-     * @param color      - the color.
-     * @param k          - the  keyboard.
-     * @param width - the width of the border.
+     *
+     * @param rec         - the rectangle.
+     * @param color       - the color.
+     * @param k           - the  keyboard.
+     * @param width       - the width of the border.
      * @param paddleSpeed - the paddles speed.
      */
     public Paddle(Rectangle rec, Color color, KeyboardSensor k, int width, int paddleSpeed) {
@@ -39,7 +42,8 @@ public class Paddle implements Sprite, Collidable {
         this.color = color;
     }
 
-    public Paddle (){}
+    public Paddle() {
+    }
 
     /**
      * Moving the paddle right.
@@ -79,7 +83,8 @@ public class Paddle implements Sprite, Collidable {
     /**
      * Receive to velocity after collision.
      * <p>
-     * @param collisionPoint the point of collision.
+     *
+     * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
      * @return the new velocity.
      */
@@ -126,6 +131,7 @@ public class Paddle implements Sprite, Collidable {
     /**
      * Draw and fill the Paddle  on the Surface given from Game.
      * <p>
+     *
      * @param d the drawsurface.
      */
     public void drawOn(DrawSurface d) {
@@ -158,6 +164,7 @@ public class Paddle implements Sprite, Collidable {
     /**
      * Return the Rectangle that was collided.
      * <p>
+     *
      * @return The new rectangle of the Paddle.
      */
     public Rectangle getCollisionRectangle() {
@@ -167,6 +174,7 @@ public class Paddle implements Sprite, Collidable {
     /**
      * addToGame() -- add this paddle to the game.
      * <p>
+     *
      * @param g - the Game surface.
      */
     public void addToGame(GameLevel g) {
@@ -176,9 +184,10 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Removes the padle from the game.
+     *
      * @param g - the game env.
      */
-    public void removeFromGame (GameLevel g) {
+    public void removeFromGame(GameLevel g) {
         g.removeCollidable(this);
         g.removeSprite(this);
     }

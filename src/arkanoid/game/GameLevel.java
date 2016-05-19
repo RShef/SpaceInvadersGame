@@ -29,33 +29,39 @@ public class GameLevel implements Animation {
     private Counter score;
     private Counter balls;
     private Counter lives;
-    private AnimationRunner runner;
     private boolean running;
     private Paddle p;
     private KeyboardSensor key;
     private LevelInformation l;
+    private AnimationRunner runner;
 
 
     /**
      * Instantiates a new game object.
      * <p>
      */
-    public GameLevel(LevelInformation l) {
+    public GameLevel(LevelInformation l, AnimationRunner runner, KeyboardSensor key, GUI gui,
+                     Counter lives, Counter score) {
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
         this.blocks = new Counter();
-        this.score = new Counter();
+        this.score = score;
         this.balls = new Counter();
-        this.lives = new Counter();
+        this.lives = lives;
         this.running = false;
         this.p = new Paddle();
         this.l = l;
+        this.runner = runner;
+        this.key = key;
+        this.gui = gui;
+
 
     }
 
     /**
      * Adds a Collidable object to the game.
      * <p>
+     *
      * @param a the Collidable to add to the game.
      */
     public void addCollidable(Collidable a) {
@@ -65,6 +71,7 @@ public class GameLevel implements Animation {
     /**
      * Adds a Sprite object to the game.
      * <p>
+     *
      * @param s the sprite to add.
      */
     public void addSprite(Sprite s) {
@@ -74,6 +81,7 @@ public class GameLevel implements Animation {
     /**
      * Removes a collidable from the game.
      * <p>
+     *
      * @param c the collidable object to remove.
      */
     public void removeCollidable(Collidable c) {
@@ -83,6 +91,7 @@ public class GameLevel implements Animation {
     /**
      * Removes a sprite from the game.
      * <p>
+     *
      * @param s the sprite to remove.
      */
     public void removeSprite(Sprite s) {
@@ -110,15 +119,15 @@ public class GameLevel implements Animation {
     /**
      * Makes the ball for the game.
      * <p>
-     * @param x x value for ball's location.
-     * @param y y value for ball's location.
-     * @param size size of ball.
-     * @param color ball's color.
+     *
+     * @param x            x value for ball's location.
+     * @param y            y value for ball's location.
+     * @param size         size of ball.
+     * @param color        ball's color.
      * @param environment1 the game environment.
      */
     public void makeBall(int x, int y, int size, Color color, GameEnvironment environment1, Velocity v) {
         Ball ball = new Ball(x, y, size, color);
-
         ball.setVelocity(v);
         ball.addToGame(this);
         this.balls.increase(1);
@@ -130,8 +139,7 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void makePaddle(int w, int s) {
-        biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        this.p = new Paddle(new Rectangle(new Point((800 - w)/2, 560), w, 15), Color.YELLOW, key, w, s);
+        this.p = new Paddle(new Rectangle(new Point((800 - w) / 2, 560), w, 15), Color.YELLOW, key, w, s);
         p.addToGame(this);
 
     }
@@ -158,9 +166,7 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void initialize() {
-        this.environment = new GameEnvironment();
-        this.gui = new GUI("Arkanoid", 800, 600);
-        this.runner = new AnimationRunner(60,this.gui);
+
 
         // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);
@@ -173,6 +179,7 @@ public class GameLevel implements Animation {
         makeBorders(bar);
         makeInfoBar();
 
+        // adding the listeners.
         for (Block b : this.l.blocks()) {
             b.addToGame(this);
             b.addHitListener(br);
@@ -181,17 +188,16 @@ public class GameLevel implements Animation {
 
         }
 
-        this.lives.increase(7);
     }
 
     /**
      * Creates the balls and the paddle.
      */
-    public void createBallsAndPaddle () {
+    public void createBallsAndPaddle() {
         for (Velocity v : this.l.initialBallVelocities()) {
-            makeBall(180, 350, 5, Color.black, this.environment,v);
+            makeBall(180, 350, 5, Color.black, this.environment, v);
         }
-        makePaddle(this.l.paddleWidth(),this.l.paddleSpeed());
+        makePaddle(this.l.paddleWidth(), this.l.paddleSpeed());
     }
 
     /**
@@ -199,36 +205,26 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void playOneTurn() {
-
         this.createBallsAndPaddle();
-        this.runner.run(new CountdownAnimation(2000,3,this.sprites));
+        this.runner.run(new CountdownAnimation(2000, 3, this.sprites));
         this.running = true;
         this.runner.run(this);
-
     }
 
-    /**
-     * Runs the loop.
-     */
-    public void run () {
-        while (this.lives.getValue() != -1) {
-            playOneTurn();
-            this.lives.decrease(1);
-        }
-        this.gui.close();
-    }
 
     /**
-     *
      * @return if the loop is running.
      */
-    public boolean shouldStop() { return !this.running; }
+    public boolean shouldStop() {
+        return !this.running;
+    }
 
     /**
      * Shoing only one frame.
-     * @param d
+     *
+     * @param d the draw surface.
      */
-    public void doOneFrame (DrawSurface d) {
+    public void doOneFrame(DrawSurface d) {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed();
 
@@ -238,14 +234,35 @@ public class GameLevel implements Animation {
         }
         // timing
         if (this.blocks.getValue() == 0) {
-            this.gui.close();
             this.score.increase(100);
             this.running = false;
         }
+        // If there are no balls, decrease a life from the player.
         if (this.balls.getValue() == 0) {
             this.p.removeFromGame(this);
+            this.lives.decrease(1);
             this.running = false;
         }
+
     }
+
+    /**
+     * returns the lives.
+     *
+     * @return Lives.
+     */
+    public int livesLeft() {
+        return this.lives.getValue();
+    }
+
+    /**
+     * Returns blocks left.
+     *
+     * @return blocks left.
+     */
+    public int blocksLeft() {
+        return this.blocks.getValue();
+    }
+
 
 }

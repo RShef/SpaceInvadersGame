@@ -18,6 +18,7 @@ public class CountdownAnimation implements Animation {
     Counter countFrom;
     SpriteCollection gameScreen;
     double nu;
+
     public CountdownAnimation(double numOfSeconds,
                               int countFrom,
                               SpriteCollection gameScreen) {
@@ -30,22 +31,26 @@ public class CountdownAnimation implements Animation {
 
     /**
      * Displays a num from to countdown.
+     *
      * @param d is the draw surface.
      */
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawOn(d);
         //this.gameScreen.notifyAllTimePassed();
         d.setColor(Color.YELLOW);
-        d.drawText(370, 300, String.valueOf(this.countFrom.getValue()) , 100);
+        d.drawText(370, 300, String.valueOf(this.countFrom.getValue()), 100);
         this.countFrom.decrease(1);
         Sleeper sl = new Sleeper();
-        sl.sleepFor((long)numOfSeconds/(long)this.nu);
+        sl.sleepFor((long) numOfSeconds / (long) this.nu);
 
     }
 
     /**
-     *  When to stop.
+     * When to stop.
+     *
      * @return if it reached zero.
      */
-    public boolean shouldStop() { return this.countFrom.getValue() == -1; }
+    public boolean shouldStop() {
+        return this.countFrom.getValue() == -1;
+    }
 }

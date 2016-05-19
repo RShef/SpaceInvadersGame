@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @since 3/31/2016
  */
 
-public class SpriteCollection{
+public class SpriteCollection {
 
     private ArrayList<Sprite> sprites;
 
@@ -27,6 +27,7 @@ public class SpriteCollection{
     /**
      * Gets the sprites collection.
      * <p>
+     *
      * @return the sprite collection.
      */
     public ArrayList<Sprite> getSprites() {
@@ -36,6 +37,7 @@ public class SpriteCollection{
     /**
      * Adds a sprite to the collection.
      * <p>
+     *
      * @param s Sprite.
      */
     public void addSprite(Sprite s) {
@@ -51,6 +53,7 @@ public class SpriteCollection{
             this.sprites.get(i).timePassed();
         }
     }
+
     public void drawOn(DrawSurface d) {
         for (Sprite sprite : this.sprites) {
             //d.setColor(this.Color);

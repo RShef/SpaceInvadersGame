@@ -23,6 +23,7 @@ public class ScoreIndicator implements Sprite {
     /**
      * Draws the sprite on the screen.
      * <p/>
+     *
      * @param d the draw surface.
      */
     @Override
@@ -48,6 +49,7 @@ public class ScoreIndicator implements Sprite {
     /**
      * Adds the score counter to the game.
      * <p>
+     *
      * @param g the game.
      */
     public void addToGame(GameLevel g) {

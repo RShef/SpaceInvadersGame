@@ -4,19 +4,21 @@ import biuoop.DrawSurface;
 
 
 /**
- *
- * Created by RoyShefi on 17/05/2016.
+ * @author Roey Shefi & Oded Thaller
+ * @version 1.0
+ * @since 19/5/2016
  */
 public class Back implements Sprite {
     private SpriteCollection s;
 
-    public Back (SpriteCollection s) {
+    public Back(SpriteCollection s) {
         this.s = s;
     }
 
     /**
      * Draws the background.
      * <p>
+     *
      * @param d the draw surface.
      */
     @Override

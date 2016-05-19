@@ -1,44 +1,53 @@
 package arkanoid.game;
 
-import arkanoid.Counter;
-import arkanoid.sprites.SpriteCollection;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 
 /**
- * Created by RoyShefi on 15/05/2016.
+ * @author Roey Shefi & Oded Thaller
+ * @version 1.0
+ * @since 17/05/2016
  */
 public class AnimationRunner {
-    private SpriteCollection sprites;
-    private GameEnvironment environment;
     private GUI gui;
     int framesPerSecond;
     Sleeper sleeper;
 
-
-    public AnimationRunner(int frames, GUI gui1){
+    /**
+     * Constractor for the animation runner.
+     *
+     * @param frames per second.
+     * @param gui1   the gui.
+     */
+    public AnimationRunner(int frames, GUI gui1) {
         this.framesPerSecond = frames;
         this.sleeper = new Sleeper();
         this.gui = gui1;
 
     }
-    public void run (Animation animation) {
+
+    /**
+     * Runs the animation.
+     *
+     * @param animation the animation.
+     */
+    public void run(Animation animation) {
+        // time for each frame.
         int millisecondsPerFrame = 1000 / this.framesPerSecond;
-            while (!animation.shouldStop()) {
-                long startTime = System.currentTimeMillis(); // timing
-                DrawSurface d = this.gui.getDrawSurface();
+        while (!animation.shouldStop()) {
+            long startTime = System.currentTimeMillis(); // timing
+            DrawSurface d = this.gui.getDrawSurface();
 
-                animation.doOneFrame(d);
-
-                this.gui.show(d);
-                long usedTime = System.currentTimeMillis() - startTime;
-                long milliSecondLeftToSleep = millisecondsPerFrame - usedTime;
-                if (milliSecondLeftToSleep > 0) {
-                    this.sleeper.sleepFor(milliSecondLeftToSleep);
-                }
+            animation.doOneFrame(d);
+            this.gui.show(d);
+            long usedTime = System.currentTimeMillis() - startTime;
+            long milliSecondLeftToSleep = millisecondsPerFrame - usedTime;
+            if (milliSecondLeftToSleep > 0) {
+                this.sleeper.sleepFor(milliSecondLeftToSleep);
             }
-
         }
+
     }
+}
 

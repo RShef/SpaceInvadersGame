@@ -15,7 +15,8 @@ public class CollisionInfo {
     /**
      * Instantiate a new Collision Info.
      * <p>
-     * @param collisionPoint the point of collision.
+     *
+     * @param collisionPoint  the point of collision.
      * @param collisionObject the object of collision.
      */
     public CollisionInfo(Point collisionPoint, Collidable collisionObject) {
@@ -26,6 +27,7 @@ public class CollisionInfo {
     /**
      * Gets the point of collision.
      * <p>
+     *
      * @return the point of collision.
      */
     public Point collisionPoint() {
@@ -35,6 +37,7 @@ public class CollisionInfo {
     /**
      * Gets the object of collision.
      * <p>
+     *
      * @return the object of collision.
      */
     public Collidable collisionObject() {

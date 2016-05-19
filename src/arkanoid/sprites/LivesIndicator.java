@@ -13,13 +13,17 @@ import java.awt.*;
  */
 public class LivesIndicator implements Sprite {
     private Counter lives;
-    public LivesIndicator (Counter lives) { this.lives = lives;}
+
+    public LivesIndicator(Counter lives) {
+        this.lives = lives;
+    }
 
     @Override
-    public void drawOn ( DrawSurface d) {
-    d.setColor(Color.black);
-    d.drawText(150, 15, this.toString(), 15);
-}
+    public void drawOn(DrawSurface d) {
+        d.setColor(Color.black);
+        d.drawText(150, 15, this.toString(), 15);
+    }
+
     @Override
     public void timePassed() {
 
@@ -33,6 +37,7 @@ public class LivesIndicator implements Sprite {
     /**
      * Adds the lives counter to the game.
      * <p>
+     *
      * @param g the game.
      */
     public void addToGame(GameLevel g) {
