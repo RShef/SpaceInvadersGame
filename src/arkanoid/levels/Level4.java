@@ -12,11 +12,11 @@ import java.util.List;
  * @version 1.0
  * @since 17/05/2016
  */
-public class Level3 implements LevelInformation {
+public class Level4 implements LevelInformation {
     private int numOfBalls;
 
-    public Level3 () {
-        this.numOfBalls = 2;
+    public Level4 () {
+        this.numOfBalls = 3;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Level3 implements LevelInformation {
     /**
      * See return.
      * <p>
-     * @return a List of Velocities for the balls on level3.
+     * @return a List of Velocities for the balls on level4.
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Level3 implements LevelInformation {
      * @return the level name.
      */
     public String levelName() {
-        return "Green 3";
+        return "Final Four";
     }
 
     /**
@@ -76,20 +76,18 @@ public class Level3 implements LevelInformation {
      */
     public Sprite getBackground() {
         SpriteCollection s = new SpriteCollection();
-        s.addSprite(new Block(new Point(0, 0), 800, 600, 0, new Color(0,153,0)));
-        s.addSprite(new Block(new Point(70,400),90,200,0, new Color(32,32,32)));
+        s.addSprite(new Block(new Point(0, 0), 800, 600, 0,new Color(0, 102, 204)));
+        s.addSprite(new FullCircle(200,400,30,Color.gray));
+        s.addSprite(new FullCircle(170,390,30, new Color(160,160,160)));
+        s.addSprite(new FullCircle(140,405,25,new Color(192, 192, 192)));
+        s.addSprite(new FullCircle(160,425,30,new Color(192, 192, 192)));
+        s.addSprite(new FullCircle(200,440,25,Color.gray));
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 5;j++) {
-                s.addSprite(new Block(new Point( 80 + (15*j), 420 + (25 * i)), 10 , 20, 0,Color.white));
-            }
-        }
-
-        s.addSprite(new Block(new Point(100, 350), 30, 50, 0, new Color(34,34,34)));
-        s.addSprite(new Block(new Point(110, 150), 10, 200, 0, new Color(60,60,60)));
-        s.addSprite(new FullCircle(115,145,10,Color.orange));
-        s.addSprite(new FullCircle(115,145,5,Color.red));
-        s.addSprite(new FullCircle(115,145,3,Color.white));
+        s.addSprite(new FullCircle(700,450,30,Color.gray));
+        s.addSprite(new FullCircle(670,440,25, new Color(160,160,160)));
+        s.addSprite(new FullCircle(640,455,25,new Color(192, 192, 192)));
+        s.addSprite(new FullCircle(660,475,30,new Color(192, 192, 192)));
+        s.addSprite(new FullCircle(700,490,20,Color.gray));
 
         return new Back(s);
     }
@@ -97,18 +95,17 @@ public class Level3 implements LevelInformation {
     /**
      * Creates the Blocks of level1.
      * <p>
-     * @return the list of starting block of level1.
+     * @return the list of starting block of level4.
      */
     public List<Block> blocks() {
-        Color [] color = {Color.gray, Color.red,Color.YELLOW,Color.blue,Color.white};
+        Color [] color = {Color.gray, Color.red,Color.YELLOW,Color.green,Color.white,Color.PINK,Color.CYAN};
         List<Block> b = new ArrayList<>();
         int j = 0;
         int k = 0;
-        for (k = 0; k < 5; k++) {
-            int flag = 10 - k;
+        for (k = 0; k < 7; k++) {
             int r =0;
-            for (int i = 0; i < flag; i++) {
-                b.add(new Block(new Point(737 - (r * 42.2), 200 + (k * 20)),42.2 , 20, 1, color[j]));
+            for (int i = 0; i < 15; i++) {
+                b.add(new Block(new Point(20 + (r * 50.75), 100 + (k * 20)), 50.75, 20, 1, color[j]));
                 r++;
             }
             j++;
@@ -122,6 +119,6 @@ public class Level3 implements LevelInformation {
      * @return number Of Blocks To Remove.
      */
     public int numberOfBlocksToRemove() {
-        return 40;
+        return 105;
     }
 }

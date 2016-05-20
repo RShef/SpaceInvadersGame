@@ -27,9 +27,12 @@ public class Ass5Game {
         AnimationRunner ar = new AnimationRunner(60, gui);
         KeyboardSensor ks = gui.getKeyboardSensor();
         ArrayList<LevelInformation> levels = new ArrayList<>();
-        //levels.add(new Level1());
-        //levels.add(new Level2());
+        // Adding levels class to the array.
+        levels.add(new Level1());
+        levels.add(new Level2());
         levels.add(new Level3());
+        levels.add(new Level4());
+        // Creating a game.
         GameFlow g = new GameFlow(ar, ks, gui, new Counter(), new Counter());
         g.runLevels(levels);
     }
