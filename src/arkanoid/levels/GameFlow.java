@@ -35,7 +35,7 @@ public class GameFlow {
         this.gui = gui;
         this.score = s;
         this.lives = l;
-        l.increase(4);
+        l.increase(7);
     }
 
     /**

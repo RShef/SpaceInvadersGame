@@ -1,12 +1,9 @@
 package arkanoid.game;
 
-import arkanoid.levels.LevelInformation;
+import arkanoid.levels.*;
 import biuoop.GUI;
 import arkanoid.Counter;
 import arkanoid.animation.AnimationRunner;
-import arkanoid.levels.GameFlow;
-import arkanoid.levels.Level1;
-import arkanoid.levels.Level2;
 import biuoop.KeyboardSensor;
 import java.util.ArrayList;
 
@@ -30,8 +27,9 @@ public class Ass5Game {
         AnimationRunner ar = new AnimationRunner(60, gui);
         KeyboardSensor ks = gui.getKeyboardSensor();
         ArrayList<LevelInformation> levels = new ArrayList<>();
-        levels.add(new Level1());
-        levels.add(new Level2());
+        //levels.add(new Level1());
+        //levels.add(new Level2());
+        levels.add(new Level3());
         GameFlow g = new GameFlow(ar, ks, gui, new Counter(), new Counter());
         g.runLevels(levels);
     }
