@@ -1,4 +1,4 @@
-package arkanoid.game;
+package arkanoid.animation;
 
 import arkanoid.Counter;
 
@@ -19,9 +19,7 @@ public class CountdownAnimation implements Animation {
     SpriteCollection gameScreen;
     double nu;
 
-    public CountdownAnimation(double numOfSeconds,
-                              int countFrom,
-                              SpriteCollection gameScreen) {
+    public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
         this.numOfSeconds = numOfSeconds;
         this.countFrom = new Counter();
         this.countFrom.increase(countFrom);

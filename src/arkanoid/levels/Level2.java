@@ -1,10 +1,8 @@
 package arkanoid.levels;
 
-import arkanoid.game.LevelInformation;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
 import arkanoid.sprites.*;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class Level2 implements LevelInformation {
     private int numOfBalls;
 
     public Level2 () {
-        this.numOfBalls = 10;
+        this.numOfBalls = 1;
     }
 
     /**
@@ -32,12 +30,13 @@ public class Level2 implements LevelInformation {
 
     /**
      * See return.
+     * <p>
      * @return a List of Velocities for the balls on level2.
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
         for (int i = 0; i < this.numOfBalls; i++) {
-            v.add(new Velocity(1+i, 1+i));
+            v.add(new Velocity(1,5));
         }
 
         return v;

@@ -3,8 +3,6 @@ package arkanoid.listeners;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
 
-
-
 public interface HitListener {
 
     /**

@@ -1,4 +1,5 @@
 package arkanoid.listeners;
+
 import arkanoid.Counter;
 import arkanoid.game.GameLevel;
 import arkanoid.sprites.Ball;

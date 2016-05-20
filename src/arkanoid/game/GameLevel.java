@@ -1,6 +1,10 @@
 package arkanoid.game;
 
+import arkanoid.animation.Animation;
+import arkanoid.animation.AnimationRunner;
+import arkanoid.animation.CountdownAnimation;
 import arkanoid.geometry.Velocity;
+import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
 import arkanoid.Counter;
@@ -54,14 +58,11 @@ public class GameLevel implements Animation {
         this.runner = runner;
         this.key = key;
         this.gui = gui;
-
-
     }
 
     /**
      * Adds a Collidable object to the game.
      * <p>
-     *
      * @param a the Collidable to add to the game.
      */
     public void addCollidable(Collidable a) {
@@ -71,7 +72,6 @@ public class GameLevel implements Animation {
     /**
      * Adds a Sprite object to the game.
      * <p>
-     *
      * @param s the sprite to add.
      */
     public void addSprite(Sprite s) {
@@ -81,7 +81,6 @@ public class GameLevel implements Animation {
     /**
      * Removes a collidable from the game.
      * <p>
-     *
      * @param c the collidable object to remove.
      */
     public void removeCollidable(Collidable c) {
@@ -91,7 +90,6 @@ public class GameLevel implements Animation {
     /**
      * Removes a sprite from the game.
      * <p>
-     *
      * @param s the sprite to remove.
      */
     public void removeSprite(Sprite s) {
@@ -105,9 +103,9 @@ public class GameLevel implements Animation {
     public void makeBorders(HitListener hl) {
         // upper border
         new Block(new Point(0, 20), 800, 20, 0, Color.gray).addToGame(this);
-        // bottom border
+        // bottom border - "Death Block"
         Block b = new Block(new Point(0, 600), 800, 20, 0, Color.white);
-        // adding BallRemover to be a listener of the bottom block.
+        // adding BallRemover as a listener of the bottom block.
         b.addToGame(this);
         b.addHitListener(hl);
         // left border
@@ -119,7 +117,6 @@ public class GameLevel implements Animation {
     /**
      * Makes the ball for the game.
      * <p>
-     *
      * @param x            x value for ball's location.
      * @param y            y value for ball's location.
      * @param size         size of ball.
@@ -166,8 +163,6 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void initialize() {
-
-
         // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);
         BallRemover bar = new BallRemover(this, this.balls);
@@ -185,17 +180,17 @@ public class GameLevel implements Animation {
             b.addHitListener(br);
             b.addHitListener(stl);
             this.blocks.increase(1);
-
         }
 
     }
 
     /**
      * Creates the balls and the paddle.
+     * <p>
      */
     public void createBallsAndPaddle() {
         for (Velocity v : this.l.initialBallVelocities()) {
-            makeBall(180, 350, 5, Color.black, this.environment, v);
+            makeBall(400, 350, 5, Color.white, this.environment, v);
         }
         makePaddle(this.l.paddleWidth(), this.l.paddleSpeed());
     }
@@ -211,7 +206,6 @@ public class GameLevel implements Animation {
         this.runner.run(this);
     }
 
-
     /**
      * @return if the loop is running.
      */
@@ -220,8 +214,8 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Shoing only one frame.
-     *
+     * Showing only one frame.
+     * <p>
      * @param d the draw surface.
      */
     public void doOneFrame(DrawSurface d) {
@@ -248,7 +242,7 @@ public class GameLevel implements Animation {
 
     /**
      * returns the lives.
-     *
+     * <p>
      * @return Lives.
      */
     public int livesLeft() {
@@ -257,12 +251,11 @@ public class GameLevel implements Animation {
 
     /**
      * Returns blocks left.
-     *
+     * <p>
      * @return blocks left.
      */
     public int blocksLeft() {
         return this.blocks.getValue();
     }
-
 
 }

@@ -1,4 +1,4 @@
-package arkanoid.game;
+package arkanoid.animation;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;

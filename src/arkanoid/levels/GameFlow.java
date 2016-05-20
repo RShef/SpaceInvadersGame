@@ -1,13 +1,11 @@
 package arkanoid.levels;
 
-
 import arkanoid.Counter;
+import arkanoid.animation.AnimationRunner;
 import arkanoid.game.*;
-import arkanoid.sprites.EndScreen;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
-
 import java.util.List;
 
 /**
@@ -24,7 +22,7 @@ public class GameFlow {
 
     /**
      * Constructor for the game flow class.
-     *
+     * <p>
      * @param ar  - the animation runner.
      * @param ks  - the keyboard sensor.
      * @param gui - the gui.
@@ -37,16 +35,17 @@ public class GameFlow {
         this.gui = gui;
         this.score = s;
         this.lives = l;
-        l.increase(1);
+        l.increase(4);
     }
 
     /**
      * Runs the levels.
-     *
+     * <p>
      * @param levels the list of levels.
      */
     public void runLevels(List<LevelInformation> levels) {
         // Going over each level.
+        boolean win = true;
         for (LevelInformation levelInfo : levels) {
             GameLevel level = new GameLevel(levelInfo, this.animationRunner,
                     this.keyboardSensor, this.gui, this.lives, this.score);
@@ -57,13 +56,15 @@ public class GameFlow {
             }
 
             if (level.livesLeft() == 0) {
+                win = false;
                 break;
             }
 
         }
-        new EndScreen().drawOn(this.gui.getDrawSurface());
+        // Show end screen
+        this.animationRunner.run(new EndScreen(this.keyboardSensor, this.score, win));
         new Sleeper().sleepFor(2000);
         this.gui.close();
-
     }
+
 }
