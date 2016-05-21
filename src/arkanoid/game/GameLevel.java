@@ -190,7 +190,7 @@ public class GameLevel implements Animation {
      */
     public void createBallsAndPaddle() {
         for (Velocity v : this.l.initialBallVelocities()) {
-            makeBall(400, 350, 5, Color.white, this.environment, v);
+            makeBall(400, 550, 5, Color.white, this.environment, v);
         }
         makePaddle(this.l.paddleWidth(), this.l.paddleSpeed());
     }

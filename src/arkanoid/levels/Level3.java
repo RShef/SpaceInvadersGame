@@ -13,6 +13,7 @@ import java.util.List;
  * @since 17/05/2016
  */
 public class Level3 implements LevelInformation {
+
     private int numOfBalls;
 
     public Level3 () {
@@ -35,10 +36,12 @@ public class Level3 implements LevelInformation {
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
-        for (int i = 0; i < this.numOfBalls; i++) {
-            v.add(new Velocity(1,5));
+        double x = 2;
+        double y = -6;
+        for (int i = 0; i < this.numOfBalls / 2; i++) {
+            v.add(new Velocity(x + i, y + i));
+            v.add(new Velocity((x + i) * -1, y + i));
         }
-
         return v;
     }
 
@@ -97,18 +100,19 @@ public class Level3 implements LevelInformation {
     /**
      * Creates the Blocks of level1.
      * <p>
-     * @return the list of starting block of level1.
+     * @return the list of starting block of level3.
      */
     public List<Block> blocks() {
         Color [] color = {Color.gray, Color.red,Color.YELLOW,Color.blue,Color.white};
         List<Block> b = new ArrayList<>();
         int j = 0;
-        int k = 0;
-        for (k = 0; k < 5; k++) {
+        for (int k = 0; k < 5; k++) {
             int flag = 10 - k;
-            int r =0;
+            int r = 0;
             for (int i = 0; i < flag; i++) {
-                b.add(new Block(new Point(737 - (r * 42.2), 200 + (k * 20)),42.2 , 20, 1, color[j]));
+                int hit = 1;
+                if (j == 0) { hit = 2; }
+                b.add(new Block(new Point(737 - (r * 42.2), 200 + (k * 20)),42.2 , 20, hit, color[j]));
                 r++;
             }
             j++;

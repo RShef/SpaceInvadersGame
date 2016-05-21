@@ -13,6 +13,7 @@ import java.util.List;
  * @since 17/05/2016
  */
 public class Level4 implements LevelInformation {
+
     private int numOfBalls;
 
     public Level4 () {
@@ -35,9 +36,9 @@ public class Level4 implements LevelInformation {
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
-        for (int i = 0; i < this.numOfBalls; i++) {
-            v.add(new Velocity(1,5));
-        }
+        v.add(new Velocity(0.2,-5));
+        v.add(new Velocity(-5,-3));
+        v.add(new Velocity(5,-3));
 
         return v;
     }
@@ -57,7 +58,7 @@ public class Level4 implements LevelInformation {
      * @return Paddle width.
      */
     public int paddleWidth() {
-        return 75;
+        return 100;
     }
 
     /**
@@ -101,11 +102,12 @@ public class Level4 implements LevelInformation {
         Color [] color = {Color.gray, Color.red,Color.YELLOW,Color.green,Color.white,Color.PINK,Color.CYAN};
         List<Block> b = new ArrayList<>();
         int j = 0;
-        int k = 0;
-        for (k = 0; k < 7; k++) {
+        for (int k = 0; k < 7; k++) {
             int r =0;
             for (int i = 0; i < 15; i++) {
-                b.add(new Block(new Point(20 + (r * 50.75), 100 + (k * 20)), 50.75, 20, 1, color[j]));
+                int hit = 1;
+                if (j == 0) { hit = 2; }
+                b.add(new Block(new Point(20 + (r * 50.75), 100 + (k * 20)), 50.75, 20, hit, color[j]));
                 r++;
             }
             j++;
