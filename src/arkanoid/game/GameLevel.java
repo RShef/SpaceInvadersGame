@@ -7,7 +7,6 @@ import arkanoid.geometry.Velocity;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
-import arkanoid.Counter;
 import arkanoid.listeners.HitListener;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
@@ -53,7 +52,7 @@ public class GameLevel implements Animation {
         this.balls = new Counter();
         this.lives = lives;
         this.running = false;
-        this.p = new Paddle();
+        //this.p = new Paddle();
         this.l = l;
         this.runner = runner;
         this.key = key;

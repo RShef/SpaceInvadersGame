@@ -43,6 +43,11 @@ public class LivesIndicator implements Sprite {
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the lives left as a string.
+     */
     @Override
     public String toString() {
         return "Lives: " + this.lives.getValue();

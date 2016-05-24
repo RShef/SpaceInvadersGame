@@ -14,7 +14,7 @@ public class ScoreTrackingListener implements HitListener {
     private Counter currentScore;
 
     /**
-     * Constractor.
+     * Constructor.
      *
      * @param scoreCounter the counter that counts the score.
      */

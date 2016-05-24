@@ -2,11 +2,18 @@ package arkanoid.levels;
 
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
-import arkanoid.sprites.*;
+import arkanoid.sprites.Sprite;
+import arkanoid.sprites.SpriteCollection;
+import arkanoid.sprites.Block;
+import arkanoid.sprites.Back;
+import arkanoid.sprites.Circle;
 import arkanoid.geometry.Line;
-import java.awt.*;
+
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -16,6 +23,9 @@ import java.util.List;
 public class Level1 implements LevelInformation {
     private int numOfBalls;
 
+    /**
+     * The constructor.
+     */
     public Level1() {
         this.numOfBalls = 1;
     }

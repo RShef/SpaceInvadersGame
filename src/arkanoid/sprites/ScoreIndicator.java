@@ -18,7 +18,7 @@ public class ScoreIndicator implements Sprite {
     private Counter score;
 
     /**
-     * The constactor.
+     * The constructor.
      *
      * @param score of the game.
      */
@@ -47,6 +47,11 @@ public class ScoreIndicator implements Sprite {
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the string to be display as the score.
+     */
     @Override
     public String toString() {
         return "Score: " + this.score.getValue();

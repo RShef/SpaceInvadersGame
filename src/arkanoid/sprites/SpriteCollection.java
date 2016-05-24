@@ -1,7 +1,6 @@
 package arkanoid.sprites;
 
 import biuoop.DrawSurface;
-
 import java.util.ArrayList;
 
 /**
@@ -16,7 +15,7 @@ public class SpriteCollection {
 
     /**
      * Instantiate a collection of sprites.
-     * <p/>
+     * <p>
      */
     public SpriteCollection() {
         this.sprites = new ArrayList<>();
@@ -24,7 +23,7 @@ public class SpriteCollection {
 
     /**
      * Gets the sprites collection.
-     * <p/>
+     * <p>
      *
      * @return the sprite collection.
      */
@@ -34,7 +33,7 @@ public class SpriteCollection {
 
     /**
      * Adds a sprite to the collection.
-     * <p/>
+     * <p>
      *
      * @param s Sprite.
      */
@@ -44,7 +43,7 @@ public class SpriteCollection {
 
     /**
      * Call time Passed on all sprites in the collection.
-     * <p/>
+     * <p>
      */
     public void notifyAllTimePassed() {
         for (int i = 0; i < this.sprites.size(); i++) {
@@ -54,7 +53,6 @@ public class SpriteCollection {
 
     /**
      * Draw on function.
-     *
      * @param d the draw surface.
      */
     public void drawOn(DrawSurface d) {

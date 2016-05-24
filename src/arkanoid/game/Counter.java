@@ -1,4 +1,4 @@
-package arkanoid;
+package arkanoid.game;
 
 /**
  * @author Roey Shefi & Oded Thaller

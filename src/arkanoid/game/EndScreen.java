@@ -1,6 +1,5 @@
 package arkanoid.game;
 
-import arkanoid.Counter;
 import arkanoid.animation.Animation;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;

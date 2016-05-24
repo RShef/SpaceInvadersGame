@@ -2,7 +2,6 @@ package arkanoid.game;
 
 import arkanoid.levels.*;
 import biuoop.GUI;
-import arkanoid.Counter;
 import arkanoid.animation.AnimationRunner;
 import biuoop.KeyboardSensor;
 import java.util.ArrayList;

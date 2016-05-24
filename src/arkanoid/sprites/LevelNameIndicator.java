@@ -16,7 +16,7 @@ public class LevelNameIndicator implements Sprite {
     private String levelName;
 
     /**
-     * The constactor.
+     * The constructor.
      *
      * @param levelName of the current level.
      */

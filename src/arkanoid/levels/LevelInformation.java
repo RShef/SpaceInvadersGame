@@ -4,7 +4,7 @@ import arkanoid.geometry.Velocity;
 
 import java.util.List;
 
-import arkanoid.sprites.*;
+import arkanoid.sprites.Sprite;
 import arkanoid.sprites.Block;
 
 /**
@@ -18,6 +18,7 @@ public interface LevelInformation {
     /**
      * Returns the number of balls for the level.
      * <p>
+     *
      * @return number of balls for the level.
      */
     int numberOfBalls();
@@ -25,6 +26,7 @@ public interface LevelInformation {
     /**
      * See return.
      * <p>
+     *
      * @return a List of Velocities for the balls on level1.
      */
     List<Velocity> initialBallVelocities();
@@ -32,6 +34,7 @@ public interface LevelInformation {
     /**
      * See return.
      * <p>
+     *
      * @return Paddle speed.
      */
     int paddleSpeed();
@@ -39,6 +42,7 @@ public interface LevelInformation {
     /**
      * See return.
      * <p>
+     *
      * @return Paddle width.
      */
     int paddleWidth();
@@ -46,6 +50,7 @@ public interface LevelInformation {
     /**
      * Returns the current level name.
      * <p>
+     *
      * @return the level name.
      */
     String levelName();
@@ -53,6 +58,7 @@ public interface LevelInformation {
     /**
      * Creates a SpriteCollection of all the sprites of the level, then creates "Back" class.
      * <p>
+     *
      * @return the background for level 1.
      */
     Sprite getBackground();
@@ -61,6 +67,7 @@ public interface LevelInformation {
     /**
      * Creates the Blocks of level1.
      * <p>
+     *
      * @return the list of starting block of level1.
      */
     List<Block> blocks();
@@ -68,6 +75,7 @@ public interface LevelInformation {
     /**
      * See return.
      * <p>
+     *
      * @return number Of Blocks To Remove.
      */
     int numberOfBlocksToRemove();
