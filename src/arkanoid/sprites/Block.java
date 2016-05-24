@@ -68,6 +68,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
+     * @param hitter          the hitting ball.
      * @return new Velocity
      */
     public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {

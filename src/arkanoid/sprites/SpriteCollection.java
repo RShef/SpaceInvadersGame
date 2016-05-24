@@ -1,9 +1,7 @@
 package arkanoid.sprites;
 
-import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -54,6 +52,11 @@ public class SpriteCollection {
         }
     }
 
+    /**
+     * Draw on function.
+     *
+     * @param d the draw surface.
+     */
     public void drawOn(DrawSurface d) {
         for (Sprite sprite : this.sprites) {
             //d.setColor(this.Color);

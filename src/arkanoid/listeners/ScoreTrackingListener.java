@@ -1,6 +1,6 @@
 package arkanoid.listeners;
 
-import arkanoid.Counter;
+import arkanoid.game.Counter;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
 
@@ -13,10 +13,21 @@ import arkanoid.sprites.Block;
 public class ScoreTrackingListener implements HitListener {
     private Counter currentScore;
 
+    /**
+     * Constractor.
+     *
+     * @param scoreCounter the counter that counts the score.
+     */
     public ScoreTrackingListener(Counter scoreCounter) {
         this.currentScore = scoreCounter;
     }
 
+    /**
+     * Adds to the score of the game.
+     *
+     * @param beingHit the object being hit.
+     * @param hitter   the ball that's hitting.
+     */
     public void hitEvent(Block beingHit, Ball hitter) {
         this.currentScore.increase(5);
         if (beingHit.getHitPoints() == 0) {

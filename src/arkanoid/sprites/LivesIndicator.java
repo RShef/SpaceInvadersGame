@@ -1,10 +1,11 @@
 package arkanoid.sprites;
 
-import arkanoid.Counter;
+import arkanoid.game.Counter;
 import arkanoid.game.GameLevel;
 import biuoop.DrawSurface;
 
-import java.awt.*;
+import java.awt.Color;
+
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -14,16 +15,29 @@ import java.awt.*;
 public class LivesIndicator implements Sprite {
     private Counter lives;
 
+    /**
+     * The constactor.
+     *
+     * @param lives the lives of the player.
+     */
     public LivesIndicator(Counter lives) {
         this.lives = lives;
     }
 
+    /**
+     * The draw method.
+     *
+     * @param d the draw surface.
+     */
     @Override
     public void drawOn(DrawSurface d) {
         d.setColor(Color.black);
         d.drawText(150, 15, this.toString(), 15);
     }
 
+    /**
+     * For checkstlye.
+     */
     @Override
     public void timePassed() {
 

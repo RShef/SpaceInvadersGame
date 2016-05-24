@@ -1,7 +1,6 @@
 package arkanoid.sprites;
 
 import arkanoid.game.GameLevel;
-import arkanoid.geometry.Line;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
@@ -42,8 +41,6 @@ public class Paddle implements Sprite, Collidable {
         this.color = color;
     }
 
-    public Paddle() {
-    }
 
     /**
      * Moving the paddle right.
@@ -86,6 +83,7 @@ public class Paddle implements Sprite, Collidable {
      *
      * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
+     * @param hitter          the hitting ball.
      * @return the new velocity.
      */
     public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {

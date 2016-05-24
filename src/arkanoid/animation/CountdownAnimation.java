@@ -1,6 +1,6 @@
 package arkanoid.animation;
 
-import arkanoid.Counter;
+import arkanoid.game.Counter;
 
 import arkanoid.sprites.*;
 import biuoop.Sleeper;

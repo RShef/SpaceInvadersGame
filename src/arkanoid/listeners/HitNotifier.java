@@ -11,6 +11,7 @@ public interface HitNotifier {
     /**
      * Add hl as a listener to hit events.
      * <p>
+     *
      * @param hl a hit listener
      */
     void addHitListener(HitListener hl);
@@ -18,6 +19,7 @@ public interface HitNotifier {
     /**
      * Remove hl from the list of listeners.
      * <p>
+     *
      * @param hl a hit listener
      */
     void removeHitListener(HitListener hl);

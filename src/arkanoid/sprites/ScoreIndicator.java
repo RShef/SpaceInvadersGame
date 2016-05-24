@@ -1,10 +1,11 @@
 package arkanoid.sprites;
 
-import arkanoid.Counter;
 import arkanoid.game.GameLevel;
+import arkanoid.game.Counter;
+
 import biuoop.DrawSurface;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -16,6 +17,11 @@ public class ScoreIndicator implements Sprite {
 
     private Counter score;
 
+    /**
+     * The constactor.
+     *
+     * @param score of the game.
+     */
     public ScoreIndicator(Counter score) {
         this.score = score;
     }

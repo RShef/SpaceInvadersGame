@@ -9,10 +9,18 @@ import biuoop.DrawSurface;
  * @since 19/5/2016
  */
 public class Back implements Sprite {
-    private SpriteCollection s;
+    /**
+     * The constactor.
+     */
+    private SpriteCollection spc;
 
-    public Back(SpriteCollection s) {
-        this.s = s;
+    /**
+     * The constactor.
+     *
+     * @param spc the sprite collection.
+     */
+    public Back(SpriteCollection spc) {
+        this.spc = spc;
     }
 
     /**
@@ -23,16 +31,16 @@ public class Back implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
-        for (Sprite s : this.s.getSprites()) {
+        for (Sprite s : this.spc.getSprites()) {
             s.drawOn(d);
         }
 
     }
 
-    @Override
     /**
      * Rubbish.
      */
+    @Override
     public void timePassed() {
 
     }
