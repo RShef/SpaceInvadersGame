@@ -12,7 +12,7 @@ public interface Sprite {
 
     /**
      * Draws the sprite on the screen.
-     * <p>
+     * <p/>
      *
      * @param d the draw surface.
      */
@@ -20,7 +20,7 @@ public interface Sprite {
 
     /**
      * Notify the Sprite that time has passed.
-     * <p>
+     * <p/>
      */
     void timePassed();
 

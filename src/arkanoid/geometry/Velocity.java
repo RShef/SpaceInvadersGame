@@ -15,7 +15,7 @@ public class Velocity {
 
     /**
      * Instantiate Velocity.
-     * <p>
+     * <p/>
      *
      * @param dx direction on x-axis.
      * @param dy direction on y-axis.
@@ -27,7 +27,7 @@ public class Velocity {
 
     /**
      * Instantiate Velocity.
-     * <p>
+     * <p/>
      *
      * @param angle angle on x-axis.
      * @param speed speed on y-axis.
@@ -44,7 +44,7 @@ public class Velocity {
 
     /**
      * Get direction on x-axis.
-     * <p>
+     * <p/>
      *
      * @return dx - direction on x-axis.
      */
@@ -54,7 +54,7 @@ public class Velocity {
 
     /**
      * Get direction on y-axis.
-     * <p>
+     * <p/>
      *
      * @return dy - direction on y-axis.
      */
@@ -66,7 +66,7 @@ public class Velocity {
 
     /**
      * Apply velocity to a given Point.
-     * <p>
+     * <p/>
      *
      * @param p Point.
      * @return new Point after movement.

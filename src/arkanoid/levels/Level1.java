@@ -2,19 +2,11 @@ package arkanoid.levels;
 
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
+import arkanoid.sprites.*;
 import arkanoid.geometry.Line;
-
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import arkanoid.sprites.Sprite;
-import arkanoid.sprites.SpriteCollection;
-import arkanoid.sprites.Block;
-import arkanoid.sprites.Back;
-import arkanoid.sprites.Circle;
-
-
-import java.awt.Color;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -31,7 +23,6 @@ public class Level1 implements LevelInformation {
     /**
      * Returns the number of balls for the level.
      * <p>
-     *
      * @return number of balls for the level.
      */
     public int numberOfBalls() {
@@ -41,7 +32,6 @@ public class Level1 implements LevelInformation {
     /**
      * See return.
      * <p>
-     *
      * @return a List of Velocities for the balls on level1.
      */
     public List<Velocity> initialBallVelocities() {
@@ -53,7 +43,6 @@ public class Level1 implements LevelInformation {
     /**
      * See return.
      * <p>
-     *
      * @return Paddle speed.
      */
     public int paddleSpeed() {
@@ -63,7 +52,6 @@ public class Level1 implements LevelInformation {
     /**
      * See return.
      * <p>
-     *
      * @return Paddle width.
      */
     public int paddleWidth() {
@@ -73,7 +61,6 @@ public class Level1 implements LevelInformation {
     /**
      * Returns the current level name.
      * <p>
-     *
      * @return the level name.
      */
     public String levelName() {
@@ -83,7 +70,6 @@ public class Level1 implements LevelInformation {
     /**
      * Creates a SpriteCollection of all the sprites of the level, then creates "Back" class.
      * <p>
-     *
      * @return the background for level 1.
      */
     public Sprite getBackground() {
@@ -100,7 +86,6 @@ public class Level1 implements LevelInformation {
     /**
      * Creates the Blocks of level1.
      * <p>
-     *
      * @return the list of starting block of level1.
      */
     public List<Block> blocks() {
@@ -112,7 +97,6 @@ public class Level1 implements LevelInformation {
     /**
      * See return.
      * <p>
-     *
      * @return number Of Blocks To Remove.
      */
     public int numberOfBlocksToRemove() {

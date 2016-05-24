@@ -54,7 +54,7 @@ public class ScoreIndicator implements Sprite {
 
     /**
      * Adds the score counter to the game.
-     * <p>
+     * <p/>
      *
      * @param g the game.
      */

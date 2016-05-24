@@ -1,12 +1,7 @@
 package arkanoid.sprites;
 
-import arkanoid.game.GameEnvironment;
-import arkanoid.game.GameLevel;
-import arkanoid.geometry.Point;
-import arkanoid.geometry.Velocity;
-import arkanoid.geometry.Line;
-
-
+import arkanoid.game.*;
+import arkanoid.geometry.*;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
@@ -157,7 +152,6 @@ public class Ball implements Sprite {
     /**
      * Draw ball on GUI.
      * <p>
-     *
      * @param surface draw surface.
      */
     public void drawOn(DrawSurface surface) {

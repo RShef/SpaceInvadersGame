@@ -1,9 +1,9 @@
 package arkanoid.game;
 
+import arkanoid.Counter;
 import arkanoid.animation.Animation;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
-
 import java.awt.*;
 
 /**
@@ -29,7 +29,6 @@ public class EndScreen implements Animation {
     /**
      * Does one frame.
      * <p>
-     *
      * @param d the draw surface.
      */
     public void doOneFrame(DrawSurface d) {
@@ -45,18 +44,13 @@ public class EndScreen implements Animation {
             d.drawText(250, 200, "Game Over...", 50);
         }
         d.drawText(200, 400, "Your score is: " + this.score.getValue(), 50);
-        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
-            this.stop = true;
-        }
+        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) { this.stop = true; }
     }
 
     /**
      * When to stop.
      * <p>
-     *
      * @return when to stop.
      */
-    public boolean shouldStop() {
-        return this.stop;
-    }
+    public boolean shouldStop() { return this.stop; }
 }

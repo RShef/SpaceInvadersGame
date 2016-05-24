@@ -26,7 +26,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Instantiate block.
-     * <p>
+     * <p/>
      *
      * @param upperLeft - upper point.
      * @param width     of the rectangle.
@@ -43,7 +43,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Return the rectangle.
-     * <p>
+     * <p/>
      *
      * @return - the rectangle.
      */
@@ -53,7 +53,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Returns this object's current hit points.
-     * <p>
+     * <p/>
      *
      * @return hit points
      */
@@ -63,7 +63,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Notifies the object it has been hit
-     * <p>
+     * <p/>
      * reduces one hit and returns new velocity based on collision.
      *
      * @param collisionPoint  the point of collision.
@@ -98,7 +98,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Draw Block on GUI.
-     * <p>
+     * <p/>
      *
      * @param surface draw surface.
      */
@@ -114,7 +114,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Adds the block both as Collidable and as Sprite.
-     * <p>
+     * <p/>
      *
      * @param g the game environment.
      */
@@ -125,7 +125,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Removes a block from the game.
-     * <p>
+     * <p/>
      *
      * @param g the game.
      */
@@ -136,14 +136,14 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Notifies block of time passed.
-     * <p>
+     * <p/>
      */
     public void timePassed() {
     }
 
     /**
      * Add hl as a listener to hit events.
-     * <p>
+     * <p/>
      *
      * @param hl a hit listener
      */
@@ -154,7 +154,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Remove hl from the list of listeners.
-     * <p>
+     * <p/>
      *
      * @param hl a hit listener
      */
@@ -165,7 +165,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Notifies all listeners that the block has been hit.
-     * <p>
+     * <p/>
      *
      * @param hitter the hitting Ball.
      */

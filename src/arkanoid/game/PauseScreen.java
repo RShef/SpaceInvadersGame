@@ -14,6 +14,11 @@ public class PauseScreen implements Animation {
     private KeyboardSensor keyboard;
     private boolean stop;
 
+    /**
+     * Instantiates a new Pause Screen.
+     * <p>
+     * @param k a key sensor
+     */
     public PauseScreen(KeyboardSensor k) {
         this.keyboard = k;
         this.stop = false;

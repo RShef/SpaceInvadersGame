@@ -24,7 +24,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * The constructor.
-     * <p>
+     * <p/>
      * All param are given by the Game class.
      *
      * @param rec         - the rectangle.
@@ -44,7 +44,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Moving the paddle right.
-     * <p>
+     * <p/>
      */
     public void moveRight() {
         // Get and Set the new rec based on the paddle speed.
@@ -62,7 +62,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Moving the paddle left.
-     * <p>
+     * <p/>
      */
     public void moveLeft() {
         // Get and Set the new rec based on the paddle speed.
@@ -79,7 +79,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Receive to velocity after collision.
-     * <p>
+     * <p/>
      *
      * @param collisionPoint  the point of collision.
      * @param currentVelocity the current velocity of the ball.
@@ -128,7 +128,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Draw and fill the Paddle  on the Surface given from Game.
-     * <p>
+     * <p/>
      *
      * @param d the drawsurface.
      */
@@ -148,7 +148,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Implementing the interface method, changing the direction of the paddle based on stroke.
-     * <p>
+     * <p/>
      */
     public void timePassed() {
         if (keyboard.isPressed(KeyboardSensor.RIGHT_KEY)) {
@@ -161,7 +161,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Return the Rectangle that was collided.
-     * <p>
+     * <p/>
      *
      * @return The new rectangle of the Paddle.
      */
@@ -171,7 +171,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * addToGame() -- add this paddle to the game.
-     * <p>
+     * <p/>
      *
      * @param g - the Game surface.
      */
