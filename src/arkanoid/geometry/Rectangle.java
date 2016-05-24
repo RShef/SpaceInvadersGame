@@ -24,7 +24,8 @@ public class Rectangle {
 
     /**
      * Instantiate a new rectangle with location and width/height.
-     * <p>
+     * <p/>
+     *
      * @param upperLeft point of the rectangle.
      * @param width     of the rectangle.
      * @param height    of the rectangle.
@@ -41,7 +42,8 @@ public class Rectangle {
 
     /**
      * Return the width of the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return width of the rectangle.
      */
     public double getWidth() {
@@ -50,7 +52,8 @@ public class Rectangle {
 
     /**
      * Return the height of the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return height of the rectangle.
      */
     public double getHeight() {
@@ -59,7 +62,8 @@ public class Rectangle {
 
     /**
      * Returns the upper-left point of the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return upper-left point of the rectangle.
      */
     public Point getUpperLeft() {
@@ -68,7 +72,8 @@ public class Rectangle {
 
     /**
      * Returns the lower-left point of the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return lower-left point of the rectangle.
      */
     public Point getLowRight() {
@@ -77,6 +82,7 @@ public class Rectangle {
 
     /**
      * Returns rectangle's upper horizontal line.
+     *
      * @return horizontalUp line
      */
     public Line getHorizontalUp() {
@@ -85,6 +91,7 @@ public class Rectangle {
 
     /**
      * Returns rectangle's lower horizontal line.
+     *
      * @return horizontalDown line
      */
     public Line getHorizontalDown() {
@@ -93,6 +100,7 @@ public class Rectangle {
 
     /**
      * Returns rectangle's left vertical line.
+     *
      * @return verticalLeft line
      */
     public Line getVerticalLeft() {
@@ -101,6 +109,7 @@ public class Rectangle {
 
     /**
      * Returns rectangle's right vertical line.
+     *
      * @return verticalRight line
      */
     public Line getVerticalRight() {
@@ -111,7 +120,8 @@ public class Rectangle {
 
     /**
      * Return a (possibly empty) List of intersection points with the specified line.
-     * <p>
+     * <p/>
+     *
      * @param line of which to check intersection points with.
      * @return a list of said points.
      */
@@ -134,7 +144,7 @@ public class Rectangle {
 
     /**
      * Finds and assignees points ot the rectangle from the width, height and upper left point.
-     * <p>
+     * <p/>
      */
     public void makePoints() {
         this.lowLeft = new Point(this.leftCorner.getX(), this.leftCorner.getY() + this.height);
@@ -144,7 +154,7 @@ public class Rectangle {
 
     /**
      * Creates lines that consist the rectangle.
-     * <p>
+     * <p/>
      */
     public void makeEdges() {
         this.horizontalUp = new Line(this.leftCorner, this.upperRight);
@@ -155,7 +165,8 @@ public class Rectangle {
 
     /**
      * Returns a list of the 4 points consisting the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return points, a list of the 4 points consisting the rectangle.
      */
     public List<Point> points() {
@@ -169,7 +180,8 @@ public class Rectangle {
 
     /**
      * Returns a list of the 4 lines consisting the rectangle.
-     * <p>
+     * <p/>
+     *
      * @return points, a list of the 4 points consisting the rectangle.
      */
     public List<Line> lines() {

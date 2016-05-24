@@ -1,8 +1,8 @@
 package arkanoid.geometry;
+
 import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -10,7 +10,6 @@ import java.util.List;
  * @version 1.0
  * @since 01.03.2016
  */
-
 public class Line implements Sprite {
 
     private Point start;
@@ -21,7 +20,8 @@ public class Line implements Sprite {
 
     /**
      * Instantiate Line.
-     * <p>
+     * <p/>
+     *
      * @param start start point.
      * @param end   end point.
      */
@@ -32,7 +32,8 @@ public class Line implements Sprite {
 
     /**
      * Instantiate Line.
-     * <p>
+     * <p/>
+     *
      * @param x1 start point x location.
      * @param y1 start point y location.
      * @param x2 end point x location.
@@ -44,14 +45,15 @@ public class Line implements Sprite {
     }
 
     /**
-     *
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
-     * @param c
+     * Instantiates a new Line.
+     * <p>
+     * @param x1 x of start point
+     * @param y1 y of start point
+     * @param x2 x of end point
+     * @param y2 y of end point
+     * @param c line color
      */
-    public Line (double x1, double y1, double x2, double y2, Color c) {
+    public Line(double x1, double y1, double x2, double y2, Color c) {
         this.start = new Point(x1, y1);
         this.end = new Point(x2, y2);
         this.c = c;
@@ -61,7 +63,7 @@ public class Line implements Sprite {
 
     /**
      * Get line's length.
-     * <p>
+     * <p/>
      *
      * @return The line's length.
      */
@@ -71,7 +73,7 @@ public class Line implements Sprite {
 
     /**
      * Get line's middle point.
-     * <p>
+     * <p/>
      *
      * @return middle point.
      */
@@ -81,7 +83,7 @@ public class Line implements Sprite {
 
     /**
      * Get line's start point.
-     * <p>
+     * <p/>
      *
      * @return start point.
      */
@@ -91,7 +93,7 @@ public class Line implements Sprite {
 
     /**
      * Get line's end point.
-     * <p>
+     * <p/>
      *
      * @return end point.
      */
@@ -103,7 +105,7 @@ public class Line implements Sprite {
 
     /**
      * Checks if line intersects with another line.
-     * <p>
+     * <p/>
      *
      * @param other another line.
      * @return true if lines intersect, false otherwise.
@@ -114,7 +116,7 @@ public class Line implements Sprite {
 
     /**
      * finds two lines' intersection point.
-     * <p>
+     * <p/>
      *
      * @param other another line.
      * @return lines' intersection Point, null otherwise.
@@ -160,9 +162,10 @@ public class Line implements Sprite {
 
     /**
      * Returns the closest point of intersection to the given object.
-     * <p>
+     * <p/>
      * if there are no intersection, returns null
-     * <p>
+     * <p/>
+     *
      * @param rect the object
      * @return the closest point of intersection
      */
@@ -185,7 +188,8 @@ public class Line implements Sprite {
 
     /**
      * Checks if two lines are equal.
-     * <p>
+     * <p/>
+     *
      * @param other another line.
      * @return true if lines are equal, false otherwise.
      */
@@ -195,7 +199,8 @@ public class Line implements Sprite {
 
     /**
      * Returns true if the line is vertical, false otherwise.
-     * <p>
+     * <p/>
+     *
      * @return true of false
      */
     public boolean isVertical() {
@@ -204,12 +209,13 @@ public class Line implements Sprite {
 
     /**
      * Finds the intersection point when one line is vertical.
-     * <p>
+     * <p/>
+     *
      * @param other the intersecting line
      * @return the point of intersection
      */
     public Point verticalIntersection(Line other) {
-        double x, y, m , b;
+        double x, y, m, b;
 
         x = this.start.getX();
         m = other.slope();
@@ -226,7 +232,8 @@ public class Line implements Sprite {
 
     /**
      * Calculate line's slope.
-     * <p>
+     * <p/>
+     *
      * @return line's slope.
      */
     public double slope() {
@@ -236,11 +243,16 @@ public class Line implements Sprite {
     @Override
     public void drawOn(DrawSurface d) {
         d.setColor(this.c);
-        d.drawLine((int)this.start.getX(),(int)this.start.getY(),(int)this.end.getX(),(int)this.end.getY());
+        d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 
     @Override
     public void timePassed() {
 
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

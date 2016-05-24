@@ -12,11 +12,18 @@ import arkanoid.listeners.HitListener;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
 import arkanoid.listeners.ScoreTrackingListener;
-import arkanoid.sprites.*;
+import arkanoid.sprites.Collidable;
+import arkanoid.sprites.Paddle;
+import arkanoid.sprites.Sprite;
+import arkanoid.sprites.SpriteCollection;
+import arkanoid.sprites.Block;
+import arkanoid.sprites.Ball;
+import arkanoid.sprites.LevelNameIndicator;
+import arkanoid.sprites.LivesIndicator;
+import arkanoid.sprites.ScoreIndicator;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
 /**
@@ -41,8 +48,14 @@ public class GameLevel implements Animation {
 
 
     /**
-     * Instantiates a new game object.
+     * Instantiates a new Game Level.
      * <p>
+     * @param l the level information
+     * @param runner an animation runner
+     * @param key a key sensor
+     * @param gui GUI
+     * @param lives current lives
+     * @param score current score
      */
     public GameLevel(LevelInformation l, AnimationRunner runner, KeyboardSensor key, GUI gui,
                      Counter lives, Counter score) {
@@ -62,7 +75,8 @@ public class GameLevel implements Animation {
 
     /**
      * Adds a Collidable object to the game.
-     * <p>
+     * <p/>
+     *
      * @param a the Collidable to add to the game.
      */
     public void addCollidable(Collidable a) {
@@ -71,7 +85,8 @@ public class GameLevel implements Animation {
 
     /**
      * Adds a Sprite object to the game.
-     * <p>
+     * <p/>
+     *
      * @param s the sprite to add.
      */
     public void addSprite(Sprite s) {
@@ -80,7 +95,8 @@ public class GameLevel implements Animation {
 
     /**
      * Removes a collidable from the game.
-     * <p>
+     * <p/>
+     *
      * @param c the collidable object to remove.
      */
     public void removeCollidable(Collidable c) {
@@ -89,7 +105,8 @@ public class GameLevel implements Animation {
 
     /**
      * Removes a sprite from the game.
-     * <p>
+     * <p/>
+     *
      * @param s the sprite to remove.
      */
     public void removeSprite(Sprite s) {
@@ -97,8 +114,9 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Makes to Borders of the game.
+     * Makes Games borders.
      * <p>
+     * @param hl a hit listener
      */
     public void makeBorders(HitListener hl) {
         // upper border
@@ -116,12 +134,14 @@ public class GameLevel implements Animation {
 
     /**
      * Makes the ball for the game.
-     * <p>
+     * <p/>
+     *
      * @param x            x value for ball's location.
      * @param y            y value for ball's location.
      * @param size         size of ball.
      * @param color        ball's color.
      * @param environment1 the game environment.
+     * @param v ball's velocity
      */
     public void makeBall(int x, int y, int size, Color color, GameEnvironment environment1, Velocity v) {
         Ball ball = new Ball(x, y, size, color);
@@ -132,8 +152,10 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Makes the paddle for the game.
+     * Makes the paddle.
      * <p>
+     * @param w paddle width
+     * @param s paddle speed
      */
     public void makePaddle(int w, int s) {
         this.p = new Paddle(new Rectangle(new Point((800 - w) / 2, 560), w, 15), Color.YELLOW, key, w, s);
@@ -143,7 +165,7 @@ public class GameLevel implements Animation {
 
     /**
      * Makes the information bar at the top of the screen.
-     * <p>
+     * <p/>
      * Displays lives, score and level name.
      */
     public void makeInfoBar() {
@@ -160,7 +182,7 @@ public class GameLevel implements Animation {
 
     /**
      * Initializes the game.
-     * <p>
+     * <p/>
      */
     public void initialize() {
         // Adding the listeners.
@@ -186,7 +208,7 @@ public class GameLevel implements Animation {
 
     /**
      * Creates the balls and the paddle.
-     * <p>
+     * <p/>
      */
     public void createBallsAndPaddle() {
         for (Velocity v : this.l.initialBallVelocities()) {
@@ -197,7 +219,7 @@ public class GameLevel implements Animation {
 
     /**
      * Runs one turn.
-     * <p>
+     * <p/>
      */
     public void playOneTurn() {
         this.createBallsAndPaddle();
@@ -215,16 +237,17 @@ public class GameLevel implements Animation {
 
     /**
      * Showing only one frame.
-     * <p>
+     * <p/>
+     *
      * @param d the draw surface.
      */
     public void doOneFrame(DrawSurface d) {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed();
 
-        biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        if (key.isPressed("p")) {
-            this.runner.run(new PauseScreen(key));
+        biuoop.KeyboardSensor k = this.gui.getKeyboardSensor();
+        if (k.isPressed("p")) {
+            this.runner.run(new PauseScreen(k));
         }
         // timing
         if (this.blocks.getValue() == 0) {
@@ -242,7 +265,8 @@ public class GameLevel implements Animation {
 
     /**
      * returns the lives.
-     * <p>
+     * <p/>
+     *
      * @return Lives.
      */
     public int livesLeft() {
@@ -251,7 +275,8 @@ public class GameLevel implements Animation {
 
     /**
      * Returns blocks left.
-     * <p>
+     * <p/>
+     *
      * @return blocks left.
      */
     public int blocksLeft() {

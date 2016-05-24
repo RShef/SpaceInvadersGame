@@ -17,42 +17,48 @@ public interface LevelInformation {
 
     /**
      * Returns the number of balls for the level.
-     * <p>
+     * <p/>
+     *
      * @return number of balls for the level.
      */
     int numberOfBalls();
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return a List of Velocities for the balls on level1.
      */
     List<Velocity> initialBallVelocities();
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return Paddle speed.
      */
     int paddleSpeed();
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return Paddle width.
      */
     int paddleWidth();
 
     /**
      * Returns the current level name.
-     * <p>
+     * <p/>
+     *
      * @return the level name.
      */
     String levelName();
 
     /**
      * Creates a SpriteCollection of all the sprites of the level, then creates "Back" class.
-     * <p>
+     * <p/>
+     *
      * @return the background for level 1.
      */
     Sprite getBackground();
@@ -60,14 +66,16 @@ public interface LevelInformation {
 
     /**
      * Creates the Blocks of level1.
-     * <p>
+     * <p/>
+     *
      * @return the list of starting block of level1.
      */
     List<Block> blocks();
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return number Of Blocks To Remove.
      */
     int numberOfBlocksToRemove();

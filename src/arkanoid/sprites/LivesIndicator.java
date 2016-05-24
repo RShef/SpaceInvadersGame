@@ -36,7 +36,7 @@ public class LivesIndicator implements Sprite {
 
     /**
      * Adds the lives counter to the game.
-     * <p>
+     * <p/>
      *
      * @param g the game.
      */

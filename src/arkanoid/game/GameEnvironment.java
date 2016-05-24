@@ -19,7 +19,7 @@ public class GameEnvironment {
 
     /**
      * Instantiate Game Environment.
-     * <p>
+     * <p/>
      * A game environment is collection of Collidables.
      */
     public GameEnvironment() {
@@ -28,7 +28,8 @@ public class GameEnvironment {
 
     /**
      * Get environment's collidables.
-     * <p>
+     * <p/>
+     *
      * @return collidables
      */
     public ArrayList<Collidable> getCollidables() {
@@ -37,7 +38,8 @@ public class GameEnvironment {
 
     /**
      * Add a Collidable object to the Game Environment.
-     * <p>
+     * <p/>
+     *
      * @param c a Collidable object
      */
     public void addCollidable(Collidable c) {
@@ -46,7 +48,8 @@ public class GameEnvironment {
 
     /**
      * Get the Collision Info of the closest collision to occur.
-     * <p>
+     * <p/>
+     *
      * @param trajectory trajectory of the ball
      * @return Collision Info
      */

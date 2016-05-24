@@ -7,9 +7,10 @@ public interface HitListener {
 
     /**
      * Called whenever the relevant object is hit.
-     * <p>
+     * <p/>
+     *
      * @param beingHit the object being hit.
-     * @param hitter the ball that's hitting.
+     * @param hitter   the ball that's hitting.
      */
     void hitEvent(Block beingHit, Ball hitter);
 }

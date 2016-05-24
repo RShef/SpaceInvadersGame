@@ -3,6 +3,7 @@ package arkanoid.levels;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
 import arkanoid.sprites.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,17 @@ public class Level3 implements LevelInformation {
 
     private int numOfBalls;
 
-    public Level3 () {
+    /**
+     * Instantiates level 3
+     */
+    public Level3() {
         this.numOfBalls = 2;
     }
 
     /**
      * Returns the number of balls for the level.
-     * <p>
+     * <p/>
+     *
      * @return number of balls for the level.
      */
     public int numberOfBalls() {
@@ -31,7 +36,8 @@ public class Level3 implements LevelInformation {
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return a List of Velocities for the balls on level3.
      */
     public List<Velocity> initialBallVelocities() {
@@ -47,7 +53,8 @@ public class Level3 implements LevelInformation {
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return Paddle speed.
      */
     public int paddleSpeed() {
@@ -56,7 +63,8 @@ public class Level3 implements LevelInformation {
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return Paddle width.
      */
     public int paddleWidth() {
@@ -65,7 +73,8 @@ public class Level3 implements LevelInformation {
 
     /**
      * Returns the current level name.
-     * <p>
+     * <p/>
+     *
      * @return the level name.
      */
     public String levelName() {
@@ -74,36 +83,38 @@ public class Level3 implements LevelInformation {
 
     /**
      * Creates a SpriteCollection of all the sprites of the level, then creates "Back" class.
-     * <p>
+     * <p/>
+     *
      * @return the background for level 3.
      */
     public Sprite getBackground() {
         SpriteCollection s = new SpriteCollection();
-        s.addSprite(new Block(new Point(0, 0), 800, 600, 0, new Color(0,153,0)));
-        s.addSprite(new Block(new Point(70,400),90,200,0, new Color(32,32,32)));
+        s.addSprite(new Block(new Point(0, 0), 800, 600, 0, new Color(0, 153, 0)));
+        s.addSprite(new Block(new Point(70, 400), 90, 200, 0, new Color(32, 32, 32)));
 
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 5;j++) {
-                s.addSprite(new Block(new Point( 80 + (15*j), 420 + (25 * i)), 10 , 20, 0,Color.white));
+            for (int j = 0; j < 5; j++) {
+                s.addSprite(new Block(new Point(80 + (15 * j), 420 + (25 * i)), 10, 20, 0, Color.white));
             }
         }
 
-        s.addSprite(new Block(new Point(100, 350), 30, 50, 0, new Color(34,34,34)));
-        s.addSprite(new Block(new Point(110, 150), 10, 200, 0, new Color(60,60,60)));
-        s.addSprite(new FullCircle(115,145,10,Color.orange));
-        s.addSprite(new FullCircle(115,145,5,Color.red));
-        s.addSprite(new FullCircle(115,145,3,Color.white));
+        s.addSprite(new Block(new Point(100, 350), 30, 50, 0, new Color(34, 34, 34)));
+        s.addSprite(new Block(new Point(110, 150), 10, 200, 0, new Color(60, 60, 60)));
+        s.addSprite(new FullCircle(115, 145, 10, Color.orange));
+        s.addSprite(new FullCircle(115, 145, 5, Color.red));
+        s.addSprite(new FullCircle(115, 145, 3, Color.white));
 
         return new Back(s);
     }
 
     /**
      * Creates the Blocks of level1.
-     * <p>
+     * <p/>
+     *
      * @return the list of starting block of level3.
      */
     public List<Block> blocks() {
-        Color [] color = {Color.gray, Color.red,Color.YELLOW,Color.blue,Color.white};
+        Color[] color = {Color.gray, Color.red, Color.YELLOW, Color.blue, Color.white};
         List<Block> b = new ArrayList<>();
         int j = 0;
         for (int k = 0; k < 5; k++) {
@@ -111,8 +122,10 @@ public class Level3 implements LevelInformation {
             int r = 0;
             for (int i = 0; i < flag; i++) {
                 int hit = 1;
-                if (j == 0) { hit = 2; }
-                b.add(new Block(new Point(737 - (r * 42.2), 200 + (k * 20)),42.2 , 20, hit, color[j]));
+                if (j == 0) {
+                    hit = 2;
+                }
+                b.add(new Block(new Point(737 - (r * 42.2), 200 + (k * 20)), 42.2, 20, hit, color[j]));
                 r++;
             }
             j++;
@@ -122,7 +135,8 @@ public class Level3 implements LevelInformation {
 
     /**
      * See return.
-     * <p>
+     * <p/>
+     *
      * @return number Of Blocks To Remove.
      */
     public int numberOfBlocksToRemove() {

@@ -10,9 +10,10 @@ import biuoop.Sleeper;
  * @since 17/05/2016
  */
 public class AnimationRunner {
+
     private GUI gui;
-    int framesPerSecond;
-    Sleeper sleeper;
+    private int framesPerSecond;
+    private Sleeper sleeper;
 
     /**
      * Constractor for the animation runner.

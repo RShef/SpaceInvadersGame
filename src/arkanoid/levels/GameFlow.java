@@ -2,10 +2,12 @@ package arkanoid.levels;
 
 import arkanoid.Counter;
 import arkanoid.animation.AnimationRunner;
-import arkanoid.game.*;
+import arkanoid.game.EndScreen;
+import arkanoid.game.GameLevel;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
+
 import java.util.List;
 
 /**
@@ -22,7 +24,8 @@ public class GameFlow {
 
     /**
      * Constructor for the game flow class.
-     * <p>
+     * <p/>
+     *
      * @param ar  - the animation runner.
      * @param ks  - the keyboard sensor.
      * @param gui - the gui.
@@ -40,7 +43,8 @@ public class GameFlow {
 
     /**
      * Runs the levels.
-     * <p>
+     * <p/>
+     *
      * @param levels the list of levels.
      */
     public void runLevels(List<LevelInformation> levels) {

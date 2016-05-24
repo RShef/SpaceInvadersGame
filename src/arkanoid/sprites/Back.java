@@ -17,7 +17,7 @@ public class Back implements Sprite {
 
     /**
      * Draws the background.
-     * <p>
+     * <p/>
      *
      * @param d the draw surface.
      */

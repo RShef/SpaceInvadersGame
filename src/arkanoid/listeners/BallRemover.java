@@ -21,13 +21,14 @@ public class BallRemover implements HitListener {
     }
 
     /**
-     *  Removes the ball that hit the "death zone".
-     *  <p>
-     * @param death - the bottom block. "death zone".
+     * Removes the ball that hit the "death zone".
+     * <p/>
+     *
+     * @param death  - the bottom block. "death zone".
      * @param hitter the ball that hit the "death zone" block.
      */
     public void hitEvent(Block death, Ball hitter) {
-            hitter.removeFromGame(this.game);
-            this.removedBalls.decrease(1);
+        hitter.removeFromGame(this.game);
+        this.removedBalls.decrease(1);
     }
 }

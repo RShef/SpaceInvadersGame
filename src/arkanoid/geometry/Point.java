@@ -13,7 +13,8 @@ public class Point {
 
     /**
      * Instantiate point.
-     * <p>
+     * <p/>
+     *
      * @param x - point x.
      * @param y - point y.
      */
@@ -24,7 +25,8 @@ public class Point {
 
     /**
      * distance -- return the distance of this point to the other point.
-     * <p>
+     * <p/>
+     *
      * @param other - the point to be compared to.
      * @return - the distance.
      */
@@ -34,7 +36,8 @@ public class Point {
 
     /**
      * equals - returns true is the points are equal, false otherwise.
-     * <p>
+     * <p/>
+     *
      * @param other - the point to be compared to
      * @return - if they are the same.
      */
@@ -44,7 +47,8 @@ public class Point {
 
     /**
      * For coding style.
-     * <p>
+     * <p/>
+     *
      * @return - 0.
      */
     public int hashCode() {
@@ -53,7 +57,8 @@ public class Point {
 
     /**
      * Return the x and y values of this point.
-     * <p>
+     * <p/>
+     *
      * @return - x or y as asked.
      */
     public double getX() {
@@ -62,7 +67,8 @@ public class Point {
 
     /**
      * Sets X.
-     * <p>
+     * <p/>
+     *
      * @param x1 the x.
      */
     public void setX(double x1) {
@@ -71,7 +77,8 @@ public class Point {
 
     /**
      * Return the x and y values of this point.
-     * <p>
+     * <p/>
+     *
      * @return - x or y as asked.
      */
     public double getY() {
@@ -80,7 +87,8 @@ public class Point {
 
     /**
      * Sets Y.
-     * <p>
+     * <p/>
+     *
      * @param y1 the y.
      */
     public void setY(double y1) {
@@ -89,7 +97,8 @@ public class Point {
 
     /**
      * returns true if the point is on the given line, false otherwise.
-     * <p>
+     * <p/>
+     *
      * @param l a line
      * @return true or false
      */
@@ -99,7 +108,8 @@ public class Point {
 
     /**
      * Returns true if a point is the horizontal line of a given rectangle, false otherwise.
-     * <p>
+     * <p/>
+     *
      * @param rec a rectangle.
      * @return true or false.
      */
@@ -109,7 +119,8 @@ public class Point {
 
     /**
      * Returns true if a point is the vertical line of a given rectangle, false otherwise.
-     * <p>
+     * <p/>
+     *
      * @param rec a rectangle.
      * @return true or false.
      */

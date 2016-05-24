@@ -13,7 +13,7 @@ public interface Collidable {
 
     /**
      * returns the rectangle.
-     * <p>
+     * <p/>
      *
      * @return the rectangle.
      */
@@ -21,7 +21,7 @@ public interface Collidable {
 
     /**
      * Notifies the object it has been hit
-     * <p>
+     * <p/>
      * reduces one hit and returns new velocity based on collision.
      *
      * @param collisionPoint  the point of collision.
