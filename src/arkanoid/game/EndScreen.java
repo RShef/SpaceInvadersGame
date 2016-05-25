@@ -3,7 +3,7 @@ package arkanoid.game;
 import arkanoid.animation.Animation;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -18,6 +18,12 @@ public class EndScreen implements Animation {
     private boolean win;
     private boolean stop;
 
+    /**
+     * Instantiates a new End Screen.
+     * @param k the key sensor
+     * @param score the current score
+     * @param win the win condition
+     */
     public EndScreen(KeyboardSensor k, Counter score, boolean win) {
         this.keyboard = k;
         this.score = score;

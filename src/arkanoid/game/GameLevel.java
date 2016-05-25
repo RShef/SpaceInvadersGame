@@ -11,7 +11,15 @@ import arkanoid.listeners.HitListener;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
 import arkanoid.listeners.ScoreTrackingListener;
-import arkanoid.sprites.*;
+import arkanoid.sprites.Collidable;
+import arkanoid.sprites.Paddle;
+import arkanoid.sprites.Sprite;
+import arkanoid.sprites.Block;
+import arkanoid.sprites.Ball;
+import arkanoid.sprites.ScoreIndicator;
+import arkanoid.sprites.LivesIndicator;
+import arkanoid.sprites.LevelNameIndicator;
+import arkanoid.sprites.SpriteCollection;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
@@ -38,10 +46,14 @@ public class GameLevel implements Animation {
     private LevelInformation l;
     private AnimationRunner runner;
 
-
     /**
-     * Instantiates a new game object.
-     * <p>
+     * Instantiates a new game level.
+     * @param l the level information
+     * @param runner animation runner
+     * @param key a key sensor
+     * @param gui GUI
+     * @param lives current lives
+     * @param score current score
      */
     public GameLevel(LevelInformation l, AnimationRunner runner, KeyboardSensor key, GUI gui,
                      Counter lives, Counter score) {
@@ -52,7 +64,6 @@ public class GameLevel implements Animation {
         this.balls = new Counter();
         this.lives = lives;
         this.running = false;
-        //this.p = new Paddle();
         this.l = l;
         this.runner = runner;
         this.key = key;
@@ -96,8 +107,8 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Makes to Borders of the game.
-     * <p>
+     * Makes game's borders.
+     * @param hl a hit listener
      */
     public void makeBorders(HitListener hl) {
         // upper border
@@ -121,6 +132,7 @@ public class GameLevel implements Animation {
      * @param size         size of ball.
      * @param color        ball's color.
      * @param environment1 the game environment.
+     * @param v ball's velocity
      */
     public void makeBall(int x, int y, int size, Color color, GameEnvironment environment1, Velocity v) {
         Ball ball = new Ball(x, y, size, color);
@@ -133,6 +145,8 @@ public class GameLevel implements Animation {
     /**
      * Makes the paddle for the game.
      * <p>
+     * @param w paddle width
+     * @param s paddle speed
      */
     public void makePaddle(int w, int s) {
         this.p = new Paddle(new Rectangle(new Point((800 - w) / 2, 560), w, 15), Color.YELLOW, key, w, s);
@@ -221,9 +235,9 @@ public class GameLevel implements Animation {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed();
 
-        biuoop.KeyboardSensor key = this.gui.getKeyboardSensor();
-        if (key.isPressed("p")) {
-            this.runner.run(new PauseScreen(key));
+        biuoop.KeyboardSensor k = this.gui.getKeyboardSensor();
+        if (k.isPressed("p")) {
+            this.runner.run(new PauseScreen(k));
         }
         // timing
         if (this.blocks.getValue() == 0) {

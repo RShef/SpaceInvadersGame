@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * /**
- *
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
  * @since 17/05/2016
@@ -22,6 +20,10 @@ import java.util.List;
 public class Level2 implements LevelInformation {
     private int numOfBalls;
 
+    /**
+     * Instantiates a new level 2.
+     * <p>
+     */
     public Level2() {
         this.numOfBalls = 10;
     }

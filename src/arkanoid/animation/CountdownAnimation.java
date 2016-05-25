@@ -1,10 +1,9 @@
 package arkanoid.animation;
 
 import arkanoid.game.Counter;
-import arkanoid.sprites.*;
+import arkanoid.sprites.SpriteCollection;
 import biuoop.Sleeper;
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
 /**
@@ -13,11 +12,18 @@ import java.awt.Color;
  * @since 15/5/2016
  */
 public class CountdownAnimation implements Animation {
-    double numOfSeconds;
-    Counter countFrom;
-    SpriteCollection gameScreen;
-    double nu;
 
+    private double numOfSeconds;
+    private Counter countFrom;
+    private SpriteCollection gameScreen;
+    private double nu;
+
+    /**
+     * Instantiates a new CountDown animation.
+     * @param numOfSeconds number of seconds to animate
+     * @param countFrom number to start counting from
+     * @param gameScreen game screen to appear on
+     */
     public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
         this.numOfSeconds = numOfSeconds;
         this.countFrom = new Counter();
