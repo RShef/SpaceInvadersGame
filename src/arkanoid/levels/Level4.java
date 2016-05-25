@@ -46,7 +46,7 @@ public class Level4 implements LevelInformation {
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
-        v.add(new Velocity(0.2, -5));
+        v.add(new Velocity(1, -5));
         v.add(new Velocity(-5, -3));
         v.add(new Velocity(5, -3));
 
