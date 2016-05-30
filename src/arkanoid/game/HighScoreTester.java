@@ -1,5 +1,8 @@
 package arkanoid.game;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
@@ -35,11 +38,18 @@ public class HighScoreTester {
 
         System.out.println(hs);
 
-        ScoreInfo s11 = new ScoreInfo("11th", 95);
-        hs.add(s11);
+        File highScores = new File("High-Scores.ser");
+        try {
+            hs.save(highScores);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println(hs);
-
+        try {
+            hs.load(highScores);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

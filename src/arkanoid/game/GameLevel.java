@@ -3,6 +3,7 @@ package arkanoid.game;
 import arkanoid.animation.Animation;
 import arkanoid.animation.AnimationRunner;
 import arkanoid.animation.CountdownAnimation;
+import arkanoid.animation.PauseScreen;
 import arkanoid.geometry.Velocity;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;

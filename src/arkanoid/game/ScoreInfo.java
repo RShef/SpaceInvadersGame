@@ -1,11 +1,13 @@
 package arkanoid.game;
 
+import java.io.Serializable;
+
 /**
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
  * @since 29/05/2016
  */
-public class ScoreInfo {
+public class ScoreInfo implements Serializable {
 
     private String name;
     private int score;
@@ -22,4 +24,5 @@ public class ScoreInfo {
     public int getScore() {
         return this.score;
     }
+
 }

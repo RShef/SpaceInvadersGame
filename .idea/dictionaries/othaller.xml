@@ -2,6 +2,7 @@
   <dictionary name="othaller">
     <words>
       <w>arkanoid</w>
+      <w>highscores</w>
     </words>
   </dictionary>
 </component>
