@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @since 07/04/2016
  */
 
-public class Ass5Game {
+public class Ass6Game {
 
     /**
      * Main program.
