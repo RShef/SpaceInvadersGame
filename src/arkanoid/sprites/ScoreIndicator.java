@@ -40,10 +40,11 @@ public class ScoreIndicator implements Sprite {
 
     /**
      * Notify the Sprite that time has passed.
+     * @param dt is the time passed from previous frame.
      * <p/>
      */
     @Override
-    public void timePassed() {
+    public void timePassed(double dt) {
 
     }
 

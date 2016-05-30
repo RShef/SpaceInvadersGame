@@ -43,11 +43,12 @@ public class SpriteCollection {
 
     /**
      * Call time Passed on all sprites in the collection.
+     * @param dt is the time passed from previous frame.
      * <p>
      */
-    public void notifyAllTimePassed() {
+    public void notifyAllTimePassed(double dt) {
         for (int i = 0; i < this.sprites.size(); i++) {
-            this.sprites.get(i).timePassed();
+            this.sprites.get(i).timePassed(dt);
         }
     }
 

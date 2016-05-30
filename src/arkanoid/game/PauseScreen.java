@@ -17,6 +17,7 @@ public class PauseScreen implements Animation {
     /**
      * Instantiates a new Pause Screen.
      * <p>
+     *
      * @param k a key sensor
      */
     public PauseScreen(KeyboardSensor k) {
@@ -27,9 +28,10 @@ public class PauseScreen implements Animation {
     /**
      * Does on frame.
      *
-     * @param d the draw surface.
+     * @param d  the draw surface.
+     * @param dt is the time passed from previous frame.
      */
-    public void doOneFrame(DrawSurface d) {
+    public void doOneFrame(DrawSurface d, double dt) {
         d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 32);
         if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
             this.stop = true;

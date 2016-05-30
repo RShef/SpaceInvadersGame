@@ -46,8 +46,8 @@ public class Level2 implements LevelInformation {
      */
     public List<Velocity> initialBallVelocities() {
         List<Velocity> v = new ArrayList<>();
-        double x = 2;
-        double y = -6;
+        double x = 200;
+        double y = -300;
         for (int i = 0; i < this.numOfBalls / 2; i++) {
             v.add(new Velocity(x + i, y + i));
             v.add(new Velocity((x + i) * -1, y + i));
@@ -62,7 +62,7 @@ public class Level2 implements LevelInformation {
      * @return Paddle speed.
      */
     public int paddleSpeed() {
-        return 6;
+        return 100;
     }
 
     /**

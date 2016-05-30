@@ -169,18 +169,19 @@ public class Ball implements Sprite {
     /**
      * Notify the ball of time passed by moving.
      */
-    public void timePassed() {
-        this.moveOneStep();
+    public void timePassed(double dt) {
+        this.moveOneStep(dt);
     }
 
     /**
      * Computes the ball's trajectory.
      * <p>
      *
+     * @param dt is the time passed from previous frame.
      * @return trajectory Line
      */
-    public Line findTrajectory() {
-        Point end = new Point(this.getX() + this.velocity.getDx(), this.getY() + this.velocity.getDy());
+    public Line findTrajectory(double dt) {
+        Point end = new Point(this.getX() + this.velocity.getDx() * dt, this.getY() + this.velocity.getDy() * dt);
         return new Line(this.center, end);
     }
 
@@ -188,15 +189,17 @@ public class Ball implements Sprite {
      * Moves the ball one step according to current velocity.
      * <p>
      * If ball will hit an obstacle, it will change direction.
+     *
+     * @param dt is the time passed from previous frame.
      */
-    public void moveOneStep() {
-        Line trajectory = findTrajectory();
+    public void moveOneStep(double dt) {
+        Line trajectory = findTrajectory(dt);
         CollisionInfo collision = this.environment.getClosestCollision(trajectory);
         if (collision != null) {
             this.center = findNearHitPoint(collision.collisionPoint());
             this.setVelocity(collision.collisionObject().hit(this, collision.collisionPoint(), this.velocity));
         } else {
-            this.center = this.getVelocity().applyToPoint(this.center);
+            this.center = this.getVelocity().applyToPoint(this.center, dt);
         }
     }
 

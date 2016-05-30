@@ -20,8 +20,9 @@ public interface Sprite {
 
     /**
      * Notify the Sprite that time has passed.
+     * @param dt is the time passed from previous frame.
      * <p/>
      */
-    void timePassed();
+    void timePassed(double dt);
 
 }

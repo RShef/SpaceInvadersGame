@@ -46,7 +46,8 @@ public class FullCircle implements Sprite {
     @Override
     /**
      * The time passed class.
+     * @param dt is the time passed from previous frame.
      */
-    public void timePassed() {
+    public void timePassed(double dt) {
     }
 }

@@ -37,9 +37,10 @@ public class LivesIndicator implements Sprite {
 
     /**
      * For checkstlye.
+     * @param dt is the time passed from previous frame.
      */
     @Override
-    public void timePassed() {
+    public void timePassed(double dt) {
 
     }
 

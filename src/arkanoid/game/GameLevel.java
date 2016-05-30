@@ -48,12 +48,13 @@ public class GameLevel implements Animation {
 
     /**
      * Instantiates a new game level.
-     * @param l the level information
+     *
+     * @param l      the level information
      * @param runner animation runner
-     * @param key a key sensor
-     * @param gui GUI
-     * @param lives current lives
-     * @param score current score
+     * @param key    a key sensor
+     * @param gui    GUI
+     * @param lives  current lives
+     * @param score  current score
      */
     public GameLevel(LevelInformation l, AnimationRunner runner, KeyboardSensor key, GUI gui,
                      Counter lives, Counter score) {
@@ -73,6 +74,7 @@ public class GameLevel implements Animation {
     /**
      * Adds a Collidable object to the game.
      * <p>
+     *
      * @param a the Collidable to add to the game.
      */
     public void addCollidable(Collidable a) {
@@ -82,6 +84,7 @@ public class GameLevel implements Animation {
     /**
      * Adds a Sprite object to the game.
      * <p>
+     *
      * @param s the sprite to add.
      */
     public void addSprite(Sprite s) {
@@ -91,6 +94,7 @@ public class GameLevel implements Animation {
     /**
      * Removes a collidable from the game.
      * <p>
+     *
      * @param c the collidable object to remove.
      */
     public void removeCollidable(Collidable c) {
@@ -100,6 +104,7 @@ public class GameLevel implements Animation {
     /**
      * Removes a sprite from the game.
      * <p>
+     *
      * @param s the sprite to remove.
      */
     public void removeSprite(Sprite s) {
@@ -108,6 +113,7 @@ public class GameLevel implements Animation {
 
     /**
      * Makes game's borders.
+     *
      * @param hl a hit listener
      */
     public void makeBorders(HitListener hl) {
@@ -127,12 +133,13 @@ public class GameLevel implements Animation {
     /**
      * Makes the ball for the game.
      * <p>
+     *
      * @param x            x value for ball's location.
      * @param y            y value for ball's location.
      * @param size         size of ball.
      * @param color        ball's color.
      * @param environment1 the game environment.
-     * @param v ball's velocity
+     * @param v            ball's velocity
      */
     public void makeBall(int x, int y, int size, Color color, GameEnvironment environment1, Velocity v) {
         Ball ball = new Ball(x, y, size, color);
@@ -145,6 +152,7 @@ public class GameLevel implements Animation {
     /**
      * Makes the paddle for the game.
      * <p>
+     *
      * @param w paddle width
      * @param s paddle speed
      */
@@ -229,11 +237,13 @@ public class GameLevel implements Animation {
     /**
      * Showing only one frame.
      * <p>
-     * @param d the draw surface.
+     *
+     * @param d  the draw surface.
+     * @param dt is the time passed from previous frame.
      */
-    public void doOneFrame(DrawSurface d) {
+    public void doOneFrame(DrawSurface d, double dt) {
         this.sprites.drawOn(d);
-        this.sprites.notifyAllTimePassed();
+        this.sprites.notifyAllTimePassed(dt);
 
         biuoop.KeyboardSensor k = this.gui.getKeyboardSensor();
         if (k.isPressed("p")) {
@@ -256,6 +266,7 @@ public class GameLevel implements Animation {
     /**
      * returns the lives.
      * <p>
+     *
      * @return Lives.
      */
     public int livesLeft() {
@@ -265,6 +276,7 @@ public class GameLevel implements Animation {
     /**
      * Returns blocks left.
      * <p>
+     *
      * @return blocks left.
      */
     public int blocksLeft() {

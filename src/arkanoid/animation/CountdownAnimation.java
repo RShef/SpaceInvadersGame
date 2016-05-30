@@ -4,6 +4,7 @@ import arkanoid.game.Counter;
 import arkanoid.sprites.SpriteCollection;
 import biuoop.Sleeper;
 import biuoop.DrawSurface;
+
 import java.awt.Color;
 
 /**
@@ -20,9 +21,10 @@ public class CountdownAnimation implements Animation {
 
     /**
      * Instantiates a new CountDown animation.
+     *
      * @param numOfSeconds number of seconds to animate
-     * @param countFrom number to start counting from
-     * @param gameScreen game screen to appear on
+     * @param countFrom    number to start counting from
+     * @param gameScreen   game screen to appear on
      */
     public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
         this.numOfSeconds = numOfSeconds;
@@ -35,9 +37,10 @@ public class CountdownAnimation implements Animation {
     /**
      * Displays a num from to countdown.
      *
-     * @param d is the draw surface.
+     * @param d  is the draw surface.
+     * @param dt is the time passed from previous frame.
      */
-    public void doOneFrame(DrawSurface d) {
+    public void doOneFrame(DrawSurface d, double dt) {
         this.gameScreen.drawOn(d);
         //this.gameScreen.notifyAllTimePassed();
         d.setColor(Color.YELLOW);

@@ -235,17 +235,27 @@ public class Line implements Sprite {
     }
 
     @Override
+    /**
+     * The draw on method.
+     */
     public void drawOn(DrawSurface d) {
         d.setColor(this.c);
         d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 
     @Override
-    public void timePassed() {
+    /**
+     * The time method - time passed.
+     * @param dt is the time passed from previous frame.
+     */
+    public void timePassed(double dt) {
 
     }
 
     @Override
+    /**
+     * Check style.
+     */
     public int hashCode() {
         return super.hashCode();
     }

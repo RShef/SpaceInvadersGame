@@ -136,9 +136,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Notifies block of time passed.
+     * @param dt is the time passed from previous frame.
      * <p/>
      */
-    public void timePassed() {
+    public void timePassed(double dt) {
     }
 
     /**
