@@ -27,7 +27,7 @@ public class HighScoresAnimation implements Animation {
      * @param d is the draw surface.
      */
     @Override
-    public void doOneFrame(DrawSurface d) {
+    public void doOneFrame(DrawSurface d, double dt) {
         d.drawText(150, 100, "High Scores", 100);
         int y = 200;
         for (int i = 0; i < this.scores.getHighScores().size(); i++) {
