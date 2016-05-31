@@ -1,9 +1,8 @@
 package arkanoid.animation;
 
+import arkanoid.animation.Animation;
 import arkanoid.game.Counter;
-import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
 /**
@@ -14,23 +13,18 @@ import java.awt.Color;
 
 public class EndScreen implements Animation {
 
-    private KeyboardSensor keyboard;
     private Counter score;
     private boolean win;
-    private boolean stop;
 
     /**
      * Instantiates a new End Screen.
      *
-     * @param k     the key sensor
      * @param score the current score
      * @param win   the win condition
      */
-    public EndScreen(KeyboardSensor k, Counter score, boolean win) {
-        this.keyboard = k;
+    public EndScreen(Counter score, boolean win) {
         this.score = score;
         this.win = win;
-        this.stop = false;
     }
 
     /**
@@ -53,9 +47,6 @@ public class EndScreen implements Animation {
             d.drawText(250, 200, "Game Over...", 50);
         }
         d.drawText(200, 400, "Your score is: " + this.score.getValue(), 50);
-        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
-            this.stop = true;
-        }
     }
 
     /**
@@ -64,7 +55,5 @@ public class EndScreen implements Animation {
      *
      * @return when to stop.
      */
-    public boolean shouldStop() {
-        return this.stop;
-    }
+    public boolean shouldStop() { return false; }
 }

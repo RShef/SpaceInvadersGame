@@ -1,12 +1,7 @@
-package arkanoid.levels;
+package arkanoid.game;
 
-import arkanoid.animation.HighScoresAnimation;
-import arkanoid.game.Counter;
-import arkanoid.animation.AnimationRunner;
-import arkanoid.game.GameLevel;
-import arkanoid.animation.EndScreen;
-import arkanoid.game.HighScoresTable;
-import arkanoid.game.ScoreInfo;
+import arkanoid.animation.*;
+import arkanoid.levels.LevelInformation;
 import biuoop.DialogManager;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
@@ -14,7 +9,6 @@ import biuoop.Sleeper;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -54,7 +48,6 @@ public class GameFlow {
     /**
      * Runs the levels.
      * <p>
-     *
      * @param levels the list of levels.
      */
     public void runLevels(List<LevelInformation> levels) {
@@ -76,8 +69,11 @@ public class GameFlow {
 
         }
         // Show end screen
-        this.animationRunner.run(new EndScreen(this.keyboardSensor, this.score, win));
+        EndScreen es = new EndScreen(this.score, win);
+        this.animationRunner.run(new KeyPressStoppableAnimation(this.keyboardSensor, "space", es));
         new Sleeper().sleepFor(1000);
+
+        // Add score to high scores if eligible
         if (this.highScores.getRank(this.score.getValue()) < this.highScores.size()) {
             DialogManager dialog = gui.getDialogManager();
             String name = dialog.showQuestionDialog("Name", "What is your name?", "");
@@ -88,7 +84,11 @@ public class GameFlow {
                 e.printStackTrace();
             }
         }
-        this.animationRunner.run(new HighScoresAnimation(this.highScores, this.keyboardSensor));
+        // show High Scores screen
+        HighScoresAnimation hs = new HighScoresAnimation(this.highScores);
+        this.animationRunner.run(new KeyPressStoppableAnimation(this.keyboardSensor, "space", hs));
+
+        // close the GUI
         this.gui.close();
     }
 

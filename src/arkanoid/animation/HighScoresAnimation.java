@@ -2,7 +2,6 @@ package arkanoid.animation;
 
 import arkanoid.game.HighScoresTable;
 import biuoop.DrawSurface;
-import biuoop.KeyboardSensor;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -13,12 +12,9 @@ import biuoop.KeyboardSensor;
 public class HighScoresAnimation implements Animation {
 
     private HighScoresTable scores;
-    private KeyboardSensor endKey;
-    private boolean stop;
 
-    public HighScoresAnimation(HighScoresTable scores, KeyboardSensor endKey) {
+    public HighScoresAnimation(HighScoresTable scores) {
         this.scores = scores;
-        this.endKey = endKey;
     }
 
     /**
@@ -35,7 +31,6 @@ public class HighScoresAnimation implements Animation {
             d.drawText(650, y, String.valueOf(this.scores.getHighScores().get(i).getScore()), 25);
             y += 35;
         }
-        if (this.endKey.isPressed(KeyboardSensor.SPACE_KEY)) { this.stop = true; }
     }
 
     /**
@@ -45,6 +40,6 @@ public class HighScoresAnimation implements Animation {
      */
     @Override
     public boolean shouldStop() {
-        return this.stop;
+        return false;
     }
 }

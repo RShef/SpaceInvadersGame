@@ -5,7 +5,6 @@ import arkanoid.levels.Level2;
 import arkanoid.levels.Level3;
 import arkanoid.levels.Level4;
 import arkanoid.levels.LevelInformation;
-import arkanoid.levels.GameFlow;
 import biuoop.GUI;
 import arkanoid.animation.AnimationRunner;
 import biuoop.KeyboardSensor;

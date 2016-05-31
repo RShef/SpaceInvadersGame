@@ -1,9 +1,6 @@
 package arkanoid.game;
 
-import arkanoid.animation.Animation;
-import arkanoid.animation.AnimationRunner;
-import arkanoid.animation.CountdownAnimation;
-import arkanoid.animation.PauseScreen;
+import arkanoid.animation.*;
 import arkanoid.geometry.Velocity;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;
@@ -24,7 +21,6 @@ import arkanoid.sprites.SpriteCollection;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
 /**
@@ -246,9 +242,11 @@ public class GameLevel implements Animation {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed(dt);
 
-        biuoop.KeyboardSensor k = this.gui.getKeyboardSensor();
+        // if "p" is pressed, show pause screen
+        KeyboardSensor k = this.gui.getKeyboardSensor();
         if (k.isPressed("p")) {
-            this.runner.run(new PauseScreen(k));
+            PauseScreen ps = new PauseScreen();
+            this.runner.run(new KeyPressStoppableAnimation(this.key, "space", ps));
         }
         // timing
         if (this.blocks.getValue() == 0) {
