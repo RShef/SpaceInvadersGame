@@ -1,6 +1,5 @@
 package arkanoid.animation;
 
-import arkanoid.animation.Animation;
 import biuoop.DrawSurface;
 
 /**

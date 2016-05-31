@@ -1,6 +1,5 @@
 package arkanoid.animation;
 
-import arkanoid.animation.Animation;
 import arkanoid.game.Counter;
 import biuoop.DrawSurface;
 import java.awt.Color;
