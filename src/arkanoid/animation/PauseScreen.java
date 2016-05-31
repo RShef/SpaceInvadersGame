@@ -1,6 +1,5 @@
-package arkanoid.game;
+package arkanoid.animation;
 
-import arkanoid.animation.Animation;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
 
@@ -11,6 +10,7 @@ import biuoop.DrawSurface;
  */
 
 public class PauseScreen implements Animation {
+
     private KeyboardSensor keyboard;
     private boolean stop;
 

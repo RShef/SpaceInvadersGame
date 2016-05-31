@@ -9,6 +9,8 @@ import arkanoid.levels.GameFlow;
 import biuoop.GUI;
 import arkanoid.animation.AnimationRunner;
 import biuoop.KeyboardSensor;
+
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +33,8 @@ public class Ass6Game {
         AnimationRunner ar = new AnimationRunner(60, gui);
         KeyboardSensor ks = gui.getKeyboardSensor();
         ArrayList<LevelInformation> levels = new ArrayList<>();
+        File highscores = new File("highscores.ser");
+
         // Adding levels class to the array.
 
         if (args.length == 0) {
@@ -41,21 +45,21 @@ public class Ass6Game {
         }
 
         // Creating a game.
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("1")) {
+        for (String arg : args) {
+            if (arg.equals("1")) {
                 levels.add(new Level1());
             }
-            if (args[i].equals("2")) {
+            if (arg.equals("2")) {
                 levels.add(new Level2());
             }
-            if (args[i].equals("3")) {
+            if (arg.equals("3")) {
                 levels.add(new Level3());
             }
-            if (args[i].equals("4")) {
+            if (arg.equals("4")) {
                 levels.add(new Level4());
             }
         }
-        GameFlow g = new GameFlow(ar, ks, gui, new Counter(), new Counter());
+        GameFlow g = new GameFlow(ar, ks, gui, new Counter(), new Counter(), highscores);
         g.runLevels(levels);
     }
 
