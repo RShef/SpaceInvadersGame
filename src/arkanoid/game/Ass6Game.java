@@ -31,7 +31,7 @@ public class Ass6Game {
         AnimationRunner ar = new AnimationRunner(60, gui);
         KeyboardSensor ks = gui.getKeyboardSensor();
         ArrayList<LevelInformation> levels = new ArrayList<>();
-        File highscores = new File("highscores.ser");
+        File highscores = new File("src/highscores.ser");
 
         // Adding levels class to the array.
 

@@ -32,6 +32,6 @@ public class SelectionInfo {
 
     @Override
     public String toString() {
-        return "Press " + this.key + " to " + this.message;
+        return "Press " + "'" + this.key + "'" + " to " + this.message;
     }
 }

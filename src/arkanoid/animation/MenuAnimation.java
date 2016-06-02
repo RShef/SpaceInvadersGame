@@ -3,6 +3,11 @@ package arkanoid.animation;
 import arkanoid.game.SelectionInfo;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,11 +71,21 @@ public class MenuAnimation<T> implements Menu {
      */
     @Override
     public void doOneFrame(DrawSurface d, double dt) {
-        d.drawText(300, 100, this.title, 50);
-        d.drawText(150, 200, "Select one of the following options", 35);
+
+        Image back = null;
+        try {
+            back = ImageIO.read(new File("resources/background_images/blurred.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        d.drawImage(0, 0, back);
+
+        //d.setColor(Color.white);
+        d.drawText(290, 100, this.title, 50);
+        d.drawText(110, 200, "Select one of the following options", 35);
         int y = 300;
         for (SelectionInfo selection : this.selections) {
-            d.drawText(250, y, selection.toString(), 30);
+            d.drawText(230, y, selection.toString(), 30);
             y += 80;
         }
         for (SelectionInfo selection: this.selections) {

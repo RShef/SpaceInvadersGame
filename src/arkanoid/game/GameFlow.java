@@ -49,7 +49,6 @@ public class GameFlow {
         this.levels = levels;
         this.score = s;
         this.lives = l;
-        l.increase(7);
         this.scoresFile = highscores;
         this.highScores = HighScoresTable.loadFromFile(scoresFile, 10);
     }

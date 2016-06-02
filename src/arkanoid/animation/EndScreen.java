@@ -2,7 +2,11 @@ package arkanoid.animation;
 
 import arkanoid.game.Counter;
 import biuoop.DrawSurface;
-import java.awt.Color;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -34,18 +38,34 @@ public class EndScreen implements Animation {
      * @param dt is the time passed from previous frame.
      */
     public void doOneFrame(DrawSurface d, double dt) {
+        Image back = null;
+
         if (this.win) {
-            d.setColor(Color.green);
-            d.fillRectangle(0, 0, 800, 600);
+            try {
+                back = ImageIO.read(new File("resources/background_images/fireworks.jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            d.drawImage(0, 0, back);
+
+            //d.setColor(Color.green);
+            //d.fillRectangle(0, 0, 800, 600);
             d.setColor(Color.black);
             d.drawText(300, 200, "You Win!", 50);
         } else {
-            d.setColor(Color.red);
-            d.fillRectangle(0, 0, 800, 600);
-            d.setColor(Color.black);
-            d.drawText(250, 200, "Game Over...", 50);
+            try {
+                back = ImageIO.read(new File("resources/background_images/gameover.jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            d.drawImage(0, 0, back);
+
+            //d.setColor(Color.red);
+            //d.fillRectangle(0, 0, 800, 600);
+            //d.setColor(Color.black);
+            //d.drawText(250, 200, "Game Over...", 50);
         }
-        d.drawText(200, 400, "Your score is: " + this.score.getValue(), 50);
+        d.drawText(200, 550, "Your score is: " + this.score.getValue(), 50);
     }
 
     /**
