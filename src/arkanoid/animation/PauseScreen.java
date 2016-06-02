@@ -1,6 +1,8 @@
 package arkanoid.animation;
 
+import arkanoid.game.Counter;
 import biuoop.DrawSurface;
+import java.awt.Color;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -10,11 +12,18 @@ import biuoop.DrawSurface;
 
 public class PauseScreen implements Animation {
 
+    private Counter score;
+    private Counter lives;
+    private String levelName;
+
     /**
      * Instantiates a new Pause Screen.
      * <p>
      */
-    public PauseScreen() {
+    public PauseScreen(Counter score, Counter lives, String levelName) {
+        this.score = score;
+        this.lives = lives;
+        this.levelName = levelName;
     }
 
     /**
@@ -24,7 +33,17 @@ public class PauseScreen implements Animation {
      * @param dt is the time passed from previous frame.
      */
     public void doOneFrame(DrawSurface d, double dt) {
-        d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 32);
+        d.drawText(300, 50, "Level Name: " + this.levelName, 20);
+        d.drawText(300, 100, "Score: " + String.valueOf(this.score.getValue()), 20);
+        d.drawText(300, 150, "Lives: " + String.valueOf(this.lives.getValue()), 20);
+        d.setColor(Color.blue);
+        d.fillCircle(400, 300, 100);
+        d.setColor(Color.black);
+        d.fillRectangle(340, 250, 50 ,100);
+        d.fillRectangle(410, 250, 50, 100);
+
+        String s = "Press space to continue";
+        d.drawText(400 - (s.length() * 32 / 2) , 500, s, 32);
     }
 
     /**

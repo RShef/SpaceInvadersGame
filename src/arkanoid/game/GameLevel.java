@@ -245,7 +245,7 @@ public class GameLevel implements Animation {
         // if "p" is pressed, show pause screen
         KeyboardSensor k = this.gui.getKeyboardSensor();
         if (k.isPressed("p")) {
-            PauseScreen ps = new PauseScreen();
+            PauseScreen ps = new PauseScreen(this.score, this.lives, this.l.levelName());
             this.runner.run(new KeyPressStoppableAnimation(this.key, "space", ps));
         }
         // timing

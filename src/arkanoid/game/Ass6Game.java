@@ -1,14 +1,13 @@
 package arkanoid.game;
 
+import arkanoid.animation.*;
 import arkanoid.levels.Level1;
 import arkanoid.levels.Level2;
 import arkanoid.levels.Level3;
 import arkanoid.levels.Level4;
 import arkanoid.levels.LevelInformation;
 import biuoop.GUI;
-import arkanoid.animation.AnimationRunner;
 import biuoop.KeyboardSensor;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -58,8 +57,8 @@ public class Ass6Game {
                 levels.add(new Level4());
             }
         }
-        GameFlow g = new GameFlow(ar, ks, gui, new Counter(), new Counter(), highscores);
-        g.runLevels(levels);
+        GameFlow g = new GameFlow(ar, ks, gui, levels, new Counter(), new Counter(), highscores);
+        g.showMenu();
     }
 
 }

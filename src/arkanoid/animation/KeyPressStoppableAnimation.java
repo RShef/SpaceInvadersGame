@@ -25,9 +25,6 @@ public class KeyPressStoppableAnimation implements Animation {
         this.isAlreadyPressed = true;
     }
 
-    public KeyPressStoppableAnimation() {
-    }
-
     /**
      * Displays a num from to countdown.
      * <p/>

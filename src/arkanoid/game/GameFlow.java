@@ -1,6 +1,11 @@
 package arkanoid.game;
 
-import arkanoid.animation.*;
+import arkanoid.animation.AnimationRunner;
+import arkanoid.animation.EndScreen;
+import arkanoid.animation.HighScoresAnimation;
+import arkanoid.animation.KeyPressStoppableAnimation;
+import arkanoid.animation.Menu;
+import arkanoid.animation.MenuAnimation;
 import arkanoid.levels.LevelInformation;
 import biuoop.DialogManager;
 import biuoop.GUI;
@@ -8,6 +13,7 @@ import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +25,7 @@ public class GameFlow {
     private KeyboardSensor keyboardSensor;
     private AnimationRunner animationRunner;
     private GUI gui;
+    private ArrayList levels;
     private Counter lives;
     private Counter score;
     private HighScoresTable highScores;
@@ -34,15 +41,48 @@ public class GameFlow {
      * @param l   - the all game lives counter.
      * @param s   - the all game score counter.
      */
-    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, Counter l, Counter s, File highscores) {
+    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, ArrayList levels, Counter l, Counter s, File
+            highscores) {
         this.animationRunner = ar;
         this.keyboardSensor = ks;
         this.gui = gui;
+        this.levels = levels;
         this.score = s;
         this.lives = l;
+        l.increase(7);
         this.scoresFile = highscores;
         this.highScores = HighScoresTable.loadFromFile(scoresFile, 10);
-        l.increase(7);
+    }
+
+    /**
+     * Create and show the game menu.
+     * <p>
+     * The menu runs in a loop until the user quits the game
+     */
+    public void showMenu() {
+
+        while(true) {
+            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid");
+
+            //add high scores task to the menu
+            HighScoresAnimation hs = new HighScoresAnimation(this.highScores);
+            KeyPressStoppableAnimation hsk = new KeyPressStoppableAnimation(this.keyboardSensor, "space", hs);
+            Task hst = new Tasks().showHighScores(this.animationRunner, hsk);
+            menu.addSelection("h", "show high scores", hst);
+
+            // add new game task to the menu
+            Task newGameTask = new Tasks().runLevels(this);
+            menu.addSelection("s", "start a new game", newGameTask);
+
+            // add exit game task to the menu
+            Task quit = new Tasks().quit();
+            menu.addSelection("q", "quit the game", quit);
+
+            menu.setStop(false);
+            this.animationRunner.run(menu);
+            Task<Void> task = menu.getStatus();
+            task.run();
+        }
     }
 
     /**
@@ -87,9 +127,25 @@ public class GameFlow {
         // show High Scores screen
         HighScoresAnimation hs = new HighScoresAnimation(this.highScores);
         this.animationRunner.run(new KeyPressStoppableAnimation(this.keyboardSensor, "space", hs));
+    }
 
-        // close the GUI
-        this.gui.close();
+    /**
+     * Returns levels.
+     * <p>
+     * @return list of levels
+     */
+    public ArrayList getLevels() {
+        return this.levels;
+    }
+
+    /**
+     * Resets score and lives.
+     * <p>
+     */
+    public void resetScoreAndLives() {
+        this.score = new Counter();
+        this.lives = new Counter();
+        this.lives.increase(7);
     }
 
 }
