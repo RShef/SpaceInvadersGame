@@ -52,7 +52,7 @@ public class PauseScreen implements Animation {
         d.setColor(Color.blue);
         d.fillCircle(400, 300, 110);
         d.setColor(Color.black);
-        d.fillRectangle(340, 250, 50 ,100);
+        d.fillRectangle(340, 250, 50, 100);
         d.fillRectangle(410, 250, 50, 100);
 
         String s = "Press space to continue";

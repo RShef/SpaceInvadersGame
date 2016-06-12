@@ -2,6 +2,7 @@ package arkanoid.geometry;
 
 import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
+
 import java.awt.Color;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Line implements Sprite {
     /**
      * Instantiate Line.
      * <p>
+     *
      * @param start start point.
      * @param end   end point.
      */
@@ -33,6 +35,7 @@ public class Line implements Sprite {
     /**
      * Instantiate Line.
      * <p>
+     *
      * @param x1 start point x location.
      * @param y1 start point y location.
      * @param x2 end point x location.
@@ -46,11 +49,12 @@ public class Line implements Sprite {
     /**
      * Instantiates a line.
      * <p>
+     *
      * @param x1 x of start point
      * @param y1 y of start point
      * @param x2 x of end point
      * @param y2 y of end point
-     * @param c line color
+     * @param c  line color
      */
     public Line(double x1, double y1, double x2, double y2, Color c) {
         this.start = new Point(x1, y1);
@@ -164,6 +168,7 @@ public class Line implements Sprite {
      * <p>
      * if there are no intersection, returns null
      * <p>
+     *
      * @param rect the object
      * @return the closest point of intersection
      */
@@ -187,6 +192,7 @@ public class Line implements Sprite {
     /**
      * Checks if two lines are equal.
      * <p>
+     *
      * @param other another line.
      * @return true if lines are equal, false otherwise.
      */
@@ -197,6 +203,7 @@ public class Line implements Sprite {
     /**
      * Returns true if the line is vertical, false otherwise.
      * <p>
+     *
      * @return true of false
      */
     public boolean isVertical() {
@@ -206,11 +213,12 @@ public class Line implements Sprite {
     /**
      * Finds the intersection point when one line is vertical.
      * <p>
+     *
      * @param other the intersecting line
      * @return the point of intersection
      */
     public Point verticalIntersection(Line other) {
-        double x, y, m , b;
+        double x, y, m, b;
 
         x = this.start.getX();
         m = other.slope();
@@ -228,6 +236,7 @@ public class Line implements Sprite {
     /**
      * Calculate line's slope.
      * <p>
+     *
      * @return line's slope.
      */
     public double slope() {

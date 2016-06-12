@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.0
  * @since 29/05/2016
  */
-public class HighScoresTable implements Serializable{
+public class HighScoresTable implements Serializable {
 
     private int size;
     private List<ScoreInfo> highScores;
@@ -17,6 +17,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Instantiates an empty high scores table of the specified size.
      * <p>
+     *
      * @param size table size
      */
     public HighScoresTable(int size) {
@@ -28,15 +29,16 @@ public class HighScoresTable implements Serializable{
      * Add a new High score to the table.
      * <p>
      * A new high score will be added only if it is higher than the last score on the table.
+     *
      * @param score the score to be added
      */
     public void add(ScoreInfo score) {
         if (this.highScores.isEmpty()) {
             this.highScores.add(score);
         } else if (getRank(score.getScore()) <= this.size) {
-          this.highScores.add(getRank(score.getScore()), score);
+            this.highScores.add(getRank(score.getScore()), score);
             if (this.highScores.size() > this.size) {
-                this.highScores.remove(this.highScores.size()-1);
+                this.highScores.remove(this.highScores.size() - 1);
             }
         }
     }
@@ -44,6 +46,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Returns the table size.
      * <p>
+     *
      * @return size of table
      */
     public int size() {
@@ -53,6 +56,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Returns the current high scores from highest to lowest.
      * <p>
+     *
      * @return high scores table
      */
     public List<ScoreInfo> getHighScores() {
@@ -62,6 +66,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Returns the rank of a given score in the scores table.
      * <p>
+     *
      * @param score the given score
      * @return the rank in the table
      */
@@ -89,6 +94,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Loads a high scores table from a given file.
      * <p>
+     *
      * @param filename the given file to load from
      * @throws IOException
      */
@@ -101,7 +107,7 @@ public class HighScoresTable implements Serializable{
         try {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
             for (int i = 0; i < this.size; i++) {
-                scoreInfo = (ScoreInfo)objectInputStream.readObject();
+                scoreInfo = (ScoreInfo) objectInputStream.readObject();
                 this.highScores.add(scoreInfo);
             }
         } catch (FileNotFoundException e) { // Can't find file to open
@@ -113,7 +119,7 @@ public class HighScoresTable implements Serializable{
             e.printStackTrace(System.err);
         } finally {
             try {
-                if(objectInputStream != null) {
+                if (objectInputStream != null) {
                     objectInputStream.close();
                 }
             } catch (IOException e) {
@@ -125,6 +131,7 @@ public class HighScoresTable implements Serializable{
     /**
      * Saves the current high scores to a given file.
      * <p>
+     *
      * @param filename the given file to save to
      * @throws IOException
      */
@@ -141,7 +148,7 @@ public class HighScoresTable implements Serializable{
             e.printStackTrace(System.err);
         } finally {
             try {
-                if(objectOutputStream != null) {
+                if (objectOutputStream != null) {
                     objectOutputStream.close();
                 }
             } catch (IOException e) {
@@ -155,6 +162,7 @@ public class HighScoresTable implements Serializable{
      * <p>
      * if the file does not exist, an empty table is returned
      * <p>
+     *
      * @param filename the file with the table to read
      * @return a new High Scores Table
      */

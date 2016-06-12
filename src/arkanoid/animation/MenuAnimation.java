@@ -5,11 +5,12 @@ import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.awt.Image;
+
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -25,25 +26,41 @@ public class MenuAnimation<T> implements Menu {
     private KeyboardSensor sensor;
     private boolean stop;
     private boolean isAlreadyPressed;
+    private T stats;
+    private AnimationRunner r;
 
-    public MenuAnimation(KeyboardSensor sensor, String title) {
+    /**
+     * The constructor.
+     *
+     * @param sensor the keyboard sensor.
+     * @param title  the name of the menu.
+     * @param r      the animation runner.
+     */
+    public MenuAnimation(KeyboardSensor sensor, String title, AnimationRunner r) {
         this.sensor = sensor;
         this.title = title;
         this.selections = new LinkedList<>();
         this.stop = false;
         this.isAlreadyPressed = true;
+        this.stats = null;
+        this.r = r;
     }
 
     /**
      * Adds selection options to the menu.
      * <p/>
+     *
      * @param key       the key to wait for
      * @param message   the message to display
      * @param returnVal the return value
+     * @param subMenu   the sub menu.
      */
+
+
     @Override
-    public void addSelection(String key, String message, Object returnVal) {
-        this.selections.add(new SelectionInfo(key, message, returnVal));
+    public void addSelection(String key, String message, Object returnVal, Menu subMenu) {
+        this.selections.add(new SelectionInfo(key, message, returnVal, null));
+
     }
 
     /**
@@ -53,14 +70,43 @@ public class MenuAnimation<T> implements Menu {
      * @return T
      */
     @Override
-    public Object getStatus() {
-        return this.returnVal;
+    public T getStatus() {
+        this.stop = false;
+        return this.stats;
     }
 
+    /**
+     * Sets a stop.
+     *
+     * @param stop a boolean.
+     */
     @Override
     public void setStop(boolean stop) {
         this.stop = stop;
     }
+
+    /**
+     * Adds a sub menu to the selections options.
+     *
+     * @param key       a string key.
+     * @param message   a message.
+     * @param returnVal the value returned from the sub menu.
+     * @param subMenu   a submenu.
+     */
+    @Override
+    public void addSubMenu(String key, String message, Object returnVal, Menu subMenu) {
+        this.selections.add(new SelectionInfo(key, message, null, subMenu));
+
+    }
+
+    /**
+     * Rest method.
+     */
+    public void rest() {
+        this.stop = false;
+        this.stats = null;
+    }
+
 
     /**
      * Displays the animation.
@@ -71,7 +117,7 @@ public class MenuAnimation<T> implements Menu {
      */
     @Override
     public void doOneFrame(DrawSurface d, double dt) {
-
+// Sets the back image of the menu.
         Image back = null;
         try {
             back = ImageIO.read(new File("resources/background_images/blurred.png"));
@@ -88,15 +134,20 @@ public class MenuAnimation<T> implements Menu {
             d.drawText(230, y, selection.toString(), 30);
             y += 80;
         }
-        for (SelectionInfo selection: this.selections) {
+        for (SelectionInfo selection : this.selections) {
             if (this.sensor.isPressed(selection.getKey())) {
-                if (!this.isAlreadyPressed) {
+                if (selection.getSubMenu() == null) {
                     this.stop = true;
                     this.returnVal = selection.getReturnVal();
+                    this.stats = (T) selection.getReturnVal();
                 } else {
+                    // Opens the sub menu if selected.
+                    this.r.run(selection.getSubMenu());
+                    this.stats = (T) selection.getSubMenu().getStatus();
                     this.isAlreadyPressed = false;
+                    this.stop = true;
+                    selection.getSubMenu().rest();
                 }
-
             }
         }
     }
@@ -111,5 +162,6 @@ public class MenuAnimation<T> implements Menu {
     public boolean shouldStop() {
         return this.stop;
     }
+
 
 }

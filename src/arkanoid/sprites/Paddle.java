@@ -44,37 +44,39 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * Moving the paddle right.
+     *
      * @param dt is the time passed from previous frame.
-     * <p/>
+     *           <p/>
      */
     public void moveRight(double dt) {
         // Get and Set the new rec based on the paddle speed.
         Rectangle rec = this.getCollisionRectangle();
         //Checking to see if the paddle had reached the border.
-        if (rec.getUpperLeft().getX() + dt*this.paddleSpeed + rec.getWidth() > 780) {
+        if (rec.getUpperLeft().getX() + dt * this.paddleSpeed + rec.getWidth() > 780) {
             this.rectangle = new Rectangle(new Point(780 - this.width, rec.getUpperLeft().getY()),
                     rec.getWidth(), rec.getHeight());
         } else {
             // Set A new rectangle for the Paddle right from the previous paddle.
-            this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() + dt*(this.paddleSpeed),
+            this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() + dt * (this.paddleSpeed),
                     rec.getUpperLeft().getY()), rec.getWidth(), rec.getHeight());
         }
     }
 
     /**
      * Moving the paddle left.
+     *
      * @param dt is the time passed from previous frame.
-     * <p/>
+     *           <p/>
      */
     public void moveLeft(double dt) {
         // Get and Set the new rec based on the paddle speed.
         Rectangle rec = this.getCollisionRectangle();
         //Checking to see if the paddle had reached the border.
-        if (rec.getUpperLeft().getX() - dt*(this.paddleSpeed) < 20) {
+        if (rec.getUpperLeft().getX() - dt * (this.paddleSpeed) < 20) {
             this.rectangle = new Rectangle(new Point(20, rec.getUpperLeft().getY()), rec.getWidth(),
                     rec.getHeight());
         } else { // Set A new rectangle for the Paddle left from the previous paddle.
-            this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() - (dt*(this.paddleSpeed)),
+            this.rectangle = new Rectangle(new Point(rec.getUpperLeft().getX() - (dt * (this.paddleSpeed)),
                     rec.getUpperLeft().getY()), rec.getWidth(), rec.getHeight());
         }
     }

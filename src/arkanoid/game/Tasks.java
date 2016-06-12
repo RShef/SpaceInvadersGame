@@ -14,7 +14,8 @@ public class Tasks {
     /**
      * Implements and runs a High scores screnn animation task.
      * <p>
-     * @param runner an animation runner
+     *
+     * @param runner    an animation runner
      * @param animation high scores animation
      * @return task
      */
@@ -33,6 +34,7 @@ public class Tasks {
     /**
      * Implements and runs a task to start a new game.
      * <p>
+     *
      * @param g the game flow object
      * @return new game task
      */
@@ -52,6 +54,7 @@ public class Tasks {
     /**
      * Implements a task to quit the game.
      * <p>
+     *
      * @return quit task
      */
     public Task quit() {

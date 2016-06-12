@@ -11,6 +11,7 @@ public interface Task<T> {
     /**
      * runs a specific task.
      * <p>
+     *
      * @return the task object
      */
     T run();

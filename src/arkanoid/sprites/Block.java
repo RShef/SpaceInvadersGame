@@ -1,6 +1,7 @@
 package arkanoid.sprites;
 
 import arkanoid.game.GameLevel;
+import arkanoid.levels.Fill;
 import arkanoid.listeners.HitListener;
 import arkanoid.listeners.HitNotifier;
 import arkanoid.geometry.Velocity;
@@ -9,20 +10,26 @@ import arkanoid.geometry.Rectangle;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
  * @since 3/30/2016
  */
-public class Block implements Collidable, Sprite, HitNotifier {
+public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     private Rectangle b;
     private int hits;
     private Color color;
     private List<HitListener> hitListeners;
+    private String backString;
+    private TreeMap<Integer, Fill> fillMap = new TreeMap<Integer, Fill>();
+    private Image image;
+    private ColorChoice cc;
 
     /**
      * Instantiate block.
@@ -40,6 +47,50 @@ public class Block implements Collidable, Sprite, HitNotifier {
         this.color = color;
         this.hitListeners = new LinkedList<>();
     }
+
+    /**
+     * Instantiate block.
+     *
+     * @param upperLeft - upper point.
+     * @param width     of the rectangle.
+     * @param height    of the rectangle.
+     * @param hits      number of block's hit points.
+     * @param fm        - the TreeMap of the fills (fill,fill-2...)
+     */
+    public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm) {
+        this.b = new Rectangle(upperLeft, width, height);
+        this.hits = hits;
+        this.fillMap = fm;
+        this.image = null;
+
+        this.hitListeners = new LinkedList<>();
+    }
+
+    /**
+     * Instantiate block.
+     *
+     * @param upperLeft - upper point.
+     * @param width     of the rectangle.
+     * @param height    of the rectangle.
+     * @param hits      number of block's hit points.
+     * @param s         the string specifying the background.
+     */
+    public Block(Point upperLeft, double width, double height, int hits, String s) {
+        this.fillMap.put(0, Fill.fillFS(s));
+        this.b = new Rectangle(upperLeft, width, height);
+        this.hits = hits;
+        this.image = null;
+        this.hitListeners = new LinkedList<>();
+    }
+    /**
+     //color based on image.
+     private ColorChoice whatToFill () {
+     System.out.println(this.fillMap.containsKey(0));
+     this.cc = new ColorChoice(this.fillMap.get(this.hits));
+     this.cc.setColor();
+     return this.cc;
+     }
+     **/
 
     /**
      * Return the rectangle.
@@ -103,13 +154,21 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * @param surface draw surface.
      */
     public void drawOn(DrawSurface surface) {
-        surface.setColor(this.color);
-        surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
-                (int) this.b.getWidth(), (int) this.b.getHeight());
-        surface.setColor(Color.black);
-        surface.drawRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
-                (int) this.b.getWidth(), (int) this.b.getHeight());
-        surface.setColor(Color.white);
+        // Checking if the 'color' is a background.
+        if (this.fillMap.get(this.hits).isImage()) {
+            this.image = this.fillMap.get(this.hits).GetImage();
+            surface.drawImage((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(), this.image);
+        } else {
+            this.color = this.fillMap.get(this.hits).GetColor();
+            surface.setColor(this.color);
+            surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
+                    (int) this.b.getWidth(), (int) this.b.getHeight());
+            surface.setColor(Color.black);
+            surface.drawRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
+                    (int) this.b.getWidth(), (int) this.b.getHeight());
+            surface.setColor(Color.white);
+        }
+
     }
 
     /**
@@ -136,8 +195,9 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Notifies block of time passed.
+     *
      * @param dt is the time passed from previous frame.
-     * <p/>
+     *           <p/>
      */
     public void timePassed(double dt) {
     }
@@ -176,6 +236,20 @@ public class Block implements Collidable, Sprite, HitNotifier {
         // Notify all listeners about a hit event:
         for (HitListener hl : listeners) {
             hl.hitEvent(this, hitter);
+        }
+    }
+
+    /**
+     * Clones the block.
+     *
+     * @return a cloned block.
+     */
+    @Override
+    public Block clone() {
+        try {
+            return (Block) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("not a cloneable object!");
         }
     }
 }

@@ -71,7 +71,7 @@ public class Velocity {
      * @param p Point.
      * @return new Point after movement.
      */
-    public Point applyToPoint(Point p,double dt) {
-        return new Point(p.getX() + this.dx*dt,p.getY() + this.dy*dt);
+    public Point applyToPoint(Point p, double dt) {
+        return new Point(p.getX() + this.dx * dt, p.getY() + this.dy * dt);
     }
 }

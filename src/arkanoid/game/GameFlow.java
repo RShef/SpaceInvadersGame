@@ -11,9 +11,9 @@ import biuoop.DialogManager;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class GameFlow {
     private KeyboardSensor keyboardSensor;
     private AnimationRunner animationRunner;
     private GUI gui;
-    private ArrayList levels;
+    private List levels;
     private Counter lives;
     private Counter score;
     private HighScoresTable highScores;
@@ -41,12 +41,23 @@ public class GameFlow {
      * @param l   - the all game lives counter.
      * @param s   - the all game score counter.
      */
-    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, ArrayList levels, Counter l, Counter s, File
+    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, List<LevelInformation> levels, Counter l, Counter s, File
             highscores) {
         this.animationRunner = ar;
         this.keyboardSensor = ks;
         this.gui = gui;
         this.levels = levels;
+        this.score = s;
+        this.lives = l;
+        this.scoresFile = highscores;
+        this.highScores = HighScoresTable.loadFromFile(scoresFile, 10);
+    }
+
+    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, Counter l, Counter s, File
+            highscores) {
+        this.animationRunner = ar;
+        this.keyboardSensor = ks;
+        this.gui = gui;
         this.score = s;
         this.lives = l;
         this.scoresFile = highscores;
@@ -60,22 +71,22 @@ public class GameFlow {
      */
     public void showMenu() {
 
-        while(true) {
-            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid");
+        while (true) {
+            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid", this.animationRunner);
 
             //add high scores task to the menu
             HighScoresAnimation hs = new HighScoresAnimation(this.highScores);
             KeyPressStoppableAnimation hsk = new KeyPressStoppableAnimation(this.keyboardSensor, "space", hs);
             Task hst = new Tasks().showHighScores(this.animationRunner, hsk);
-            menu.addSelection("h", "show high scores", hst);
+            menu.addSelection("h", "show high scores", hst, null);
 
             // add new game task to the menu
             Task newGameTask = new Tasks().runLevels(this);
-            menu.addSelection("s", "start a new game", newGameTask);
+            menu.addSelection("s", "start a new game", newGameTask, null);
 
             // add exit game task to the menu
             Task quit = new Tasks().quit();
-            menu.addSelection("q", "quit the game", quit);
+            menu.addSelection("q", "quit the game", quit, null);
 
             menu.setStop(false);
             this.animationRunner.run(menu);
@@ -87,6 +98,7 @@ public class GameFlow {
     /**
      * Runs the levels.
      * <p>
+     *
      * @param levels the list of levels.
      */
     public void runLevels(List<LevelInformation> levels) {
@@ -131,9 +143,10 @@ public class GameFlow {
     /**
      * Returns levels.
      * <p>
+     *
      * @return list of levels
      */
-    public ArrayList getLevels() {
+    public List getLevels() {
         return this.levels;
     }
 

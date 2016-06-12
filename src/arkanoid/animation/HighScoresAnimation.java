@@ -2,6 +2,7 @@ package arkanoid.animation;
 
 import arkanoid.game.HighScoresTable;
 import biuoop.DrawSurface;
+
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.File;
@@ -24,6 +25,7 @@ public class HighScoresAnimation implements Animation {
     /**
      * Displays a num from to countdown.
      * <p/>
+     *
      * @param d is the draw surface.
      */
     @Override
@@ -49,6 +51,7 @@ public class HighScoresAnimation implements Animation {
     /**
      * When to stop.
      * <p/>
+     *
      * @return if it reached zero.
      */
     @Override

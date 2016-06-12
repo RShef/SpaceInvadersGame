@@ -28,6 +28,7 @@ public class KeyPressStoppableAnimation implements Animation {
     /**
      * Displays a num from to countdown.
      * <p/>
+     *
      * @param d is the draw surface.
      */
     @Override
@@ -45,6 +46,7 @@ public class KeyPressStoppableAnimation implements Animation {
     /**
      * When to stop.
      * <p/>
+     *
      * @return if it reached zero.
      */
     @Override

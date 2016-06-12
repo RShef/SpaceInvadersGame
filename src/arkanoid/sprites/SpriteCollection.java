@@ -1,6 +1,7 @@
 package arkanoid.sprites;
 
 import biuoop.DrawSurface;
+
 import java.util.ArrayList;
 
 /**
@@ -43,8 +44,9 @@ public class SpriteCollection {
 
     /**
      * Call time Passed on all sprites in the collection.
+     *
      * @param dt is the time passed from previous frame.
-     * <p>
+     *           <p>
      */
     public void notifyAllTimePassed(double dt) {
         for (int i = 0; i < this.sprites.size(); i++) {
@@ -54,12 +56,12 @@ public class SpriteCollection {
 
     /**
      * Draw on function.
+     *
      * @param d the draw surface.
      */
     public void drawOn(DrawSurface d) {
         for (Sprite sprite : this.sprites) {
             //d.setColor(this.Color);
-
             sprite.drawOn(d);
         }
     }

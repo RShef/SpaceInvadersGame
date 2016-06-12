@@ -2,6 +2,7 @@ package arkanoid.levels;
 
 import arkanoid.geometry.Velocity;
 
+import java.awt.*;
 import java.util.List;
 
 import arkanoid.sprites.Sprite;

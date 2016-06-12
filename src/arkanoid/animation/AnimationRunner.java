@@ -40,7 +40,7 @@ public class AnimationRunner {
             long startTime = System.currentTimeMillis(); // timing
             DrawSurface d = this.gui.getDrawSurface();
             // Sending 1f because java is stupid.
-            animation.doOneFrame(d,1f/this.framesPerSecond);
+            animation.doOneFrame(d, 1f / this.framesPerSecond);
             this.gui.show(d);
             long usedTime = System.currentTimeMillis() - startTime;
             long milliSecondLeftToSleep = millisecondsPerFrame - usedTime;
@@ -49,6 +49,15 @@ public class AnimationRunner {
             }
         }
 
+    }
+
+    /**
+     * See return.
+     *
+     * @return the gui.
+     */
+    public GUI getGui() {
+        return this.gui;
     }
 }
 

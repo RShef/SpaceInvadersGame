@@ -21,6 +21,7 @@ import arkanoid.sprites.SpriteCollection;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
+
 import java.awt.Color;
 
 /**
@@ -176,7 +177,7 @@ public class GameLevel implements Animation {
         ln.addToGame(this);
     }
 
-    /**
+    /*
      * Initializes the game.
      * <p>
      */
@@ -184,8 +185,9 @@ public class GameLevel implements Animation {
         // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);
         BallRemover bar = new BallRemover(this, this.balls);
+        System.out.println(this.l.getBackground());
 
-        this.addSprite(this.l.getBackground());
+        addSprite(this.l.getBackground());
         // Creating the game field.
         new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
