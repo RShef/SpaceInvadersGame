@@ -68,7 +68,8 @@ public class Velocity {
      * Apply velocity to a given Point.
      * <p/>
      *
-     * @param p Point.
+     * @param p  Point.
+     * @param dt the speed.
      * @return new Point after movement.
      */
     public Point applyToPoint(Point p, double dt) {

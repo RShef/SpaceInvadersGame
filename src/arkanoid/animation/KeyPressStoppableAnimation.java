@@ -17,6 +17,13 @@ public class KeyPressStoppableAnimation implements Animation {
     private boolean stop;
     private boolean isAlreadyPressed;
 
+    /**
+     * The constructor.
+     *
+     * @param sensor    the keyboard sensor.
+     * @param key       the token.
+     * @param animation the animation.
+     */
     public KeyPressStoppableAnimation(KeyboardSensor sensor, String key, Animation animation) {
         this.sensor = sensor;
         this.key = key;
@@ -29,7 +36,8 @@ public class KeyPressStoppableAnimation implements Animation {
      * Displays a num from to countdown.
      * <p/>
      *
-     * @param d is the draw surface.
+     * @param d  is the draw surface.
+     * @param dt is the speed.
      */
     @Override
     public void doOneFrame(DrawSurface d, double dt) {

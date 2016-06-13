@@ -35,14 +35,17 @@ public class GameFlow {
      * Constructor for the game flow class.
      * <p>
      *
-     * @param ar  - the animation runner.
-     * @param ks  - the keyboard sensor.
-     * @param gui - the gui.
-     * @param l   - the all game lives counter.
-     * @param s   - the all game score counter.
+     * @param ar         - the animation runner.
+     * @param ks         - the keyboard sensor.
+     * @param gui        - the gui.
+     * @param l          - the all game lives counter.
+     * @param s          - the all game score counter.
+     * @param highscores the high score.
+     * @param levels     the levels.
      */
-    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, List<LevelInformation> levels, Counter l, Counter s, File
-            highscores) {
+    public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, List<LevelInformation> levels,
+                    Counter l, Counter s, File
+                            highscores) {
         this.animationRunner = ar;
         this.keyboardSensor = ks;
         this.gui = gui;
@@ -53,6 +56,17 @@ public class GameFlow {
         this.highScores = HighScoresTable.loadFromFile(scoresFile, 10);
     }
 
+    /**
+     * Constructor for the game flow class.
+     * <p>
+     *
+     * @param ar         - the animation runner.
+     * @param ks         - the keyboard sensor.
+     * @param gui        - the gui.
+     * @param l          - the all game lives counter.
+     * @param s          - the all game score counter.
+     * @param highscores the high score.
+     */
     public GameFlow(AnimationRunner ar, KeyboardSensor ks, GUI gui, Counter l, Counter s, File
             highscores) {
         this.animationRunner = ar;
@@ -72,7 +86,8 @@ public class GameFlow {
     public void showMenu() {
 
         while (true) {
-            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid", this.animationRunner);
+            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid",
+                    this.animationRunner);
 
             //add high scores task to the menu
             HighScoresAnimation hs = new HighScoresAnimation(this.highScores);

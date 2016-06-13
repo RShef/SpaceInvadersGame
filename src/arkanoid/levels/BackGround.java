@@ -22,9 +22,9 @@ public class BackGround implements LevelInformation {
     private int paddleSpeed;
     private int numberOfBlocksToRemove;
     private String ballVelocities;
-    private int blocks_start_x;
-    private int blocks_start_y;
-    private int row_height;
+    private int blocksStartX;
+    private int blocksStartY;
+    private int rowHeight;
     private String back;
     private List<Block> blockList;
 
@@ -42,9 +42,9 @@ public class BackGround implements LevelInformation {
         this.levelName = (String) m.get("level_name");
         this.numberOfBlocksToRemove = Integer.parseInt((String) m.get("num_blocks"));
         this.ballVelocities = (String) m.get("ball_velocities");
-        this.row_height = Integer.parseInt((String) m.get("row_height"));
-        this.blocks_start_x = Integer.parseInt((String) m.get("blocks_start_x"));
-        this.blocks_start_y = Integer.parseInt((String) m.get("blocks_start_y"));
+        this.rowHeight = Integer.parseInt((String) m.get("row_height"));
+        this.blocksStartX = Integer.parseInt((String) m.get("blocks_start_x"));
+        this.blocksStartY = Integer.parseInt((String) m.get("blocks_start_y"));
         this.back = (String) m.get("background");
         this.initialBallVelocities();
     }
@@ -160,7 +160,7 @@ public class BackGround implements LevelInformation {
      * @return the first blocks X value on the row.
      */
     public int getStartingX() {
-        return this.blocks_start_x;
+        return this.blocksStartX;
     }
 
     /**
@@ -170,7 +170,7 @@ public class BackGround implements LevelInformation {
      * @returnt he first blocks Y value on the row.
      */
     public int getStartingY() {
-        return this.blocks_start_y;
+        return this.blocksStartY;
     }
 
     /**
@@ -179,7 +179,7 @@ public class BackGround implements LevelInformation {
      * @return the row height.
      */
     public int getRowHeight() {
-        return this.row_height;
+        return this.rowHeight;
     }
 
 }

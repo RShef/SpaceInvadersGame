@@ -1,8 +1,16 @@
 package arkanoid.game;
 
-import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.File;
+import java.io.Serializable;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -96,7 +104,7 @@ public class HighScoresTable implements Serializable {
      * <p>
      *
      * @param filename the given file to load from
-     * @throws IOException
+     * @throws IOException an exception.
      */
     public void load(File filename) throws IOException {
         this.clear();
@@ -133,7 +141,7 @@ public class HighScoresTable implements Serializable {
      * <p>
      *
      * @param filename the given file to save to
-     * @throws IOException
+     * @throws IOException exception.
      */
     public void save(File filename) throws IOException {
         String file = String.valueOf(filename);
@@ -164,6 +172,7 @@ public class HighScoresTable implements Serializable {
      * <p>
      *
      * @param filename the file with the table to read
+     * @param size     the size.
      * @return a new High Scores Table
      */
     public static HighScoresTable loadFromFile(File filename, int size) {

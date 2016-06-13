@@ -13,13 +13,17 @@ import java.awt.Image;
 import java.awt.Color;
 
 
-
 /**
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
  * @since 01/06/2016
  */
 
+/**
+ * The class.
+ *
+ * @param <T> the task.
+ */
 public class MenuAnimation<T> implements Menu {
 
     private String title;
@@ -57,7 +61,6 @@ public class MenuAnimation<T> implements Menu {
      * @param returnVal the return value
      * @param subMenu   the sub menu.
      */
-
 
     @Override
     public void addSelection(String key, String message, Object returnVal, Menu subMenu) {
@@ -139,7 +142,7 @@ public class MenuAnimation<T> implements Menu {
         for (SelectionInfo selection : this.selections) {
             if (this.sensor.isPressed(selection.getKey())) {
                 if (selection.getSubMenu() == null) {
-                    if (selection.getKey().equals("s")){
+                    if (selection.getKey().equals("s")) {
 
                     }
                     this.stop = true;

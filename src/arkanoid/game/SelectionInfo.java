@@ -3,13 +3,17 @@ package arkanoid.game;
 import arkanoid.animation.Menu;
 
 
-
 /**
  * @author Roey Shefi & Oded Thaller
  * @version 1.0
  * @since 01/06/2016
  */
 
+/**
+ * The class.
+ *
+ * @param <T> the task.
+ */
 public class SelectionInfo<T> {
 
     private String key;

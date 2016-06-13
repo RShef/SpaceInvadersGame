@@ -37,7 +37,7 @@ public class DefaultBlock {
     /**
      * Creates thr default block.
      */
-    public void DefaultBlockMaker() {
+    public void defaultBlockMaker() {
         for (String key : this.defLineMap.keySet()) {
             if (key.equals("height")) {
                 this.height = Integer.parseInt(this.defLineMap.get(key));
@@ -46,7 +46,7 @@ public class DefaultBlock {
             } else if (key.equals("hit_points")) {
                 this.hits = Integer.parseInt(this.defLineMap.get(key));
             } else if (key.equals("stroke")) {
-                this.stroke = (Fill.fillFS(this.defLineMap.get(key)).GetColor());
+                this.stroke = (Fill.fillFS(this.defLineMap.get(key)).getColor());
             } else if (key.equals("symbol")) {
                 this.symbol = this.defLineMap.get(key);
             } else if (key.equals("fill")) {

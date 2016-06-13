@@ -66,11 +66,11 @@ public class BlocksDefinitionReader {
                     temp = re.readLine();
                 } else if (temp.startsWith("default")) {
                     this.defLine = temp;
-                    this.df = new DefaultBlock(this.BlockLineKeyMap(this.defLine));
-                    this.df.DefaultBlockMaker();
+                    this.df = new DefaultBlock(this.blockLineKeyMap(this.defLine));
+                    this.df.defaultBlockMaker();
                 } else if (temp.startsWith("bdef")) {
                     this.blockLines.add(temp);
-                    BlockFromString b = new BlockFromString(this.df, this.BlockLineKeyMap(temp));
+                    BlockFromString b = new BlockFromString(this.df, this.blockLineKeyMap(temp));
                     this.blockList.put(b.getSymbol(), b.getBlock());
                 } else if (temp.startsWith("sdef")) {
                     this.spacerLine.add(temp);
@@ -80,7 +80,7 @@ public class BlocksDefinitionReader {
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong while reading!");
         }
-        SpacersKeyMap(spacerLine);
+        spacersKeyMap(spacerLine);
     }
 
     /**
@@ -90,7 +90,7 @@ public class BlocksDefinitionReader {
      * @return TreeMap of block characteristic.
      */
     // returns a map of key values of the line.
-    public TreeMap<String, String> BlockLineKeyMap(String def) {
+    public TreeMap<String, String> blockLineKeyMap(String def) {
         String[] s = def.split(" ");
         TreeMap<String, String> defMap = new TreeMap<String, String>();
         for (int i = 1; i < s.length; i++) {
@@ -106,8 +106,8 @@ public class BlocksDefinitionReader {
      * @param spacerList the string of the space definition.
      * @return reeMap of block space characteristic
      */
-    public TreeMap<String, Integer> SpacersKeyMap(List<String> spacerList) {
-        TreeMap<String, Integer> SpacerMapWidths = new TreeMap<String, Integer>();
+    public TreeMap<String, Integer> spacersKeyMap(List<String> spacerList) {
+        TreeMap<String, Integer> spacerMapWidths = new TreeMap<String, Integer>();
         String[] sL;
 
         for (String s : spacerList) {
@@ -116,10 +116,10 @@ public class BlocksDefinitionReader {
             String key = symbolSplit[1];
             String[] widthSplit = sL[2].split(":");
             Integer value = Integer.parseInt(widthSplit[1]);
-            SpacerMapWidths.put(key, value);
+            spacerMapWidths.put(key, value);
         }
-        this.spacersList = SpacerMapWidths;
-        return SpacerMapWidths;
+        this.spacersList = spacerMapWidths;
+        return spacerMapWidths;
     }
 
 

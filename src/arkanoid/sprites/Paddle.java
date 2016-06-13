@@ -153,6 +153,8 @@ public class Paddle implements Sprite, Collidable {
     /**
      * Implementing the interface method, changing the direction of the paddle based on stroke.
      * <p/>
+     *
+     * @param dt the speed.
      */
     public void timePassed(double dt) {
         if (keyboard.isPressed(KeyboardSensor.RIGHT_KEY)) {

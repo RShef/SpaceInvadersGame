@@ -1,6 +1,10 @@
 package arkanoid.game;
 
-import arkanoid.animation.*;
+import arkanoid.animation.CountdownAnimation;
+import arkanoid.animation.PauseScreen;
+import arkanoid.animation.Animation;
+import arkanoid.animation.AnimationRunner;
+import arkanoid.animation.KeyPressStoppableAnimation;
 import arkanoid.geometry.Velocity;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;
@@ -177,10 +181,10 @@ public class GameLevel implements Animation {
         ln.addToGame(this);
     }
 
-    /*
+    /**
      * Initializes the game.
      * <p>
-     */
+     **/
     public void initialize() {
         // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);

@@ -4,7 +4,8 @@ import arkanoid.game.Counter;
 import biuoop.DrawSurface;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,9 +21,13 @@ public class PauseScreen implements Animation {
     private Counter lives;
     private String levelName;
 
+
     /**
      * Instantiates a new Pause Screen.
-     * <p>
+     *
+     * @param score     the score.
+     * @param lives     the lives left.
+     * @param levelName the level name.
      */
     public PauseScreen(Counter score, Counter lives, String levelName) {
         this.score = score;

@@ -45,7 +45,7 @@ public class BlockFromString implements BlockCreator {
             } else if (key.equals("hit_points")) {
                 this.hits = Integer.parseInt(bs.get(key));
             } else if (key.equals("stroke")) {
-                this.stroke = Fill.fillFS(bs.get(key)).GetColor();
+                this.stroke = Fill.fillFS(bs.get(key)).getColor();
             } else if (key.equals("symbol")) {
                 this.symbol = bs.get(key);
             } else if (key.equals("fill")) {

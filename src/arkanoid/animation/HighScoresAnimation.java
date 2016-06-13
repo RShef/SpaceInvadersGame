@@ -18,6 +18,11 @@ public class HighScoresAnimation implements Animation {
 
     private HighScoresTable scores;
 
+    /**
+     * The constructor.
+     *
+     * @param scores the score.
+     */
     public HighScoresAnimation(HighScoresTable scores) {
         this.scores = scores;
     }
@@ -26,7 +31,8 @@ public class HighScoresAnimation implements Animation {
      * Displays a num from to countdown.
      * <p/>
      *
-     * @param d is the draw surface.
+     * @param d  is the draw surface.
+     * @param dt is the diversion speed.
      */
     @Override
     public void doOneFrame(DrawSurface d, double dt) {

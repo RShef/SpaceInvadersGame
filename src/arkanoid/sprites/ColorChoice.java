@@ -27,15 +27,20 @@ public class ColorChoice {
         this.f = f;
     }
 
+    /**
+     * Sets the color.
+     *
+     * @return void.
+     */
     public boolean setColor() {
         if (this.f == null) {
             return false;
         }
         if (!this.f.isImage()) {
-            this.color = this.f.GetColor();
+            this.color = this.f.getColor();
         } else {
             this.isImage2 = true;
-            this.im = this.f.GetImage();
+            this.im = this.f.getImage();
         }
         return true;
     }

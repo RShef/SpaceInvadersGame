@@ -72,7 +72,7 @@ public class Fill {
      *
      * @return the color.
      */
-    public Color GetColor() {
+    public Color getColor() {
         return this.color;
     }
 
@@ -81,7 +81,7 @@ public class Fill {
      *
      * @return the image.
      */
-    public Image GetImage() {
+    public Image getImage() {
         return this.im;
     }
 

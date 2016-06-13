@@ -50,10 +50,12 @@ public class LevelSpecificationReader {
                             // Getting the block file "on stream".
                             try {
                                 System.out.println(blockDefFile[1]);
-                                InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(blockDefFile[1]);
+                                InputStream is =
+                                        ClassLoader.getSystemClassLoader().getResourceAsStream(blockDefFile[1]);
                                 // Reading the blocks.
                                 factory =
-                                        BlocksDefinitionReader.fromReader(new BufferedReader(new InputStreamReader(is)));
+                                        BlocksDefinitionReader.fromReader(new BufferedReader(
+                                                new InputStreamReader(is)));
                             } catch (Exception e) {
                                 System.out.println("fuck2!");
                                 e.printStackTrace();
@@ -74,7 +76,7 @@ public class LevelSpecificationReader {
                         // This list will contain all the blocks of the level.
                         ArrayList<Block> blockL = new ArrayList<Block>();
                         // Has all the background information.
-                        BackGround bG = (BackGround) BackSpecifire(levelInformation);
+                        BackGround bG = (BackGround) backSpecifirefire(levelInformation);
                         // The factory.
 
                         // Initiating y and x.
@@ -86,7 +88,8 @@ public class LevelSpecificationReader {
                                 runningChar = String.valueOf(temp.charAt(i));
                                 if (factory.isBlockSymbol(runningChar)) {
                                     blockL.add(factory.getBlock(runningChar,
-                                            x + (blockNum * (factory.getBlockCreators().get(runningChar).getWidth())), y));
+                                            x + (blockNum * (factory.getBlockCreators().get(runningChar)
+                                                    .getWidth())), y));
                                     blockNum++;
                                 } else if (factory.isSpaceSymbol(runningChar)) {
                                     x += factory.getSpaceWidth(runningChar);
@@ -129,7 +132,7 @@ public class LevelSpecificationReader {
      * @param tokens the level definitions from the fille.
      * @return a level information object of the level from file.
      */
-    public LevelInformation BackSpecifire(List<String> tokens) {
+    public LevelInformation backSpecifirefire(List<String> tokens) {
         TreeMap m = new TreeMap();
         String[] sepTokens;
         for (String token : tokens) {

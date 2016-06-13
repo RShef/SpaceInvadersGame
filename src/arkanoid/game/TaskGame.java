@@ -12,6 +12,12 @@ import arkanoid.levels.LevelInformation;
  * @version 1.0
  * @since 11/06/2016
  */
+
+/**
+ * The game task.
+ *
+ * @param <T> the task.
+ */
 public class TaskGame<T> implements Task<T> {
     private HighScoresTable scores;
     private AnimationRunner ar;

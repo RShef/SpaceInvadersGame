@@ -156,10 +156,10 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     public void drawOn(DrawSurface surface) {
         // Checking if the 'color' is a background.
         if (this.fillMap.get(this.hits).isImage()) {
-            this.image = this.fillMap.get(this.hits).GetImage();
+            this.image = this.fillMap.get(this.hits).getImage();
             surface.drawImage((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(), this.image);
         } else {
-            this.color = this.fillMap.get(this.hits).GetColor();
+            this.color = this.fillMap.get(this.hits).getColor();
             surface.setColor(this.color);
             surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
                     (int) this.b.getWidth(), (int) this.b.getHeight());

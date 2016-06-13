@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import arkanoid.animation.KeyPressStoppableAnimation;
+
 import java.util.List;
 
 import java.util.ArrayList;
@@ -35,7 +36,9 @@ import biuoop.KeyboardSensor;
 
 import biuoop.GUI;
 
-
+/**
+ * The main class.
+ */
 public class Main {
     private HighScoresTable scores;
     private File file;
@@ -93,7 +96,8 @@ public class Main {
 
         final AnimationRunner animationRunner = new AnimationRunner(60, gui);
 // Tasks for the 's' option.
-        MenuAnimation<Task<Void>> subMenu = new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Levels", animationRunner);
+        MenuAnimation<Task<Void>> subMenu =
+                new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Levels", animationRunner);
         for (int i = 0; i < sffList.size(); i++) {
             subMenu.addSelection(
                     sffList.get(i).getKey(),
@@ -128,20 +132,20 @@ public class Main {
             }
         };
         /**
-        // Task for no arguments to main - reading from a default file.
-        BufferedReader fri = null;
-        try {
-            InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(path);
-            fri = new BufferedReader(new InputStreamReader(is));
-        } catch (Exception e) {
-            System.out.println("fuck!");
-            e.printStackTrace();
-        }
-**/
+         // Task for no arguments to main - reading from a default file.
+         BufferedReader fri = null;
+         try {
+         InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(path);
+         fri = new BufferedReader(new InputStreamReader(is));
+         } catch (Exception e) {
+         System.out.println("fuck!");
+         e.printStackTrace();
+         }
+         **/
         //List<LevelInformation> levels = new LevelSpecificationReader().fromReader(fri);
         // Adding the sub menus.
-        menu.addSubMenu("s", "(s) start game",new TaskGame<>(this.scores,animationRunner,gui.getKeyboardSensor(),
-                this.file,levelInformationList),subMenu);
+        menu.addSubMenu("s", "(s) start game", new TaskGame<>(this.scores, animationRunner, gui.getKeyboardSensor(),
+                this.file, levelInformationList), subMenu);
         menu.addSelection("h", "(h) High scores", highScores, null);
         menu.addSelection("q", "(q) Quit", quit, null);
         Task<Void> task;

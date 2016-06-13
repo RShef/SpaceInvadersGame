@@ -168,6 +168,8 @@ public class Ball implements Sprite {
 
     /**
      * Notify the ball of time passed by moving.
+     *
+     * @param dt the speed.
      */
     public void timePassed(double dt) {
         this.moveOneStep(dt);

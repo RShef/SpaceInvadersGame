@@ -8,7 +8,9 @@ package arkanoid.animation;
 
 import biuoop.DrawSurface;
 
-
+/**
+ * The class.
+ */
 public class SubMenu implements Animation {
     /**
      * Doing one frame method.

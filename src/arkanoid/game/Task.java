@@ -6,6 +6,11 @@ package arkanoid.game;
  * @since 01/06/2016
  */
 
+/**
+ * The task interface.
+ *
+ * @param <T> the task.
+ */
 public interface Task<T> {
 
     /**
