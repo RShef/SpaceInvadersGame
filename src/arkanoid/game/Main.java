@@ -27,9 +27,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import arkanoid.animation.KeyPressStoppableAnimation;
+import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import biuoop.KeyboardSensor;
 
@@ -55,7 +55,7 @@ public class Main {
     }
 
     /**
-     * running the game.
+     * main for running the game.
      */
     public void run() {
         this.scores = HighScoresTable.loadFromFile(file, (int) file.length());
@@ -73,6 +73,7 @@ public class Main {
         List<SetFileFormat> sffList = new ArrayList<SetFileFormat>();
         final String path = this.levelPath;
         BufferedReader fr = null;
+        List<LevelInformation> levelInformationList = null;
         // Loading the file.
         try {
             InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(path);
@@ -80,10 +81,14 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // If the file is not given.
-        if (path == "definitions/levelset.txt") {
+        // If the file is  given.
+        if (path.equals("definitions/levelset.txt")) {
             // Interpreting the file given.
             sffList = lr.readLevels(fr);
+        }
+        // In case the file is not given.
+        else {
+            levelInformationList = new LevelSpecificationReader().fromReader(fr);
         }
 
         final AnimationRunner animationRunner = new AnimationRunner(60, gui);
@@ -100,7 +105,7 @@ public class Main {
 
         MenuAnimation<Task<Void>> menu = new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Arkanoid",
                 animationRunner);
-        if (path != "definitions/levelset.txt") {
+        if (!this.levelPath.equals("definitions/levelset.txt")) {
             subMenu = null;
         }
 // Task if the 'h' option.
@@ -122,6 +127,7 @@ public class Main {
                 return null;
             }
         };
+        /**
         // Task for no arguments to main - reading from a default file.
         BufferedReader fri = null;
         try {
@@ -131,10 +137,11 @@ public class Main {
             System.out.println("fuck!");
             e.printStackTrace();
         }
-        List<LevelInformation> levels = new LevelSpecificationReader().fromReader(fri);
-// Adding the sub menus.
-        menu.addSubMenu("s", "(s) start game", new TaskGame<>(this.scores, animationRunner, gui.getKeyboardSensor(),
-                this.file, levels), subMenu);
+**/
+        //List<LevelInformation> levels = new LevelSpecificationReader().fromReader(fri);
+        // Adding the sub menus.
+        menu.addSubMenu("s", "(s) start game",new TaskGame<>(this.scores,animationRunner,gui.getKeyboardSensor(),
+                this.file,levelInformationList),subMenu);
         menu.addSelection("h", "(h) High scores", highScores, null);
         menu.addSelection("q", "(q) Quit", quit, null);
         Task<Void> task;

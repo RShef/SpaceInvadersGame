@@ -74,5 +74,7 @@ public class EndScreen implements Animation {
      *
      * @return when to stop.
      */
-    public boolean shouldStop() { return false; }
+    public boolean shouldStop() {
+        return false;
+    }
 }

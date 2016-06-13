@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.awt.Image;
+import java.awt.Color;
+
 
 
 /**
@@ -95,7 +97,7 @@ public class MenuAnimation<T> implements Menu {
      */
     @Override
     public void addSubMenu(String key, String message, Object returnVal, Menu subMenu) {
-        this.selections.add(new SelectionInfo(key, message, null, subMenu));
+        this.selections.add(new SelectionInfo(key, message, returnVal, subMenu));
 
     }
 
@@ -126,7 +128,7 @@ public class MenuAnimation<T> implements Menu {
         }
         d.drawImage(0, 0, back);
 
-        //d.setColor(Color.white);
+        d.setColor(Color.white);
         d.drawText(290, 100, this.title, 50);
         d.drawText(110, 200, "Select one of the following options", 35);
         int y = 300;
@@ -137,15 +139,20 @@ public class MenuAnimation<T> implements Menu {
         for (SelectionInfo selection : this.selections) {
             if (this.sensor.isPressed(selection.getKey())) {
                 if (selection.getSubMenu() == null) {
+                    if (selection.getKey().equals("s")){
+
+                    }
                     this.stop = true;
                     this.returnVal = selection.getReturnVal();
                     this.stats = (T) selection.getReturnVal();
                 } else {
                     // Opens the sub menu if selected.
                     this.r.run(selection.getSubMenu());
+                    // Makes the sub menu work.
                     this.stats = (T) selection.getSubMenu().getStatus();
                     this.isAlreadyPressed = false;
                     this.stop = true;
+                    // Brings everything back to normal.
                     selection.getSubMenu().rest();
                 }
             }

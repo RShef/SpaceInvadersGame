@@ -19,7 +19,7 @@ public class SetFileFormat {
     private List<LevelInformation> levelsList;
 
     /**
-     * SetFileFormat() -- constructor.
+     * SetFileFormat() constructor.
      */
     public SetFileFormat() {
         this.levelsList = new ArrayList<LevelInformation>();

@@ -7,6 +7,13 @@ package arkanoid.animation;
  */
 
 public interface Menu<T> extends Animation {
+    /**
+     * Return the status of the menu, Very important.
+     * <p>
+     *
+     * @return T
+     */
+    T getStatus();
 
     /**
      * Adds selection options to the menu.
@@ -18,29 +25,24 @@ public interface Menu<T> extends Animation {
      */
     void addSelection(String key, String message, T returnVal, Menu<T> subMenu);
 
-    /**
-     * Return the status of the menu.
-     * <p>
-     *
-     * @return T
-     */
-    T getStatus();
+
+
+
 
     /**
-     * Stops.
-     *
-     * @param stop a boolean.
-     */
-    void setStop(boolean stop);
-
-    /**
-     * Adds a fub menu.
+     * Adds a Sub menu.
      *
      * @param key     a string key.
      * @param message a message.
      * @param subMenu a submenu.
      */
     void addSubMenu(String key, String message, T returnVal, Menu<T> subMenu);
+    /**
+     * Stops.
+     *
+     * @param stop a boolean.
+     */
+    void setStop(boolean stop);
 
     /**
      * Reat method.
