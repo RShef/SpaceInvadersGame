@@ -46,7 +46,6 @@ public class TaskGame<T> implements Task<T> {
     @Override
     public T run() {
         Counter lives = new Counter();
-        lives.increase(7);
         GameFlow game = new GameFlow(this.ar, this.ks, this.ar.getGui(), this.levelInfoList,
                 lives, new Counter(), this.file);
         game.runLevels(levelInfoList);

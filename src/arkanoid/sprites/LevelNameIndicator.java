@@ -33,7 +33,7 @@ public class LevelNameIndicator implements Sprite {
     @Override
     public void drawOn(DrawSurface d) {
         d.setColor(Color.black);
-        d.drawText(550, 15, this.toString(), 15);
+        d.drawText(520, 15, this.toString(), 15);
     }
 
     /**
