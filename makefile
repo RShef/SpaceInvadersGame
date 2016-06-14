@@ -3,10 +3,10 @@
 
 compile: bin
 	find src -name "*.java" > sources.txt
-	javac -cp biuoop-1.4.jar -d bin @sources.txt
+	javac -Xlint -cp  biuoop-1.4.jar -d bin @sources.txt
 
 run:
-	java -cp biuoop-1.4.jar:bin arkanoid/game/Ass6Game
+	java -cp biuoop-1.4.jar:resources:bin arkanoid/game/Ass6Game
 
 bin:
 	mkdir bin
