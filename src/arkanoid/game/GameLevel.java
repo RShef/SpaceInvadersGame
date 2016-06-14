@@ -71,6 +71,7 @@ public class GameLevel implements Animation {
         this.runner = runner;
         this.key = key;
         this.gui = gui;
+        this.lives.increase(7);
     }
 
     /**
@@ -189,7 +190,7 @@ public class GameLevel implements Animation {
         // Adding the listeners.
         BlockRemover br = new BlockRemover(this, this.blocks);
         BallRemover bar = new BallRemover(this, this.balls);
-        System.out.println(this.l.getBackground());
+        //System.out.println(this.l.getBackground());
 
         addSprite(this.l.getBackground());
         // Creating the game field.

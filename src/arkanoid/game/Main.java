@@ -95,7 +95,7 @@ public class Main {
         }
 
         final AnimationRunner animationRunner = new AnimationRunner(60, gui);
-// Tasks for the 's' option.
+        // Tasks for the 's' option.
         MenuAnimation<Task<Void>> subMenu =
                 new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Levels", animationRunner);
         for (int i = 0; i < sffList.size(); i++) {
@@ -112,7 +112,7 @@ public class Main {
         if (!this.levelPath.equals("definitions/levelset.txt")) {
             subMenu = null;
         }
-// Task if the 'h' option.
+        // Task if the 'h' option.
         Task<Void> highScores = new Task<Void>() {
             // private KeyPressStoppableAnimation animation = scoresTable;
             private AnimationRunner anRunner = animationRunner;
@@ -124,25 +124,14 @@ public class Main {
                 return null;
             }
         };
-// Task for the 'q' option.
+        // Task for the 'q' option.
         Task<Void> quit = new Task<Void>() {
             public Void run() {
                 System.exit(1);
                 return null;
             }
         };
-        /**
-         // Task for no arguments to main - reading from a default file.
-         BufferedReader fri = null;
-         try {
-         InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(path);
-         fri = new BufferedReader(new InputStreamReader(is));
-         } catch (Exception e) {
-         System.out.println("fuck!");
-         e.printStackTrace();
-         }
-         **/
-        //List<LevelInformation> levels = new LevelSpecificationReader().fromReader(fri);
+
         // Adding the sub menus.
         menu.addSubMenu("s", "(s) start game", new TaskGame<>(this.scores, animationRunner, gui.getKeyboardSensor(),
                 this.file, levelInformationList), subMenu);

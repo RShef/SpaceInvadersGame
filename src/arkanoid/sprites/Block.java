@@ -30,6 +30,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     private TreeMap<Integer, Fill> fillMap = new TreeMap<Integer, Fill>();
     private Image image;
     private ColorChoice cc;
+    private String symbol;
 
     /**
      * Instantiate block.
@@ -44,6 +45,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     public Block(Point upperLeft, double width, double height, int hits, Color color) {
         this.b = new Rectangle(upperLeft, width, height);
         this.hits = hits;
+        this.fillMap.put(1,new Fill(color));
         this.color = color;
         this.hitListeners = new LinkedList<>();
     }
@@ -57,12 +59,12 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
      * @param hits      number of block's hit points.
      * @param fm        - the TreeMap of the fills (fill,fill-2...)
      */
-    public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm) {
+    public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm,String symbol) {
         this.b = new Rectangle(upperLeft, width, height);
         this.hits = hits;
         this.fillMap = fm;
         this.image = null;
-
+        this.symbol = symbol;
         this.hitListeners = new LinkedList<>();
     }
 
@@ -76,7 +78,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
      * @param s         the string specifying the background.
      */
     public Block(Point upperLeft, double width, double height, int hits, String s) {
-        this.fillMap.put(0, Fill.fillFS(s));
+        this.fillMap.put(1, Fill.fillFS(s));
         this.b = new Rectangle(upperLeft, width, height);
         this.hits = hits;
         this.image = null;
@@ -155,11 +157,21 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
      */
     public void drawOn(DrawSurface surface) {
         // Checking if the 'color' is a background.
-        if (this.fillMap.get(this.hits).isImage()) {
-            this.image = this.fillMap.get(this.hits).getImage();
+        int a = 0;
+        if (this.hits == 0) {
+            a = 1;
+        }
+        else {
+            a = this.hits ;
+        }
+        if (this.fillMap.get(a) == null) {
+            throw new RuntimeException ("fuck you null pointer");
+        }
+        if (this.fillMap.get(a).getImage() != null) {
+            this.image = this.fillMap.get(a).getImage();
             surface.drawImage((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(), this.image);
         } else {
-            this.color = this.fillMap.get(this.hits).getColor();
+            this.color = this.fillMap.get(a).getColor();
             surface.setColor(this.color);
             surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
                     (int) this.b.getWidth(), (int) this.b.getHeight());

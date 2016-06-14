@@ -49,7 +49,7 @@ public class BlockFromString implements BlockCreator {
             } else if (key.equals("symbol")) {
                 this.symbol = bs.get(key);
             } else if (key.equals("fill")) {
-                this.fills.put(0, Fill.fillFS(bs.get(key)));
+                this.fills.put(1, Fill.fillFS(bs.get(key)));
             } else if (key.startsWith("fill-")) {
                 String[] s = key.split("-");
                 this.fills.put(Integer.parseInt(s[1]), Fill.fillFS(bs.get(key)));
@@ -65,19 +65,24 @@ public class BlockFromString implements BlockCreator {
         if (this.hits == null) {
             this.hits = this.df.getHits();
         }
-        if (this.fills == null) {
-            this.fills = this.df.getFills();
+        if (this.fills.size() < this.hits) {
+            for (int i = this.fills.size(); i<this.hits;i++) {
+                Fill f = null;
+                if (this.df.getFills().containsKey(i - 1)) {
+                    f = this.df.getFills().get(i - 1);
+                }
+                else {
+                    f = this.df.getFills().get(1);
+                }
+                this.fills.put(i,f);
+            }
         }
         if (this.symbol == null) {
             this.symbol = this.df.getSymbol();
         }
         //if (this.stroke == null) { this.stroke = this.df.getStroke();}
         // In the event there are more hits then specified fills.
-        if (this.hits > this.fills.size()) {
-            for (int i = this.fills.size() + 1; i <= this.hits; i++) {
-                this.fills.put(i, this.fills.get(1));
-            }
-        }
+
         if (this.height == null || this.width == null || this.hits == null || this.fills == null || this.symbol == null
                 ) {
             throw new RuntimeException("Missing block spec and no default!");
@@ -158,7 +163,8 @@ public class BlockFromString implements BlockCreator {
      */
     @Override
     public Block create(int xpos, int ypos) {
-        return new Block(new Point(xpos, ypos), this.getWidth(), this.getHeight(), this.getHits(), this.fills);
+        return new Block(new Point(xpos, ypos), this.getWidth(), this.getHeight(), this.getHits(), this.fills,
+                this.getSymbol());
     }
 
 }
