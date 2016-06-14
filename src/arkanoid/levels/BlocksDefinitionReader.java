@@ -70,6 +70,7 @@ public class BlocksDefinitionReader {
                     this.df = new DefaultBlock(this.blockLineKeyMap(this.defLine));
                     this.df.defaultBlockMaker();
                 }
+
                 if (temp.startsWith("bdef")) {
                     this.blockLines.add(temp);
                     BlockFromString b = new BlockFromString(this.df, this.blockLineKeyMap(temp));
