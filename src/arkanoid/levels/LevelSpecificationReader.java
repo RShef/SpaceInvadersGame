@@ -31,6 +31,7 @@ public class LevelSpecificationReader {
         String[] blockDefFile;
         BlocksDefinitionReader br = new BlocksDefinitionReader();
         BlocksFromSymbolsFactory factory = null;
+
         int y = 0;
         int x = 0;
         int blockNum = 0;
@@ -82,6 +83,7 @@ public class LevelSpecificationReader {
                         // Initiating y and x.
                         y = bG.getStartingY();
                         x = bG.getStartingX();
+                        temp = re.readLine();
                         while (!temp.startsWith("END_BLOCKS")) {
                             // The x value needs to return to default after each row.
                             for (int i = 0; i < temp.length(); i++) {

@@ -64,15 +64,18 @@ public class BlocksDefinitionReader {
                 if (temp.startsWith(" ") || temp.startsWith("#") || temp.length() == 0) {
                     // Skip current line.
                     temp = re.readLine();
-                } else if (temp.startsWith("default")) {
+                }
+                if (temp.startsWith("default")) {
                     this.defLine = temp;
                     this.df = new DefaultBlock(this.blockLineKeyMap(this.defLine));
                     this.df.defaultBlockMaker();
-                } else if (temp.startsWith("bdef")) {
+                }
+                if (temp.startsWith("bdef")) {
                     this.blockLines.add(temp);
                     BlockFromString b = new BlockFromString(this.df, this.blockLineKeyMap(temp));
                     this.blockList.put(b.getSymbol(), b.getBlock());
-                } else if (temp.startsWith("sdef")) {
+                }
+                if (temp.startsWith("sdef")) {
                     this.spacerLine.add(temp);
                 }
                 temp = re.readLine();
