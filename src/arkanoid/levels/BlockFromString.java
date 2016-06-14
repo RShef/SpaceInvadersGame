@@ -57,10 +57,10 @@ public class BlockFromString implements BlockCreator {
         }
         if (this.df != null) {
 
-            if (this.width == null) {
+            if (this.width == 0) {
                 this.width = this.df.getWidth();
             }
-            if (this.height == null) {
+            if (this.height == 0) {
                 this.height = this.df.getHeight();
             }
             if (this.hits == null) {
@@ -74,7 +74,7 @@ public class BlockFromString implements BlockCreator {
                     } else {
                         f = this.df.getFills().get(1);
                     }
-                    this.fills.put(i, f);
+                    this.fills.put(i -1, f);
                 }
             }
             if (this.symbol == null) {

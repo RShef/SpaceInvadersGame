@@ -50,7 +50,6 @@ public class LevelSpecificationReader {
                             blockDefFile = temp.split(":");
                             // Getting the block file "on stream".
                             try {
-                                System.out.println(blockDefFile[1]);
                                 InputStream is =
                                         ClassLoader.getSystemClassLoader().getResourceAsStream(blockDefFile[1]);
                                 // Reading the blocks.
@@ -89,6 +88,8 @@ public class LevelSpecificationReader {
                             for (int i = 0; i < temp.length(); i++) {
                                 runningChar = String.valueOf(temp.charAt(i));
                                 if (factory.isBlockSymbol(runningChar)) {
+                                    int x1 = x + blockNum;
+                                    int t = factory.getBlockCreators().get(runningChar).getWidth();
                                     blockL.add(factory.getBlock(runningChar,
                                             x + (blockNum * (factory.getBlockCreators().get(runningChar)
                                                     .getWidth())), y));

@@ -23,7 +23,7 @@ public class Fill {
      * The constructor.
      */
     public Fill() {
-        this.color = null;
+        this.color = Color.black;
         this.image = false;
         this.im = null;
     }
@@ -58,7 +58,7 @@ public class Fill {
                 String[] b = t.split(",");
                 f.color = new Color(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2]));
             } else {
-                int start = s.indexOf("(");
+                int start = s.indexOf("(")+1;
                 int end = s.indexOf(")");
                 String c = s.substring(start, end);
                 f.color = Color.getColor(c);
