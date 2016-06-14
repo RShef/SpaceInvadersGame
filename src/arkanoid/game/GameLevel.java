@@ -71,7 +71,7 @@ public class GameLevel implements Animation {
         this.runner = runner;
         this.key = key;
         this.gui = gui;
-        this.lives.increase(7);
+        //this.lives.increase(7);
     }
 
     /**

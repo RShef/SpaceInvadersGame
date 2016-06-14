@@ -119,6 +119,7 @@ public class GameFlow {
     public void runLevels(List<LevelInformation> levels) {
         // Going over each level.
         boolean win = true;
+        this.lives.increase(7);
         for (LevelInformation levelInfo : levels) {
             GameLevel level = new GameLevel(levelInfo, this.animationRunner,
                     this.keyboardSensor, this.gui, this.lives, this.score);
@@ -172,7 +173,7 @@ public class GameFlow {
     public void resetScoreAndLives() {
         this.score = new Counter();
         this.lives = new Counter();
-        this.lives.increase(7);
+
     }
 
 }

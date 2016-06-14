@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.awt.Image;
 import java.awt.Color;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 
 
 /**
@@ -36,6 +37,7 @@ public class Fill {
      */
     public static Fill fillFS(String s) {
         Fill f = new Fill();
+        Color temp;
         if (s == null) {
             return null;
         }
@@ -58,10 +60,18 @@ public class Fill {
                 String[] b = t.split(",");
                 f.color = new Color(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2]));
             } else {
-                int start = s.indexOf("(")+1;
+                int start = s.indexOf("(") + 1;
                 int end = s.indexOf(")");
                 String c = s.substring(start, end);
-                f.color = Color.getColor(c);
+                System.out.println(c);
+                System.out.println(Color.getColor(c));
+                try {
+                    Field field2 = Class.forName("java.awt.Color").getField(c);
+                    temp = (Color) field2.get(null);
+                } catch (Exception e) {
+                    temp = null;
+                }
+                f.color = temp;
             }
         }
         return f;

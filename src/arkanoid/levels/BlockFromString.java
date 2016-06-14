@@ -74,7 +74,7 @@ public class BlockFromString implements BlockCreator {
                     } else {
                         f = this.df.getFills().get(1);
                     }
-                    this.fills.put(i -1, f);
+                    this.fills.put(i - 1, f);
                 }
             }
             if (this.symbol == null) {

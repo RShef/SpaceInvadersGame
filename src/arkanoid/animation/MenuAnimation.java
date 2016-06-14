@@ -142,9 +142,7 @@ public class MenuAnimation<T> implements Menu {
         for (SelectionInfo selection : this.selections) {
             if (this.sensor.isPressed(selection.getKey())) {
                 if (selection.getSubMenu() == null) {
-                    if (selection.getKey().equals("s")) {
 
-                    }
                     this.stop = true;
                     this.returnVal = selection.getReturnVal();
                     this.stats = (T) selection.getReturnVal();
