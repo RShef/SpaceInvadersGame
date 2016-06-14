@@ -55,30 +55,34 @@ public class BlockFromString implements BlockCreator {
                 this.fills.put(Integer.parseInt(s[1]), Fill.fillFS(bs.get(key)));
             }
         }
+        if (this.df != null) {
 
-        if (this.width == null) {
-            this.width = this.df.getWidth();
-        }
-        if (this.height == null) {
-            this.height = this.df.getHeight();
-        }
-        if (this.hits == null) {
-            this.hits = this.df.getHits();
-        }
-        if (this.fills.size() < this.hits) {
-            for (int i = this.fills.size(); i<this.hits;i++) {
-                Fill f = null;
-                if (this.df.getFills().containsKey(i - 1)) {
-                    f = this.df.getFills().get(i - 1);
-                }
-                else {
-                    f = this.df.getFills().get(1);
-                }
-                this.fills.put(i,f);
+            if (this.width == null) {
+                this.width = this.df.getWidth();
             }
-        }
-        if (this.symbol == null) {
-            this.symbol = this.df.getSymbol();
+            if (this.height == null) {
+                this.height = this.df.getHeight();
+            }
+            if (this.hits == null) {
+                this.hits = this.df.getHits();
+            }
+            if (this.fills.size() < this.hits) {
+                for (int i = this.fills.size(); i < this.hits; i++) {
+                    Fill f = null;
+                    if (this.df.getFills().containsKey(i - 1)) {
+                        f = this.df.getFills().get(i - 1);
+                    } else {
+                        f = this.df.getFills().get(1);
+                    }
+                    this.fills.put(i, f);
+                }
+            }
+            if (this.symbol == null) {
+                this.symbol = this.df.getSymbol();
+            }
+            if (this.stroke == null && this.df.getStroke() != null) {
+                this.stroke = this.df.getStroke();
+            }
         }
         //if (this.stroke == null) { this.stroke = this.df.getStroke();}
         // In the event there are more hits then specified fills.

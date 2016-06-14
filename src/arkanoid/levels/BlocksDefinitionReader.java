@@ -48,7 +48,7 @@ public class BlocksDefinitionReader {
         BufferedReader re = new BufferedReader(reader);
         BlocksDefinitionReader bdr = new BlocksDefinitionReader();
         bdr.readDef(re);
-        return new BlocksFromSymbolsFactory(bdr.spacersList, bdr.blockList);
+        return new BlocksFromSymbolsFactory(bdr.getSpacersList(), bdr.getBlockList());
     }
 
     /**
@@ -122,7 +122,19 @@ public class BlocksDefinitionReader {
         return spacerMapWidths;
     }
 
+    /**
+     * Retuns the block list.
+     * @return the blocks.
+     */
+    public TreeMap<String, BlockCreator> getBlockList () {
+        return this.blockList;
+    }
 
+    /**
+     * Returns the space list.
+     * @return Returns the space list.
+     */
+    public TreeMap<String, Integer> getSpacersList() { return this.spacersList;}
 }
 
 
