@@ -45,7 +45,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     public Block(Point upperLeft, double width, double height, int hits, Color color) {
         this.b = new Rectangle(upperLeft, width, height);
         this.hits = hits;
-        this.fillMap.put(1,new Fill(color));
+        this.fillMap.put(1, new Fill(color));
         this.color = color;
         this.hitListeners = new LinkedList<>();
     }
@@ -59,7 +59,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
      * @param hits      number of block's hit points.
      * @param fm        - the TreeMap of the fills (fill,fill-2...)
      */
-    public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm,String symbol) {
+    public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm, String symbol) {
         this.b = new Rectangle(upperLeft, width, height);
         this.hits = hits;
         this.fillMap = fm;
@@ -160,12 +160,11 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
         int a = 0;
         if (this.hits == 0) {
             a = 1;
-        }
-        else {
-            a = this.hits ;
+        } else {
+            a = this.hits;
         }
         if (this.fillMap.get(a) == null) {
-            throw new RuntimeException ("fuck you null pointer");
+            throw new RuntimeException("fuck you null pointer");
         }
         if (this.fillMap.get(a).getImage() != null) {
             this.image = this.fillMap.get(a).getImage();

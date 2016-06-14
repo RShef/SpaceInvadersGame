@@ -124,17 +124,21 @@ public class BlocksDefinitionReader {
 
     /**
      * Retuns the block list.
+     *
      * @return the blocks.
      */
-    public TreeMap<String, BlockCreator> getBlockList () {
+    public TreeMap<String, BlockCreator> getBlockList() {
         return this.blockList;
     }
 
     /**
      * Returns the space list.
+     *
      * @return Returns the space list.
      */
-    public TreeMap<String, Integer> getSpacersList() { return this.spacersList;}
+    public TreeMap<String, Integer> getSpacersList() {
+        return this.spacersList;
+    }
 }
 
 

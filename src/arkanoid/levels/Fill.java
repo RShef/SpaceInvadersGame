@@ -69,6 +69,7 @@ public class Fill {
 
     /**
      * The constructor.
+     *
      * @param c the color.
      */
     public Fill(Color c) {
