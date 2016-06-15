@@ -4,8 +4,6 @@ import arkanoid.animation.AnimationRunner;
 import arkanoid.animation.EndScreen;
 import arkanoid.animation.HighScoresAnimation;
 import arkanoid.animation.KeyPressStoppableAnimation;
-import arkanoid.animation.Menu;
-import arkanoid.animation.MenuAnimation;
 import arkanoid.levels.LevelInformation;
 import biuoop.DialogManager;
 import biuoop.GUI;
@@ -79,48 +77,16 @@ public class GameFlow {
     }
 
     /**
-     * Create and show the game menu.
-     * <p>
-     * The menu runs in a loop until the user quits the game
-     */
-    public void showMenu() {
-
-        while (true) {
-            Menu<Task<Void>> menu = new MenuAnimation<Task<Void>>(this.keyboardSensor, "Arkanoid",
-                    this.animationRunner);
-
-            //add high scores task to the menu
-            HighScoresAnimation hs = new HighScoresAnimation(this.highScores);
-            KeyPressStoppableAnimation hsk = new KeyPressStoppableAnimation(this.keyboardSensor, "space", hs);
-            Task hst = new Tasks().showHighScores(this.animationRunner, hsk);
-            menu.addSelection("h", "show high scores", hst, null);
-
-            // add new game task to the menu
-            Task newGameTask = new Tasks().runLevels(this);
-            menu.addSelection("s", "start a new game", newGameTask, null);
-
-            // add exit game task to the menu
-            Task quit = new Tasks().quit();
-            menu.addSelection("q", "quit the game", quit, null);
-
-            menu.setStop(false);
-            this.animationRunner.run(menu);
-            Task<Void> task = menu.getStatus();
-            task.run();
-        }
-    }
-
-    /**
      * Runs the levels.
      * <p>
      *
-     * @param levels the list of levels.
+     * @param lvls the list of levels.
      */
-    public void runLevels(List<LevelInformation> levels) {
+    public void runLevels(List<LevelInformation> lvls) {
         // Going over each level.
         boolean win = true;
         this.lives.increase(7);
-        for (LevelInformation levelInfo : levels) {
+        for (LevelInformation levelInfo : lvls) {
             GameLevel level = new GameLevel(levelInfo, this.animationRunner,
                     this.keyboardSensor, this.gui, this.lives, this.score);
             level.initialize();
@@ -173,7 +139,6 @@ public class GameFlow {
     public void resetScoreAndLives() {
         this.score = new Counter();
         this.lives = new Counter();
-
     }
 
 }

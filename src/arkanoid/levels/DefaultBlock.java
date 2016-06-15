@@ -16,7 +16,6 @@ public class DefaultBlock {
     private String symbol;
     private TreeMap<Integer, Fill> fills;
     private Color stroke;
-    private String num;
     private TreeMap<String, String> defLineMap = null;
 
     /**

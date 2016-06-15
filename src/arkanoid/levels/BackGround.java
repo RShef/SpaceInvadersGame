@@ -27,7 +27,6 @@ public class BackGround implements LevelInformation {
     private int rowHeight;
     private String back;
     private List<Block> blockList;
-
     private String levelName;
 
     /**
@@ -167,7 +166,7 @@ public class BackGround implements LevelInformation {
      * See return.
      * <p>
      *
-     * @returnt he first blocks Y value on the row.
+     * @return he first blocks Y value on the row.
      */
     public int getStartingY() {
         return this.blocksStartY;

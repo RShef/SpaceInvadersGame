@@ -28,10 +28,8 @@ public class MenuAnimation<T> implements Menu {
 
     private String title;
     private List<SelectionInfo> selections;
-    private Object returnVal;
     private KeyboardSensor sensor;
     private boolean stop;
-    private boolean isAlreadyPressed;
     private T stats;
     private AnimationRunner r;
 
@@ -47,7 +45,6 @@ public class MenuAnimation<T> implements Menu {
         this.title = title;
         this.selections = new LinkedList<>();
         this.stop = false;
-        this.isAlreadyPressed = true;
         this.stats = null;
         this.r = r;
     }
@@ -58,13 +55,13 @@ public class MenuAnimation<T> implements Menu {
      *
      * @param key       the key to wait for
      * @param message   the message to display
-     * @param returnVal the return value
+     * @param rtrnVal the return value
      * @param subMenu   the sub menu.
      */
 
     @Override
-    public void addSelection(String key, String message, Object returnVal, Menu subMenu) {
-        this.selections.add(new SelectionInfo(key, message, returnVal, null));
+    public void addSelection(String key, String message, Object rtrnVal, Menu subMenu) {
+        this.selections.add(new SelectionInfo(key, message, rtrnVal, null));
 
     }
 
@@ -83,11 +80,11 @@ public class MenuAnimation<T> implements Menu {
     /**
      * Sets a stop.
      *
-     * @param stop a boolean.
+     * @param stp a boolean.
      */
     @Override
-    public void setStop(boolean stop) {
-        this.stop = stop;
+    public void setStop(boolean stp) {
+        this.stop = stp;
     }
 
     /**
@@ -95,12 +92,12 @@ public class MenuAnimation<T> implements Menu {
      *
      * @param key       a string key.
      * @param message   a message.
-     * @param returnVal the value returned from the sub menu.
+     * @param rtrnVal the value returned from the sub menu.
      * @param subMenu   a submenu.
      */
     @Override
-    public void addSubMenu(String key, String message, Object returnVal, Menu subMenu) {
-        this.selections.add(new SelectionInfo(key, message, returnVal, subMenu));
+    public void addSubMenu(String key, String message, Object rtrnVal, Menu subMenu) {
+        this.selections.add(new SelectionInfo(key, message, rtrnVal, subMenu));
 
     }
 
@@ -111,7 +108,6 @@ public class MenuAnimation<T> implements Menu {
         this.stop = false;
         this.stats = null;
     }
-
 
     /**
      * Displays the animation.
@@ -144,14 +140,12 @@ public class MenuAnimation<T> implements Menu {
                 if (selection.getSubMenu() == null) {
 
                     this.stop = true;
-                    this.returnVal = selection.getReturnVal();
                     this.stats = (T) selection.getReturnVal();
                 } else {
                     // Opens the sub menu if selected.
                     this.r.run(selection.getSubMenu());
                     // Makes the sub menu work.
                     this.stats = (T) selection.getSubMenu().getStatus();
-                    this.isAlreadyPressed = false;
                     this.stop = true;
                     // Brings everything back to normal.
                     selection.getSubMenu().rest();

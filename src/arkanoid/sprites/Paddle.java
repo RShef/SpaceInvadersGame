@@ -16,6 +16,7 @@ import biuoop.KeyboardSensor;
  * @since 4/4/2016
  */
 public class Paddle implements Sprite, Collidable {
+
     private Color color;
     private Rectangle rectangle;
     private KeyboardSensor keyboard;
@@ -40,7 +41,6 @@ public class Paddle implements Sprite, Collidable {
         this.width = width;
         this.color = color;
     }
-
 
     /**
      * Moving the paddle right.

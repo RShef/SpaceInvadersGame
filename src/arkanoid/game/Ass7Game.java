@@ -1,6 +1,5 @@
 package arkanoid.game;
 
-
 import java.io.File;
 
 /**
@@ -9,7 +8,7 @@ import java.io.File;
  * @since 07/04/2016
  */
 
-public class Ass6Game {
+public class Ass7Game {
 
     /**
      * Main program.
@@ -22,7 +21,7 @@ public class Ass6Game {
     public static void main(String[] args) {
         // The default.
         String input = "definitions/level_definitions.txt";
-        File highscores = new File("src/highscores.ser");
+        File highscores = new File("highscores.ser");
         // If there given a run time argument.
         if (args.length > 0) {
             input = args[0];

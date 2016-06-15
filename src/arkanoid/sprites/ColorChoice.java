@@ -10,12 +10,13 @@ import java.awt.Color;
  * @version 1.0
  * @since 09/06/2016
  */
+
 // geting the color.
 public class ColorChoice {
+
     private boolean isImage2 = false;
     private Color color = null;
     private Image im = null;
-
     private Fill f;
 
     /**

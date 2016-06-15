@@ -63,8 +63,7 @@ public class Fill {
                 int start = s.indexOf("(") + 1;
                 int end = s.indexOf(")");
                 String c = s.substring(start, end);
-                System.out.println(c);
-                System.out.println(Color.getColor(c));
+
                 try {
                     Field field2 = Class.forName("java.awt.Color").getField(c);
                     temp = (Color) field2.get(null);

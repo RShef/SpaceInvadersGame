@@ -5,9 +5,7 @@ import arkanoid.game.GameEnvironment;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Line;
-
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
 /**
@@ -42,7 +40,7 @@ public class Ball implements Sprite {
 
     /**
      * Instantiate Ball.
-     * <p>
+     * <p/>
      *
      * @param x     center point x location.
      * @param y     center point y location.
@@ -59,7 +57,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's center x location.
-     * <p>
+     * <p/>
      *
      * @return center x location.
      */
@@ -69,7 +67,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's center y location.
-     * <p>
+     * <p/>
      *
      * @return center y location.
      */
@@ -79,7 +77,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's size.
-     * <p>
+     * <p/>
      *
      * @return radius.
      */
@@ -89,7 +87,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's color.
-     * <p>
+     * <p/>
      *
      * @return color.
      */
@@ -99,7 +97,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's Velocity.
-     * <p>
+     * <p/>
      *
      * @return Velocity.
      */
@@ -109,7 +107,7 @@ public class Ball implements Sprite {
 
     /**
      * Set ball's Velocity.
-     * <p>
+     * <p/>
      *
      * @param v Velocity.
      */
@@ -122,7 +120,7 @@ public class Ball implements Sprite {
 
     /**
      * Get ball's Game Environment.
-     * <p>
+     * <p/>
      *
      * @return Environment.
      */
@@ -132,7 +130,7 @@ public class Ball implements Sprite {
 
     /**
      * Set ball's Environment.
-     * <p>
+     * <p/>
      *
      * @param environment1 Game Environment.
      */
@@ -142,7 +140,7 @@ public class Ball implements Sprite {
 
     /**
      * Set ball's Velocity.
-     * <p>
+     * <p/>
      *
      * @param dx Angle.
      * @param dy speed.
@@ -155,7 +153,7 @@ public class Ball implements Sprite {
 
     /**
      * Draw ball on GUI.
-     * <p>
+     * <p/>
      *
      * @param surface draw surface.
      */
@@ -177,7 +175,7 @@ public class Ball implements Sprite {
 
     /**
      * Computes the ball's trajectory.
-     * <p>
+     * <p/>
      *
      * @param dt is the time passed from previous frame.
      * @return trajectory Line
@@ -189,7 +187,7 @@ public class Ball implements Sprite {
 
     /**
      * Moves the ball one step according to current velocity.
-     * <p>
+     * <p/>
      * If ball will hit an obstacle, it will change direction.
      *
      * @param dt is the time passed from previous frame.
@@ -207,7 +205,7 @@ public class Ball implements Sprite {
 
     /**
      * Finds a point that is very close to the point of collision.
-     * <p>
+     * <p/>
      *
      * @param collisionPoint the Collision Info
      * @return the closest point the collision
@@ -230,7 +228,7 @@ public class Ball implements Sprite {
 
     /**
      * Adds the ball both as Collidable and as Sprite.
-     * <p>
+     * <p/>
      *
      * @param g the game environment.
      */

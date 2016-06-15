@@ -16,7 +16,7 @@ public class AnimationRunner {
     private Sleeper sleeper;
 
     /**
-     * Constractor for the animation runner.
+     * Constructor for the animation runner.
      *
      * @param frames per second.
      * @param gui1   the gui.

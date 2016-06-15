@@ -13,6 +13,7 @@ import java.awt.Color;
  * @since 15/5/2016
  */
 public class LivesIndicator implements Sprite {
+
     private Counter lives;
 
     /**

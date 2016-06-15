@@ -1,0 +1,4 @@
+# block definitions
+bdef symbol:l width:6 height:6 hit_points:1 fill:color(cyan))
+# spacers definitions
+sdef symbol:- width:40

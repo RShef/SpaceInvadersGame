@@ -11,6 +11,7 @@ import arkanoid.sprites.Block;
  */
 
 public class ScoreTrackingListener implements HitListener {
+
     private Counter currentScore;
 
     /**

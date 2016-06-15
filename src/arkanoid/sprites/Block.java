@@ -26,7 +26,6 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
     private int hits;
     private Color color;
     private List<HitListener> hitListeners;
-    private String backString;
     private TreeMap<Integer, Fill> fillMap = new TreeMap<Integer, Fill>();
     private Image image;
     private ColorChoice cc;
@@ -58,6 +57,7 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
      * @param height    of the rectangle.
      * @param hits      number of block's hit points.
      * @param fm        - the TreeMap of the fills (fill,fill-2...)
+     * @param symbol    symbol
      */
     public Block(Point upperLeft, double width, double height, int hits, TreeMap<Integer, Fill> fm, String symbol) {
         this.b = new Rectangle(upperLeft, width, height);
@@ -84,15 +84,6 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
         this.image = null;
         this.hitListeners = new LinkedList<>();
     }
-    /**
-     //color based on image.
-     private ColorChoice whatToFill () {
-     System.out.println(this.fillMap.containsKey(0));
-     this.cc = new ColorChoice(this.fillMap.get(this.hits));
-     this.cc.setColor();
-     return this.cc;
-     }
-     **/
 
     /**
      * Return the rectangle.

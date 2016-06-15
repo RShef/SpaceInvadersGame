@@ -42,9 +42,9 @@ public class LevelSpecificationReader {
                 if (temp.startsWith(" ") || temp.startsWith("#") || temp.length() == 0) {
                     // Skip current line.
                     temp = re.readLine();
-                }
-                // There is a level def.
-                else if (temp.startsWith("START_LEVEL")) {
+                    // There is a level def.
+
+                } else if (temp.startsWith("START_LEVEL")) {
                     do {
                         if (temp.startsWith("block_definitions")) {
                             blockDefFile = temp.split(":");

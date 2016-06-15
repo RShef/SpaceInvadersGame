@@ -12,7 +12,7 @@ bin:
 	mkdir bin
 
 jar:
-	jar cfm Manifest.mf Ass6Game.jar -C bin/ . -C resources/ .
+	jar cfm Ass6Game.jar Manifest -C bin/ . -C resources/ .
 
 check:
 	java -jar checkstyle-5.7-all.jar -c biuoop.xml -r src/arkanoid

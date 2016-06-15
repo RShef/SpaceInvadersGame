@@ -28,12 +28,12 @@ public class SetFileFormat {
     /**
      * addKeyAndName().
      *
-     * @param key       - String.
-     * @param levelName = String.
+     * @param sKey       - String.
+     * @param levName = String.
      */
-    public void addKeyAndName(String key, String levelName) {
-        this.key = key;
-        this.levelName = levelName;
+    public void addKeyAndName(String sKey, String levName) {
+        this.key = sKey;
+        this.levelName = levName;
     }
 
     /**
