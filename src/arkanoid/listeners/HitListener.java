@@ -2,6 +2,7 @@ package arkanoid.listeners;
 
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
+import arkanoid.sprites.Sprite;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -17,5 +18,5 @@ public interface HitListener {
      * @param beingHit the object being hit.
      * @param hitter   the ball that's hitting.
      */
-    void hitEvent(Block beingHit, Ball hitter);
+    void hitEvent(Sprite beingHit, Ball hitter);
 }

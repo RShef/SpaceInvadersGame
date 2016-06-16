@@ -4,6 +4,7 @@ import arkanoid.game.Counter;
 import arkanoid.game.GameLevel;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
+import arkanoid.sprites.Sprite;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -33,10 +34,10 @@ public class BlockRemover implements HitListener {
      * @param beingHit the object being hit.
      * @param hitter   the ball that's hitting.
      */
-    public void hitEvent(Block beingHit, Ball hitter) {
-        if (beingHit.getHitPoints() == 0) {
+    public void hitEvent(Sprite beingHit, Ball hitter) {
+        /*if (beingHit.getHitPoints() == 0) {
             beingHit.removeFromGame(this.game);
             this.removedBlocks.decrease(1);
-        }
+        }*/
     }
 }

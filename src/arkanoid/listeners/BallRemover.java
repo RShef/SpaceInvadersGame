@@ -4,6 +4,7 @@ import arkanoid.game.Counter;
 import arkanoid.game.GameLevel;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
+import arkanoid.sprites.Sprite;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -33,7 +34,7 @@ public class BallRemover implements HitListener {
      * @param death  - the bottom block. "death zone".
      * @param hitter the ball that hit the "death zone" block.
      */
-    public void hitEvent(Block death, Ball hitter) {
+    public void hitEvent(Sprite death, Ball hitter) {
         hitter.removeFromGame(this.game);
         this.removedBalls.decrease(1);
     }
