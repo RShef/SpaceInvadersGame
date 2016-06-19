@@ -28,6 +28,9 @@ import biuoop.KeyboardSensor;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
+import java.awt.geom.Arc2D;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -49,6 +52,7 @@ public class GameLevel implements Animation {
     private LevelInformation l;
     private AnimationRunner runner;
     private Swarm swarm;
+    private Long time;
 
     /**
      * Instantiates a new game level.
@@ -73,6 +77,7 @@ public class GameLevel implements Animation {
         this.runner = runner;
         this.key = key;
         this.gui = gui;
+        this.time = System.currentTimeMillis();
         //this.lives.increase(7);
     }
 
@@ -123,7 +128,9 @@ public class GameLevel implements Animation {
      */
     public void makeBorders(HitListener hl) {
         // upper border
-        new Block(new Point(0, 20), 800, 20, 0, Color.gray).addToGame(this);
+        Block u =  new Block(new Point(0, 20), 800, 20, 0, Color.gray);
+        u.addToGame(this);
+        u.addHitListener(hl);
         // bottom border - "Death Block"
         Block b = new Block(new Point(0, 600), 800, 20, 0, Color.white);
         // adding BallRemover as a listener of the bottom block.
@@ -206,6 +213,7 @@ public class GameLevel implements Animation {
             b.addToGame(this);
             b.addHitListener(br);
             b.addHitListener(stl);
+            b.addHitListener(bar);
             this.blocks.increase(1);
         }
 
@@ -247,18 +255,20 @@ public class GameLevel implements Animation {
     public void doOneFrame(DrawSurface d, double dt) {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed(dt);
-
         // if "p" is pressed, show pause screen
         KeyboardSensor k = this.gui.getKeyboardSensor();
         if (k.isPressed("p")) {
             PauseScreen ps = new PauseScreen(this.score, this.lives, this.l.levelName());
             this.runner.run(new KeyPressStoppableAnimation(this.key, "space", ps));
         }
-        if (k.isPressed(KeyboardSensor.SPACE_KEY)) {
+        Long currTime = System.currentTimeMillis();
+        long x = currTime - this.time;
+        if (k.isPressed(KeyboardSensor.SPACE_KEY) && x > 350 ) {
             Ball b = this.p.shoot();
-            b.setVelocity(0,500);
-            b.setEnvironment(this.environment);
+            b.setVelocity(1,500);
             b.addToGame(this);
+            b.setEnvironment(this.environment);
+            this.time = currTime;
         }
 
         // timing

@@ -22,6 +22,7 @@ public class Paddle implements Sprite, Collidable {
     private KeyboardSensor keyboard;
     private int width;
     private int paddleSpeed;
+    private boolean shoot = true;
 
     /**
      * The constructor.
@@ -196,7 +197,11 @@ public class Paddle implements Sprite, Collidable {
         g.removeSprite(this);
     }
     public Ball shoot () {
-        return new Ball(this.rectangle.getMidele(),3,Color.red);
+        this.shoot = false;
+        return new Ball(this.rectangle.getMidele(),2,Color.red);
+    }
+    public boolean toShoot () {
+        return shoot;
     }
 
 }
