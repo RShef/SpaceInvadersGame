@@ -1,6 +1,7 @@
 package arkanoid.invaders;
 
 import arkanoid.game.GameLevel;
+import arkanoid.geometry.Rectangle;
 import arkanoid.invaders.Alien;
 import arkanoid.geometry.Point;
 
@@ -51,7 +52,7 @@ public class Swarm implements Sprite {
         Alien[][] swarm = new Alien[this.rows][this.cols];
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                swarm[i][j] = new Alien(this.startingPoint, 40, 30);
+                swarm[i][j] = new Alien(new Point(x, y), 40, 30);
                 x += 50;
             }
             x = (int) this.startingPoint.getX();
@@ -93,6 +94,22 @@ public class Swarm implements Sprite {
     }
 
     /**
+     * Gets the lowest alien.
+     *
+     * @return the lowest alien
+     */
+    public Alien getLowest() {
+        for (int i = this.rows - 1; i >= 0; i--) {
+            for (int j = 0; j < this.cols; j++) {
+                if (swarmGrid[i][j].getHits() != 0) {
+                    return swarmGrid[i][j];
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Draws the sprite on the screen.
      * <p/>
      *
@@ -121,7 +138,7 @@ public class Swarm implements Sprite {
             return;
         }
         if (this.getRightMost().getCollisionRectangle().getUpperLeft().getX()
-                + this.getRightMost().getCollisionRectangle().getWidth() >= 600) {
+                + this.getRightMost().getCollisionRectangle().getWidth() >= 800) {
             this.speed *= -1.1;
             moveOneStep(0, verticalChange);
         }
@@ -148,6 +165,27 @@ public class Swarm implements Sprite {
                 swarmGrid[i][j].moveOneStep(dx, dy);
             }
         }
+    }
+
+    /**
+     * Resets swarms's position and speed
+     * <p>
+     */
+    public final void resetPosAndSpeed() {
+        double x = this.startingPoint.getX();
+        double y = this.startingPoint.getY();
+
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                Rectangle enemyRect = swarmGrid[i][j].getCollisionRectangle();
+                swarmGrid[i][j].setCollisionRectangle(new Rectangle(new Point(x, y), enemyRect.getWidth(), enemyRect
+                        .getHeight()));
+                x += 50;
+            }
+            x = (int) this.startingPoint.getX();
+            y += 40;
+        }
+        this.speed = this.startingSpeed;
     }
 
     /**

@@ -105,7 +105,6 @@ public class LevelSpecificationReader {
                         }
                         // Add all the blocks to the background list.
                         bG.setBlocks(blockL);
-                        bG.getSwarm(3);
                         // 'Saving' the level read.
                         levels.add(bG);
                         temp = re.readLine();

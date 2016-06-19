@@ -55,6 +55,10 @@ public class Alien implements Collidable, Sprite, HitNotifier {
         return this.b;
     }
 
+    public void setCollisionRectangle(Rectangle rect) {
+        this.b = rect;
+    }
+
     /**
      * Notifies the object it has been hit
      * <p/>

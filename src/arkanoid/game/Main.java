@@ -71,7 +71,7 @@ public class Main {
         }
         // Settings.
         final HighScoresTable finalScores = this.scores;
-        final GUI gui = new GUI("Arkanoid", 800, 600);
+        final GUI gui = new GUI("Space Invaders", 800, 600);
         LevelsReaderForSub lr = new LevelsReaderForSub();
         List<SetFileFormat> sffList = new ArrayList<SetFileFormat>();
         final String path = this.levelPath;

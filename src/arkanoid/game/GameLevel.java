@@ -117,25 +117,6 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Makes game's borders.
-     *
-     * @param hl a hit listener
-     */
-    public void makeBorders(HitListener hl) {
-        // upper border
-        new Block(new Point(0, 20), 800, 20, 0, Color.gray).addToGame(this);
-        // bottom border - "Death Block"
-        Block b = new Block(new Point(0, 600), 800, 20, 0, Color.white);
-        // adding BallRemover as a listener of the bottom block.
-        b.addToGame(this);
-        b.addHitListener(hl);
-        // left border
-        new Block(new Point(0, 20), 20, 600, 0, Color.gray).addToGame(this);
-        // right border
-        new Block(new Point(780, 20), 20, 600, 0, Color.gray).addToGame(this);
-    }
-
-    /**
      * Makes the ball for the game.
      * <p>
      *
@@ -197,9 +178,9 @@ public class GameLevel implements Animation {
         // Creating the game field.
         new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
-        makeBorders(bar);
         makeInfoBar();
-        this.swarm = this.l.getSwerm();
+        this.swarm = new Swarm(50, 50, 10, 5, 70);
+        //this.swarm = this.l.getSwerm();
         this.swarm.addToGame(this);
         // adding the listeners.
         for (Block b : this.l.blocks()) {
@@ -247,6 +228,8 @@ public class GameLevel implements Animation {
     public void doOneFrame(DrawSurface d, double dt) {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed(dt);
+        this.swarm.timePassed(dt);
+
 
         // if "p" is pressed, show pause screen
         KeyboardSensor k = this.gui.getKeyboardSensor();
@@ -266,8 +249,13 @@ public class GameLevel implements Animation {
             this.score.increase(100);
             this.running = false;
         }
-        // If there are no balls, decrease a life from the player.
-
+        // If swarm reaches shields, decrease a life from the player.
+        if (this.swarm.getLowest().getCollisionRectangle().getLowRight().getY() >= 500) {
+            this.p.removeFromGame(this);
+            this.swarm.resetPosAndSpeed();
+            this.lives.decrease(1);
+            this.running = false;
+        }
 
     }
 

@@ -81,6 +81,5 @@ public interface LevelInformation {
      */
     int numberOfBlocksToRemove();
 
-    Swarm getSwerm ();
 }
 
