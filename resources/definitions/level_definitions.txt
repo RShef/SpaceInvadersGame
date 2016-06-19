@@ -9,12 +9,12 @@ paddle_speed:650
 paddle_width:80
 block_definitions:definitions/SpaceInavaders.txt
 blocks_start_x:20
-blocks_start_y:500
-row_height:5
+blocks_start_y:480
+row_height:10
 num_blocks:276
 START_BLOCKS
--llllllllllllllllllllllllllllll--lllllllllllllllllllllllllllllllllll--llllllllllllllllllllllll-
--llllllllllllllllllllllllllllll--lllllllllllllllllllllllllllllllllll--llllllllllllllllllllllll-
--llllllllllllllllllllllllllllll--lllllllllllllllllllllllllllllllllll--llllllllllllllllllllllll-
+-lllllllllllllll--llllllllllllllllllll--llllllll-
+-lllllllllllllll--llllllllllllllllllll--llllllll-
+-lllllllllllllll--llllllllllllllllllll--llllllll-
 END_BLOCKS
 END_LEVEL

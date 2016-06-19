@@ -165,6 +165,8 @@ public class Block implements Cloneable, Collidable, Sprite, HitNotifier {
             surface.setColor(this.color);
             surface.fillRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
                     (int) this.b.getWidth(), (int) this.b.getHeight());
+            surface.drawRectangle((int) this.b.getUpperLeft().getX(), (int) this.b.getUpperLeft().getY(),
+                    (int) this.b.getWidth(), (int) this.b.getHeight());
             surface.setColor(Color.white);
         }
 
