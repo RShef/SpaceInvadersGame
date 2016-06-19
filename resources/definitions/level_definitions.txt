@@ -4,7 +4,6 @@
 
 START_LEVEL
 level_name:Square Moon
-ball_velocities:
 background:color(black)
 paddle_speed:650
 paddle_width:80

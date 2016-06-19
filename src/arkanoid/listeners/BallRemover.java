@@ -31,10 +31,11 @@ public class BallRemover implements HitListener {
      * Removes the ball that hit the "death zone".
      * <p>
      *
-     * @param death  - the bottom block. "death zone".
      * @param hitter the ball that hit the "death zone" block.
      */
-    public void hitEvent(Sprite death, Ball hitter) {
+
+    @Override
+    public void hitEvent(Sprite beingHit, Ball hitter) {
         hitter.removeFromGame(this.game);
         this.removedBalls.decrease(1);
     }

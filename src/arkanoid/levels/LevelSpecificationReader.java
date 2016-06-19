@@ -67,10 +67,6 @@ public class LevelSpecificationReader {
                         // Read a new line.
                         temp = re.readLine();
                     } while (!temp.startsWith("START_BLOCKS"));
-                    // check.
-                    if (levelInformation.size() < 9) {
-                        throw new RuntimeException("Missing level fields");
-                    }
                     // Extra check.
                     if (temp.startsWith("START_BLOCKS")) {
                         // This list will contain all the blocks of the level.
@@ -118,7 +114,7 @@ public class LevelSpecificationReader {
                             temp = re.readLine();
                             continue;
                         }
-                        bG.initialBallVelocities();
+
                     }
                 }
             }

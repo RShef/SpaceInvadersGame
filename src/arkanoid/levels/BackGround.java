@@ -40,7 +40,6 @@ public class BackGround implements LevelInformation {
         this.numOfBalls = 1;
         this.levelName = (String) m.get("level_name");
         this.numberOfBlocksToRemove = Integer.parseInt((String) m.get("num_blocks"));
-        this.ballVelocities = (String) m.get("ball_velocities");
         this.rowHeight = Integer.parseInt((String) m.get("row_height"));
         this.blocksStartX = Integer.parseInt((String) m.get("blocks_start_x"));
         this.blocksStartY = Integer.parseInt((String) m.get("blocks_start_y"));
@@ -65,16 +64,8 @@ public class BackGround implements LevelInformation {
      * @return a List of Velocities for the balls on level.
      */
     public List<Velocity> initialBallVelocities() {
-        List<Velocity> v = new ArrayList<>();
-        String[] t = this.ballVelocities.split(" ");
-        String[] y;
-        // Returning multiple velocity.
-        for (int i = 0; i < t.length; i++) {
-            y = t[i].split(",");
-            v.add(Velocity.fromAngleAndSpeed(Integer.parseInt(y[0]), Integer.parseInt(y[1])));
-        }
-        this.numOfBalls = v.size();
-        return v;
+
+        return null;
     }
 
     /**

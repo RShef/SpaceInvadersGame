@@ -213,9 +213,6 @@ public class GameLevel implements Animation {
      * <p>
      */
     public void createBallsAndPaddle() {
-        for (Velocity v : this.l.initialBallVelocities()) {
-            makeBall(400, 550, 5, Color.white, this.environment, v);
-        }
         makePaddle(this.l.paddleWidth(), this.l.paddleSpeed());
     }
 
@@ -260,11 +257,7 @@ public class GameLevel implements Animation {
             this.running = false;
         }
         // If there are no balls, decrease a life from the player.
-        if (this.balls.getValue() == 0) {
-            this.p.removeFromGame(this);
-            this.lives.decrease(1);
-            this.running = false;
-        }
+
 
     }
 
