@@ -74,12 +74,12 @@ public class Alien implements Collidable, Sprite, HitNotifier {
         if (this.hits > 0) {
             this.hits--;
         }
-        // If the ball hits the corner.
+        // If the shot hits the corner.
         if (this.b.points().contains(collisionPoint) && collisionPoint.getY() > 2 && collisionPoint.getY() > 2) {
             collisionPoint.setY(collisionPoint.getY() - 2);
             this.notifyHit(hitter);
         }
-        // if ball hits horizontal object
+        // if shot hits alien
         if (collisionPoint.getY() == this.b.getUpperLeft().getY()
                 || Math.round(collisionPoint.getY()) == Math.round(this.b.getLowRight().getY())) {
             this.notifyHit(hitter);

@@ -5,6 +5,10 @@ import arkanoid.geometry.Rectangle;
 import arkanoid.invaders.Alien;
 import arkanoid.geometry.Point;
 
+import arkanoid.listeners.AlienRemover;
+import arkanoid.listeners.BallRemover;
+import arkanoid.listeners.BlockRemover;
+import arkanoid.listeners.ScoreTrackingListener;
 import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
 
@@ -210,6 +214,16 @@ public class Swarm implements Sprite {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
                 swarmGrid[i][j].removeFromGame(g);
+            }
+        }
+    }
+
+    public void addHitListeners(AlienRemover ar, ScoreTrackingListener stl, BallRemover bar) {
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                this.swarmGrid[i][j].addHitListener(ar);
+                this.swarmGrid[i][j].addHitListener(stl);
+                this.swarmGrid[i][j].addHitListener(bar);
             }
         }
     }

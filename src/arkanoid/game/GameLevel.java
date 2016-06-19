@@ -8,6 +8,7 @@ import arkanoid.animation.KeyPressStoppableAnimation;
 import arkanoid.geometry.Velocity;
 import arkanoid.invaders.Swarm;
 import arkanoid.levels.LevelInformation;
+import arkanoid.listeners.AlienRemover;
 import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
 import arkanoid.listeners.HitListener;
@@ -52,6 +53,7 @@ public class GameLevel implements Animation {
     private LevelInformation l;
     private AnimationRunner runner;
     private Swarm swarm;
+    private Counter aliens;
     private Long time;
 
     /**
@@ -77,6 +79,7 @@ public class GameLevel implements Animation {
         this.runner = runner;
         this.key = key;
         this.gui = gui;
+        this.aliens = new Counter();
         this.time = System.currentTimeMillis();
         //this.lives.increase(7);
     }
@@ -197,17 +200,21 @@ public class GameLevel implements Animation {
      **/
     public void initialize() {
         // Adding the listeners.
+        AlienRemover ar = new AlienRemover(this, this.aliens);
         BlockRemover br = new BlockRemover(this, this.blocks);
         BallRemover bar = new BallRemover(this, this.balls);
 
         addSprite(this.l.getBackground());
         // Creating the game field.
-        new Block(new Point(0, 0), 800, 20, 0, Color.white).addToGame(this);
+        Block infoBar = new Block(new Point(0, 0), 800, 20, 0, Color.white);
+        infoBar.addToGame(this);
+        infoBar.addHitListener(bar);
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
         makeInfoBar();
         this.swarm = new Swarm(50, 50, 10, 5, 70);
-        //this.swarm = this.l.getSwerm();
         this.swarm.addToGame(this);
+        this.swarm.addHitListeners(ar, stl, bar);
+        this.aliens.increase(50);
         // adding the listeners.
         for (Block b : this.l.blocks()) {
             b.addToGame(this);
@@ -275,12 +282,13 @@ public class GameLevel implements Animation {
         }
 
         // timing
-        if (this.blocks.getValue() == 0) {
-            this.score.increase(100);
+        if (this.aliens.getValue() == 0) {
+            this.score.increase(500);
             this.running = false;
+            return;
         }
         // If swarm reaches shields, decrease a life from the player.
-        if (this.swarm.getLowest().getCollisionRectangle().getLowRight().getY() >= 500) {
+        if (this.swarm.getLowest().getCollisionRectangle().getLowRight().getY() >= 480) {
             this.p.removeFromGame(this);
             this.swarm.resetPosAndSpeed();
             this.lives.decrease(1);
@@ -300,13 +308,13 @@ public class GameLevel implements Animation {
     }
 
     /**
-     * Returns blocks left.
+     * Returns aliens left.
      * <p>
      *
-     * @return blocks left.
+     * @return aliens left.
      */
-    public int blocksLeft() {
-        return this.blocks.getValue();
+    public int aliensLeft() {
+        return this.aliens.getValue();
     }
 
 }

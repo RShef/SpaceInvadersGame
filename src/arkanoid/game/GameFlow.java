@@ -91,7 +91,7 @@ public class GameFlow {
                     this.keyboardSensor, this.gui, this.lives, this.score);
             level.initialize();
 
-            while (level.livesLeft() != 0 && level.blocksLeft() != 0) {
+            while (level.livesLeft() != 0 && level.aliensLeft() != 0) {
                 level.playOneTurn();
             }
 
