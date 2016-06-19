@@ -51,7 +51,7 @@ public class Swarm implements Sprite {
         Alien[][] swarm = new Alien[this.rows][this.cols];
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                swarmGrid[i][j] = new Alien(this.startingPoint, 40, 30);
+                swarm[i][j] = new Alien(this.startingPoint, 40, 30);
                 x += 50;
             }
             x = (int) this.startingPoint.getX();
@@ -100,7 +100,11 @@ public class Swarm implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
-
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                swarmGrid[i][j].drawOn(d);
+            }
+        }
     }
 
     /**

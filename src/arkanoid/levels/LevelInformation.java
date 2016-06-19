@@ -4,6 +4,7 @@ import arkanoid.geometry.Velocity;
 
 import java.util.List;
 
+import arkanoid.invaders.Swarm;
 import arkanoid.sprites.Sprite;
 import arkanoid.sprites.Block;
 
@@ -79,5 +80,7 @@ public interface LevelInformation {
      * @return number Of Blocks To Remove.
      */
     int numberOfBlocksToRemove();
+
+    Swarm getSwerm ();
 }
 

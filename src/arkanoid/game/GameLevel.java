@@ -6,6 +6,7 @@ import arkanoid.animation.Animation;
 import arkanoid.animation.AnimationRunner;
 import arkanoid.animation.KeyPressStoppableAnimation;
 import arkanoid.geometry.Velocity;
+import arkanoid.invaders.Swarm;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
@@ -47,6 +48,7 @@ public class GameLevel implements Animation {
     private KeyboardSensor key;
     private LevelInformation l;
     private AnimationRunner runner;
+    private Swarm swarm;
 
     /**
      * Instantiates a new game level.
@@ -197,7 +199,8 @@ public class GameLevel implements Animation {
         ScoreTrackingListener stl = new ScoreTrackingListener(this.score);
         makeBorders(bar);
         makeInfoBar();
-
+        this.swarm = this.l.getSwerm();
+        this.swarm.addToGame(this);
         // adding the listeners.
         for (Block b : this.l.blocks()) {
             b.addToGame(this);

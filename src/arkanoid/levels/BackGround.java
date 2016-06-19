@@ -2,6 +2,7 @@ package arkanoid.levels;
 
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Velocity;
+import arkanoid.invaders.Swarm;
 import arkanoid.sprites.Block;
 import arkanoid.sprites.Sprite;
 
@@ -28,6 +29,7 @@ public class BackGround implements LevelInformation {
     private String back;
     private List<Block> blockList;
     private String levelName;
+    private Swarm swarm;
 
     /**
      * The constractor.
@@ -143,6 +145,11 @@ public class BackGround implements LevelInformation {
         return 1;
     }
 
+    @Override
+    public Swarm getSwerm() {
+        return this.swarm;
+    }
+
     /**
      * See return.
      * <p>
@@ -170,6 +177,10 @@ public class BackGround implements LevelInformation {
      */
     public int getRowHeight() {
         return this.rowHeight;
+    }
+
+    public void getSwarm (double a) {
+        this.swarm =  new Swarm(20,480,4,4,a);
     }
 
 }
