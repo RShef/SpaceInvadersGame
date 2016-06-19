@@ -195,6 +195,9 @@ public class Paddle implements Sprite, Collidable {
         g.removeCollidable(this);
         g.removeSprite(this);
     }
+    public Ball shoot () {
+        return new Ball(this.rectangle.getMidele(),3,Color.red);
+    }
 
 }
 

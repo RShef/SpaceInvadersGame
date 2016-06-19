@@ -254,6 +254,13 @@ public class GameLevel implements Animation {
             PauseScreen ps = new PauseScreen(this.score, this.lives, this.l.levelName());
             this.runner.run(new KeyPressStoppableAnimation(this.key, "space", ps));
         }
+        if (k.isPressed(KeyboardSensor.SPACE_KEY)) {
+            Ball b = this.p.shoot();
+            b.setVelocity(0,500);
+            b.setEnvironment(this.environment);
+            b.addToGame(this);
+        }
+
         // timing
         if (this.blocks.getValue() == 0) {
             this.score.increase(100);
