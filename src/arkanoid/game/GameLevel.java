@@ -6,6 +6,7 @@ import arkanoid.animation.Animation;
 import arkanoid.animation.AnimationRunner;
 import arkanoid.animation.KeyPressStoppableAnimation;
 import arkanoid.geometry.Velocity;
+import arkanoid.invaders.Alien;
 import arkanoid.invaders.Swarm;
 import arkanoid.levels.LevelInformation;
 import arkanoid.listeners.AlienRemover;
@@ -32,6 +33,10 @@ import java.awt.Color;
 import java.awt.geom.Arc2D;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -55,6 +60,9 @@ public class GameLevel implements Animation {
     private Swarm swarm;
     private Counter aliens;
     private Long time;
+    private Long time2;
+
+    private Alien[][] aL;
 
     /**
      * Instantiates a new game level.
@@ -81,6 +89,7 @@ public class GameLevel implements Animation {
         this.gui = gui;
         this.aliens = new Counter();
         this.time = System.currentTimeMillis();
+        this.time2 = System.currentTimeMillis();
         //this.lives.increase(7);
     }
 
@@ -215,6 +224,7 @@ public class GameLevel implements Animation {
         this.swarm.addToGame(this);
         this.swarm.addHitListeners(ar, stl, bar);
         this.aliens.increase(50);
+        this.aL = this.swarm.getSwarmGrid();
         // adding the listeners.
         for (Block b : this.l.blocks()) {
             b.addToGame(this);
@@ -263,6 +273,7 @@ public class GameLevel implements Animation {
         this.sprites.drawOn(d);
         this.sprites.notifyAllTimePassed(dt);
         this.swarm.timePassed(dt);
+        Long currTime = System.currentTimeMillis();
 
 
         // if "p" is pressed, show pause screen
@@ -271,7 +282,6 @@ public class GameLevel implements Animation {
             PauseScreen ps = new PauseScreen(this.score, this.lives, this.l.levelName());
             this.runner.run(new KeyPressStoppableAnimation(this.key, "space", ps));
         }
-        Long currTime = System.currentTimeMillis();
         long x = currTime - this.time;
         if (k.isPressed(KeyboardSensor.SPACE_KEY) && x > 350 ) {
             Ball b = this.p.shoot();
@@ -279,6 +289,38 @@ public class GameLevel implements Animation {
             b.addToGame(this);
             b.setEnvironment(this.environment);
             this.time = currTime;
+        }
+        ArrayList al =  this.sprites.getSprites();
+        boolean flag = false;
+        List<Alien> aliens = new ArrayList<>();
+        long y = currTime - this.time2;
+        if (y > 550) {
+            this.swarm.changeGrid(this.aL);
+            System.out.println("aL = " + this.aL.length);
+            System.out.println("Swarm" + this.swarm.getSwarmGrid().length);
+
+            for (int i = 4; i >= 0; i--) {
+                for (int j =0; j<10; j++) {
+                    if (this.swarm.getSwarmGrid()[i][j] != null ) {
+                        if (this.swarm.isClear(this.swarm.getSwarmGrid()[i][j])) {
+                            aliens.add(this.swarm.getSwarmGrid()[i][j]);
+                        }
+                    }
+                }
+            }
+            Random rn = new Random();
+            int range = aliens.size() - 0 ;
+            System.out.println("random = " + range);
+            System.out.println("aliens.size = " + aliens.size());
+
+            int randomNum =  rn.nextInt(range) + 0;
+            //int rand = (int)Math.random() * aliens.size();
+            Ball badBall = aliens.get(randomNum).shoot();
+            badBall.setVelocity(-1,500);
+            badBall.addToGame(this);
+            badBall.setEnvironment(this.environment);
+            this.time2 = currTime;
+
         }
 
         // timing
@@ -316,5 +358,8 @@ public class GameLevel implements Animation {
     public int aliensLeft() {
         return this.aliens.getValue();
     }
+
+    public Alien[][] getAlienMap () {return  this.aL;}
+    public void changeMap (Alien[][] a) { this.aL = a;}
 
 }

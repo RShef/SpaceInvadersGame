@@ -37,7 +37,16 @@ public class AlienRemover implements HitListener {
      */
     public void hitEvent(Sprite beingHit, Ball hitter) {
         Alien beingHit1 = (Alien) beingHit;
+        Alien [][] sg = this.game.getAlienMap();
         if (beingHit1.getHits() == 0) {
+            for (int i = 0; i < 5; i++) {
+                for ( int j = 0; j < 10; j++) {
+                    if (sg[i][j] == beingHit1) {
+                        sg[i][j] = null;
+                    }
+                }
+            }
+            this.game.changeMap(sg);
             beingHit1.removeFromGame(this.game);
             this.removedAliens.decrease(1);
         }

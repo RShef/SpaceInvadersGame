@@ -12,7 +12,7 @@ import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
 
 import javax.imageio.ImageIO;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -194,5 +194,11 @@ public class Alien implements Collidable, Sprite, HitNotifier {
      */
     public int getHits() {
         return this.hits;
+    }
+
+    public Ball shoot () {
+        Point p = new Point( this.b.getHorizontalDown().middle().getX(),
+                this.b.getHorizontalDown().middle().getY() + 10);
+        return new Ball(p,3,Color.yellow);
     }
 }

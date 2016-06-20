@@ -9,8 +9,13 @@ import arkanoid.listeners.AlienRemover;
 import arkanoid.listeners.BallRemover;
 import arkanoid.listeners.BlockRemover;
 import arkanoid.listeners.ScoreTrackingListener;
+import arkanoid.sprites.Ball;
 import arkanoid.sprites.Sprite;
 import biuoop.DrawSurface;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author Roey Shefi & Oded Thaller
@@ -26,6 +31,7 @@ public class Swarm implements Sprite {
     private int cols;
     private Point startingPoint;
     private Alien[][] swarmGrid;
+    private TreeMap<Alien,Point> alienList;
 
     /**
      * Instantiates a new swarm.
@@ -42,6 +48,7 @@ public class Swarm implements Sprite {
         this.speed = givenSpeed;
         this.cols = givenCols;
         this.rows = givenRows;
+        this.alienList = new TreeMap<>();
         this.swarmGrid = makeSwarm(x, y);
     }
 
@@ -73,7 +80,7 @@ public class Swarm implements Sprite {
     public Alien getRightMost() {
         for (int i = this.cols - 1; i >= 0; i--) {
             for (int j = 0; j < this.rows; j++) {
-                if (swarmGrid[j][i].getHits() != 0) {
+                if (swarmGrid[j][i] != null && swarmGrid[j][i].getHits() != 0) {
                     return swarmGrid[j][i];
                 }
             }
@@ -89,7 +96,7 @@ public class Swarm implements Sprite {
     public Alien getLeftMost() {
         for (int i = 0; i < this.cols; i++) {
             for (int j = 0; j < this.rows; j++) {
-                if (swarmGrid[j][i].getHits() != 0) {
+                if (swarmGrid[j][i] != null&& swarmGrid[j][i].getHits() != 0) {
                     return swarmGrid[j][i];
                 }
             }
@@ -105,7 +112,7 @@ public class Swarm implements Sprite {
     public Alien getLowest() {
         for (int i = this.rows - 1; i >= 0; i--) {
             for (int j = 0; j < this.cols; j++) {
-                if (swarmGrid[i][j].getHits() != 0) {
+                if (swarmGrid[i][j] != null && swarmGrid[i][j].getHits() != 0) {
                     return swarmGrid[i][j];
                 }
             }
@@ -166,7 +173,9 @@ public class Swarm implements Sprite {
     public void moveOneStep(double dx, double dy) {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                swarmGrid[i][j].moveOneStep(dx, dy);
+                if (swarmGrid[i][j] != null) {
+                    swarmGrid[i][j].moveOneStep(dx, dy);
+                }
             }
         }
     }
@@ -227,4 +236,26 @@ public class Swarm implements Sprite {
             }
         }
     }
+
+    public boolean isClear (Alien a) {
+        for (int i = 4; i >= 0; i--) {
+            for (int j = 0; j < 9; j++) {
+                if (this.swarmGrid[i][j] != null) {
+                    if (this.swarmGrid[i][j] == a) {
+                        if (i == 4 ) { return true;}
+                        for (int k = i + 1; k < 5; k--) {
+                            if (this.swarmGrid[k][j] != null) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public TreeMap getAllienMap () { return this.alienList;}
+public Alien[][] getSwarmGrid() { return this.swarmGrid;}
+    public void changeGrid(Alien[][] a) { this.swarmGrid = a;}
 }
