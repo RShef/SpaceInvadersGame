@@ -296,8 +296,8 @@ public class GameLevel implements Animation {
         long y = currTime - this.time2;
         if (y > 550) {
             this.swarm.changeGrid(this.aL);
-            System.out.println("aL = " + this.aL.length);
-            System.out.println("Swarm" + this.swarm.getSwarmGrid().length);
+            //System.out.println("aL = " + this.aL.length);
+            //System.out.println("Swarm" + this.swarm.getSwarmGrid().length);
 
             for (int i = 4; i >= 0; i--) {
                 for (int j =0; j<10; j++) {
@@ -310,8 +310,8 @@ public class GameLevel implements Animation {
             }
             Random rn = new Random();
             int range = aliens.size() - 0 ;
-            System.out.println("random = " + range);
-            System.out.println("aliens.size = " + aliens.size());
+            //System.out.println("random = " + range);
+            //System.out.println("aliens.size = " + aliens.size());
 
             int randomNum =  rn.nextInt(range) + 0;
             //int rand = (int)Math.random() * aliens.size();
