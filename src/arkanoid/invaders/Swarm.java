@@ -243,13 +243,14 @@ public class Swarm implements Sprite {
                 if (this.swarmGrid[i][j] != null) {
                     if (this.swarmGrid[i][j] == a) {
                         if (i == 4 ) { return true;}
-                        for (int k = i + 1; k < 5; k--) {
+                        for (int k = i + 1; k < 5; k++) {
                             if (this.swarmGrid[k][j] != null) {
                                 return false;
                             }
                         }
                     }
                 }
+                else { break;}
             }
         }
         return true;
