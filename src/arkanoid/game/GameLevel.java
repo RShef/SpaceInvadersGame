@@ -297,7 +297,7 @@ public class GameLevel implements Animation {
         if (y > 550) {
             this.swarm.changeGrid(this.aL);
             //System.out.println("aL = " + this.aL.length);
-            //System.out.println("Swarm" + this.swarm.getSwarmGrid().length);
+           ///System.out.println("Swarm" + this.swarm.getSwarmGrid().length);
 
             for (int i = 4; i >= 0; i--) {
                 for (int j =0; j<10; j++) {
