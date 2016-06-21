@@ -107,7 +107,7 @@ public class Main {
                             .getLevelList()), null);
         }
 
-        MenuAnimation<Task<Void>> menu = new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Arkanoid",
+        MenuAnimation<Task<Void>> menu = new MenuAnimation<Task<Void>>(gui.getKeyboardSensor(), "Space Invaders",
                 animationRunner);
         if (!this.levelPath.equals("definitions/levelset.txt")) {
             subMenu = null;

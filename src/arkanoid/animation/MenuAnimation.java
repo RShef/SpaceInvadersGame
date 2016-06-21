@@ -128,7 +128,7 @@ public class MenuAnimation<T> implements Menu {
         d.drawImage(0, 0, back);
 
         d.setColor(Color.white);
-        d.drawText(290, 100, this.title, 50);
+        d.drawText(220, 100, this.title, 50);
         d.drawText(110, 200, "Select one of the following options", 35);
         int y = 300;
         for (SelectionInfo selection : this.selections) {

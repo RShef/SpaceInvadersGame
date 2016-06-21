@@ -15,6 +15,7 @@ import biuoop.DrawSurface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.TreeMap;
 
 /**
@@ -115,6 +116,21 @@ public class Swarm implements Sprite {
                 if (swarmGrid[i][j] != null && swarmGrid[i][j].getHits() != 0) {
                     return swarmGrid[i][j];
                 }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the lowest alien in a specific column.
+     * <p>
+     * @param col a given column
+     * @return the lowest Alien in the column
+     */
+    public Alien getLowestInCol(int col) {
+        for (int i = this.rows - 1; i >= 0; i--) {
+                if (swarmGrid[i][col] != null && swarmGrid[i][col].getHits() != 0) {
+                    return swarmGrid[i][col];
             }
         }
         return null;
@@ -257,6 +273,17 @@ public class Swarm implements Sprite {
     }
 
     public TreeMap getAllienMap () { return this.alienList;}
-public Alien[][] getSwarmGrid() { return this.swarmGrid;}
+
+    public Alien[][] getSwarmGrid() { return this.swarmGrid;}
+
     public void changeGrid(Alien[][] a) { this.swarmGrid = a;}
+
+    public Ball shoot() {
+        Random rand = new Random();
+        int randCol = rand.nextInt(10);
+        if (getLowestInCol(randCol) != null) {
+            return getLowestInCol(randCol).shoot();
+        }
+        return null;
+    }
 }

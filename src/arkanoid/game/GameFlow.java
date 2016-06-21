@@ -86,10 +86,11 @@ public class GameFlow {
         // Going over each level.
         boolean win = true;
         this.lives.increase(3);
-        for (LevelInformation levelInfo : lvls) {
-            GameLevel level = new GameLevel(levelInfo, this.animationRunner,
-                    this.keyboardSensor, this.gui, this.lives, this.score);
-            level.initialize();
+        GameLevel level = new GameLevel(lvls.get(0), this.animationRunner,
+                this.keyboardSensor, this.gui, this.lives, this.score);
+        double swarmSpeed = 70;
+        while (level.livesLeft() != 0) {
+            level.initialize(swarmSpeed);
 
             while (level.livesLeft() != 0 && level.aliensLeft() != 0) {
                 level.playOneTurn();
@@ -99,7 +100,7 @@ public class GameFlow {
                 win = false;
                 break;
             }
-
+            swarmSpeed += 5;
         }
         // Show end screen
         EndScreen es = new EndScreen(this.score, win);

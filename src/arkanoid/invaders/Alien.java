@@ -55,6 +55,11 @@ public class Alien implements Collidable, Sprite, HitNotifier {
         return this.b;
     }
 
+    /**
+     * Sets the alien's rectangle.
+     * <p>
+     * @param rect the new rectangle
+     */
     public void setCollisionRectangle(Rectangle rect) {
         this.b = rect;
     }
@@ -196,8 +201,8 @@ public class Alien implements Collidable, Sprite, HitNotifier {
         return this.hits;
     }
 
-    public Ball shoot () {
-        Point p = new Point( this.b.getHorizontalDown().middle().getX(),
+    public Ball shoot() {
+        Point p = new Point(this.b.getHorizontalDown().middle().getX(),
                 this.b.getHorizontalDown().middle().getY() + 10);
         return new Ball(p,3,Color.yellow);
     }

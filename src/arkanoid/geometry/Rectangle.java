@@ -192,8 +192,16 @@ public class Rectangle {
         lines.add(verticalRight);
         return lines;
     }
-    public Point getMidele () {
-        return this.horizontalUp.middle();
+
+    /**
+     * return middle point of upper line of rectangle.
+     * <p>
+     * @return middle point
+     */
+    public Point getMiddle() {
+        double x = this.horizontalUp.middle().getX();
+        double y = this.horizontalUp.middle().getY() - 10;
+        return new Point(x, y);
     }
 
 }

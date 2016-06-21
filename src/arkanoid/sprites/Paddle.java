@@ -4,9 +4,14 @@ import arkanoid.game.GameLevel;
 import arkanoid.geometry.Velocity;
 import arkanoid.geometry.Point;
 import arkanoid.geometry.Rectangle;
+import arkanoid.listeners.HitListener;
+import arkanoid.listeners.HitNotifier;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import biuoop.KeyboardSensor;
 
@@ -15,7 +20,7 @@ import biuoop.KeyboardSensor;
  * @version 1.0
  * @since 4/4/2016
  */
-public class Paddle implements Sprite, Collidable {
+public class Paddle implements Sprite, Collidable, HitNotifier {
 
     private Color color;
     private Rectangle rectangle;
@@ -23,6 +28,8 @@ public class Paddle implements Sprite, Collidable {
     private int width;
     private int paddleSpeed;
     private boolean shoot = true;
+    private java.util.List<HitListener> hitListeners;
+
 
     /**
      * The constructor.
@@ -41,6 +48,7 @@ public class Paddle implements Sprite, Collidable {
         this.paddleSpeed = paddleSpeed;
         this.width = width;
         this.color = color;
+        this.hitListeners = new LinkedList<>();
     }
 
     /**
@@ -92,43 +100,10 @@ public class Paddle implements Sprite, Collidable {
      * @return the new velocity.
      */
     public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {
-        double x = currentVelocity.getDx();
-        double y = currentVelocity.getDy();
-        double speed = Math.round(Math.sqrt((y * y) + (x * x)));
-
-        if (collisionPoint.onVerLine(this.rectangle)) {
-            return (new Velocity(Math.round(x) * -1, Math.round(y)));
-        } else if (collisionPoint.onHorLine(this.rectangle)) {
-            /* Dividing the paddle in to five equal regions.
-            this is to simplify code readability.*/
-            double regionSize = Math.round(this.getCollisionRectangle().getWidth()) / 5;
-            double regionOne = Math.round(this.getCollisionRectangle().getUpperLeft().getX()) + regionSize;
-            double regionTwo = regionOne + regionSize;
-            double regionThree = regionTwo + regionSize;
-            double regionFour = regionThree + regionSize;
-
-            if (Math.round(collisionPoint.getX()) <= regionOne) {
-                Velocity v = Velocity.fromAngleAndSpeed(300, speed);
-                return new Velocity(Math.round(v.getDy()) * -1, Math.round(v.getDx()) * -1);
-            } else if (Math.round(collisionPoint.getX()) <= regionTwo) {
-                Velocity v = Velocity.fromAngleAndSpeed(330, speed);
-                return new Velocity(Math.round(v.getDy()) * -1, Math.round(v.getDx()) * -1);
-                // In the third region of the paddle, the ball will go up with no horz change.
-            } else if (Math.round(collisionPoint.getX()) <= regionThree) {
-                // change the direction in 360 degrees
-                return new Velocity(Math.round(x), Math.round(y) * (-1));
-            }
-            if (Math.round(collisionPoint.getX()) <= regionFour) {
-                Velocity v = Velocity.fromAngleAndSpeed(30, speed);
-                return new Velocity(Math.round(v.getDy()), Math.round(v.getDx()) * -1);
-                // the fifth region.
-            } else {
-                Velocity v = Velocity.fromAngleAndSpeed(60, speed);
-                return new Velocity(Math.round(v.getDy()), Math.round(v.getDx()) * -1);
-            }
-        } else {
-            return (new Velocity(Math.round(x), Math.round(y)));
+        if (collisionPoint.onHorLine(this.rectangle)) {
+            this.notifyHit(hitter);
         }
+        return currentVelocity;
     }
 
     /**
@@ -196,14 +171,53 @@ public class Paddle implements Sprite, Collidable {
         g.removeCollidable(this);
         g.removeSprite(this);
     }
-    public Ball shoot () {
+
+    /**
+     * Creates a ball the player will shoot.
+     * <p>
+     * @return Ball shot
+     */
+    public Ball shoot() {
         this.shoot = false;
-        return new Ball(this.rectangle.getMidele(),2,Color.red);
-    }
-    public boolean toShoot () {
-        return shoot;
+        return new Ball(this.rectangle.getMiddle(),2,Color.red);
     }
 
+    /**
+     * Add hl as a listener to hit events.
+     * <p/>
+     *
+     * @param hl a hit listener
+     */
+    @Override
+    public void addHitListener(HitListener hl) {
+        this.hitListeners.add(hl);
+    }
+
+    /**
+     * Remove hl from the list of listeners.
+     * <p/>
+     *
+     * @param hl a hit listener
+     */
+    @Override
+    public void removeHitListener(HitListener hl) {
+        this.hitListeners.remove(hl);
+    }
+
+    /**
+     * Notifies all listeners that the block has been hit.
+     * <p/>
+     *
+     * @param hitter the hitting Ball.
+     */
+    private void notifyHit(Ball hitter) {
+        // Makes a copy of the hitListeners before iterating over them.
+        List<HitListener> listeners = new ArrayList<>(this.hitListeners);
+        // Notify all listeners about a hit event:
+        for (HitListener hl : listeners) {
+            hl.hitEvent(this, hitter);
+        }
+    }
 }
 
 

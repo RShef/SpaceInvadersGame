@@ -3,7 +3,7 @@
 # Image Background and big blocks with 3 lives
 
 START_LEVEL
-level_name:Square Moon
+level_name:Space Invaders
 background:color(black)
 paddle_speed:650
 paddle_width:80
@@ -13,8 +13,8 @@ blocks_start_y:480
 row_height:10
 num_blocks:276
 START_BLOCKS
--lllllllllllllll--llllllllllllllllllll--llllllll-
--lllllllllllllll--llllllllllllllllllll--llllllll-
--lllllllllllllll--llllllllllllllllllll--llllllll-
+-lllllllllllllll--lllllllllllllll--lllllllllllll-
+-lllllllllllllll--lllllllllllllll--lllllllllllll-
+-lllllllllllllll--lllllllllllllll--lllllllllllll-
 END_BLOCKS
 END_LEVEL

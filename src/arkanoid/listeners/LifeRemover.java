@@ -5,6 +5,7 @@ import arkanoid.game.GameLevel;
 import arkanoid.invaders.Alien;
 import arkanoid.sprites.Ball;
 import arkanoid.sprites.Block;
+import arkanoid.sprites.Paddle;
 import arkanoid.sprites.Sprite;
 
 /**
@@ -12,20 +13,19 @@ import arkanoid.sprites.Sprite;
  * @version 1.0
  * @since 09/05/2016
  */
-public class AlienRemover implements HitListener {
+public class LifeRemover implements HitListener {
 
     private GameLevel game;
-    private Counter removedAliens;
+    private boolean hit;
 
     /**
      * The constructor.
      *
      * @param game          the game level.
-     * @param removedAliens the counter of removed balls.
      */
-    public AlienRemover(GameLevel game, Counter removedAliens) {
+    public LifeRemover(GameLevel game) {
         this.game = game;
-        this.removedAliens = removedAliens;
+        this.hit = false;
     }
 
     /**
@@ -36,10 +36,14 @@ public class AlienRemover implements HitListener {
      * @param hitter   the ball that's hitting.
      */
     public void hitEvent(Sprite beingHit, Ball hitter) {
-        Alien beingHit1 = (Alien) beingHit;
-        if (beingHit1.getHits() == 0) {
-            beingHit1.removeFromGame(this.game);
-            this.removedAliens.decrease(1);
-        }
+        this.hit = true;
+    }
+
+    public boolean isHit() {
+        return this.hit;
+    }
+
+    public void setHit() {
+        this.hit = false;
     }
 }
